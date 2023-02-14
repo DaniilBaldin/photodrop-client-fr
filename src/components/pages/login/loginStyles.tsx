@@ -55,7 +55,8 @@ export const CreateButton = styled.button`
   background-color: #3300cc;
 
   :disabled {
-    opacity: 0.33;
+    background-color: #c59fe1;
+    border: 1px solid #c59fe1;
     cursor: auto;
   }
 `;

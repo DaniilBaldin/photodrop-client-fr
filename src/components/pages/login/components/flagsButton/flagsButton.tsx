@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, Fragment, useEffect, useState } from 'react';
 
 import { CountriesModal } from '~/components/common/modal/countriesModal/countriesModal';
 
@@ -30,14 +30,23 @@ export const FlagsButton: FC<Props> = (props) => {
   }, [country]);
 
   return (
-    <div>
-          <Button type="button" onClick={() => {
-              setShow(true)
-      }}>
-        <img src={`/flags/${country.code.toLowerCase()}.svg`} alt="Flag" height="20" width="28" loading="lazy" />
+    <Fragment>
+      <Button
+        type="button"
+        onClick={() => {
+          setShow(true);
+        }}
+      >
+        <img
+          src={`/flags/${country.code.toLowerCase()}.svg`}
+          alt={country.name}
+          height="20"
+          width="28"
+          loading="lazy"
+        />
         <ExpandMoreIcon />
       </Button>
-      <CountriesModal onClick={()=>{setShow(false)} show={show}}></CountriesModal>
-    </div>
+      <CountriesModal onClose={() => setShow(false)} show={show} setCountry={setCountry}></CountriesModal>
+    </Fragment>
   );
 };

@@ -23,7 +23,7 @@ export const Login = () => {
             <FlagsButton code={codeSet} />
             <PhoneInput dialCode={code} />
           </LoginForm>
-          <CreateButton type="submit" disabled={true}>
+          <CreateButton type="button" disabled={true}>
             Create account
           </CreateButton>
           <TextBottom>By proceeding, you consent to get WhatsApp or SMS messages,</TextBottom>
