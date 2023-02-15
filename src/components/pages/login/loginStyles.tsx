@@ -2,6 +2,14 @@ import styled from 'styled-components';
 
 export const Main = styled.div`
   overflow-x: hidden;
+
+  @media (max-width: 1024px) {
+    zoom: 80%;
+  }
+
+  @media (max-width: 320px) {
+    zoom: 70%;
+  }
 `;
 
 export const LoginMain = styled.div`
