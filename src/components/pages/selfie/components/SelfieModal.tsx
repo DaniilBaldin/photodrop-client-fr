@@ -2,6 +2,7 @@ import React, { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import { UseWebCamModal } from './useWebCam/useWebCam';
+import { UseFileModal } from './useFile/useFileModal';
 
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -19,6 +20,7 @@ import {
 type Props = {
     show: boolean;
     onClose: () => void;
+    onRetake: () => void;
 };
 
 // TODO: file handling.
@@ -26,10 +28,13 @@ type Props = {
 export const SelfieModal: FC<Props> = (props) => {
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const [selfie, setSelfie] = useState<object>({});
+    const [selfie, setSelfie] = useState<string | null>('');
     const [show, setShow] = useState<boolean>(false);
+    const [open, setOpen] = useState<boolean>(false);
 
     const handleClick = () => {
+        setOpen(true);
+        props.onClose();
         inputRef.current?.click();
     };
 
@@ -39,7 +44,7 @@ export const SelfieModal: FC<Props> = (props) => {
             return;
         }
 
-        setSelfie(file);
+        setSelfie(URL.createObjectURL(file));
     };
 
     const closeOnEscapeKeyDown = (e: { charCode: number; keyCode: number }) => {
@@ -82,7 +87,16 @@ export const SelfieModal: FC<Props> = (props) => {
                         setShow(false);
                     }}
                     show={show}
+                    onRetake={props.onRetake}
                 ></UseWebCamModal>
+                <UseFileModal
+                    open={open}
+                    onClose={() => {
+                        setOpen(false);
+                    }}
+                    image={selfie}
+                    onRetake={props.onRetake}
+                ></UseFileModal>
                 <input
                     type="file"
                     style={{ display: 'none' }}

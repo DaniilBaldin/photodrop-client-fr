@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import Webcam from 'react-webcam';
-
 export const Modal = styled.div<{ show: boolean }>`
     position: fixed;
     left: 0;
@@ -34,23 +32,18 @@ export const ModalContent = styled.div`
     border-radius: 20px;
 `;
 
-export const WebCamWindow = styled.div`
-    margin-top: 30px;
-    position: relative;
-    margin-bottom: 90px;
-    max-width: 375px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-`;
-
-export const WebcamVideo = styled(Webcam)`
-    margin-left: 50px;
-    width: 280px;
-    height: 260px;
-    display: block;
-    object-fit: cover;
+export const FileWindow = styled.span`
+    position: absolute;
+    top: 210px;
+    left: 50px;
+    right: 0;
+    bottom: 0px;
+    max-width: 280px;
+    max-height: 260px;
     border-radius: 50%;
+    overflow: hide;
+    mask-image: '';
+    -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
 `;
 
 export const Header = styled.div`
@@ -96,6 +89,7 @@ export const TextSmall = styled.div`
     line-height: 20px;
     margin-top: 110px;
     margin-right: 10px;
+    margin-bottom: 400px;
     display: flex;
     color: #ffffff;
     flex-direction: row;
@@ -144,3 +138,7 @@ export const ButtonColored = styled.button`
     align-items: center;
     justify-content: center;
 `;
+
+export const CropStyle = {
+    border: '1px solid #262626',
+};

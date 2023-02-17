@@ -32,6 +32,9 @@ export const Selfie = () => {
                                 setShow(false);
                             }}
                             show={show}
+                            onRetake={() => {
+                                setShow(true);
+                            }}
                         ></SelfieModal>
                     </ImageBox>
                 </SelfieDiv>

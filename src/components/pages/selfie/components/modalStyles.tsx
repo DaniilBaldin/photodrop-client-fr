@@ -13,6 +13,14 @@ export const Modal = styled.div<{ show: boolean }>`
     opacity: ${(props) => (props.show ? 1 : 0)};
     transition: all 0.3s ease-in-out;
     pointer-events: ${(props) => (props.show ? 'all' : 'none')};
+
+    @media (max-width: 1024px) {
+        zoom: 80%;
+    }
+
+    @media (max-width: 320px) {
+        zoom: 70%;
+    }
 `;
 
 export const ModalContent = styled.div`
@@ -29,6 +37,7 @@ export const Header = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: left;
+    margin-bottom: 0px;
 `;
 
 export const Text = styled.div`
@@ -37,7 +46,7 @@ export const Text = styled.div`
     font-size: 22px;
     font-weight: 500;
     line-height: 23px;
-    margin-top: 7px;
+    margin-top: 20px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -48,7 +57,7 @@ export const CloseButton = styled.button`
     border: none;
     height: 27px;
     width: 22px;
-    margin-top: 7px;
+    margin-top: 20px;
     margin-left: 20px;
     margin-right: 100px;
     background-color: white;
@@ -62,11 +71,12 @@ export const Body = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-top: 20px;
+    padding-top: 15px;
 `;
 
 export const Button = styled.button`
     border: none;
+    margin-top: 0;
     margin-bottom: 10px;
     width: 380px;
     height: 50px;
