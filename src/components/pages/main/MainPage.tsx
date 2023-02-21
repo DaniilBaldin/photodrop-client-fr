@@ -43,34 +43,36 @@ export const MainPage = () => {
                 </>
             ) : (
                 <>
-                    <MainNoData>
-                        <Notification>
-                            <NotificationImage src="/Notification.svg" alt="Notification" />
-                            <NotificationTitle>Your photos will drop soon.</NotificationTitle>
-                            <NotificationMessage>
-                                You will get a message when they are ready. It can take up to 48
-                                hours.
-                            </NotificationMessage>
-                        </Notification>
-                        <ArtsContainer>
-                            <ArtsTitle>Browse Artist Prints</ArtsTitle>
-                            <SwiperContainer
-                                slidesPerView={'auto'}
-                                spaceBetween={30}
-                                slidesOffsetAfter={10}
-                                freeMode={true}
-                                modules={[FreeMode]}
-                            >
-                                {ArtPrints.map((e: Art) => (
-                                    <Slide key={e.index}>
-                                        <ArtButton>
-                                            <Art src={e.src}></Art>
-                                        </ArtButton>
-                                    </Slide>
-                                ))}
-                            </SwiperContainer>
-                        </ArtsContainer>
-                    </MainNoData>
+                    <Container>
+                        <MainNoData>
+                            <Notification>
+                                <NotificationImage src="/Notification.svg" alt="Notification" />
+                                <NotificationTitle>Your photos will drop soon.</NotificationTitle>
+                                <NotificationMessage>
+                                    You will get a message when they are ready. It can take up to 48
+                                    hours.
+                                </NotificationMessage>
+                            </Notification>
+                            <ArtsContainer>
+                                <ArtsTitle>Browse Artist Prints</ArtsTitle>
+                                <SwiperContainer
+                                    slidesPerView={'auto'}
+                                    spaceBetween={10}
+                                    slidesOffsetAfter={10}
+                                    freeMode={true}
+                                    modules={[FreeMode]}
+                                >
+                                    {ArtPrints.map((e: Art) => (
+                                        <Slide key={e.index}>
+                                            <ArtButton>
+                                                <Art src={e.src}></Art>
+                                            </ArtButton>
+                                        </Slide>
+                                    ))}
+                                </SwiperContainer>
+                            </ArtsContainer>
+                        </MainNoData>
+                    </Container>
                 </>
             )}
             {/* <Footer /> */}

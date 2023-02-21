@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Header } from '~/components/common/header/header';
+import { HeaderComponent } from '~/components/common/header/header';
 
 import OtpInput from 'react18-input-otp';
 
@@ -34,7 +34,7 @@ export const Verify = () => {
 
     return (
         <Main>
-            <Header />
+            <HeaderComponent />
             <VerifyMain>
                 <VerifyDiv>
                     <TextTitle>What’s the code?</TextTitle>

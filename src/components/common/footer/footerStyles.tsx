@@ -3,103 +3,47 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const FooterMain = styled.footer`
-    /* position: absolute; */
-    /* bottom: 0px; */
-    /* height: 360px; */
-    width: 100%;
+    padding: 60px 0 30px 0;
     background-color: #262626;
-    padding-top: 30px;
-    padding-left: 400px;
-    padding-right: 320px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-
-    @media (max-width: 1440px) {
-        height: 400px;
-        padding-left: 300px;
-        padding-right: 300px;
-    }
-
-    @media (max-width: 1024px) {
-        zoom: 90%;
-        padding-left: 50px;
-        padding-right: 50px;
-        /* padding-right: 0px; */
-        height: 480px;
-    }
-
-    @media (max-width: 1024px) {
-        zoom: 90%;
-        padding-left: 50px;
-        padding-right: 50px;
-        /* padding-right: 0px; */
-        height: 480px;
-    }
-
-    @media (max-width: 320px) {
-        zoom: 80%;
-        padding-left: 50px;
-        padding-right: 50px;
-        /* padding-right: 0px; */
-        height: 480px;
-    }
 `;
 
 export const FooterContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: top;
-    justify-content: center;
-    margin: 0;
-    padding-left: 80px;
-    /* max-width: 80%; */
-    gap: 50px;
+    max-width: 375px;
 
-    @media (max-width: 1024px) {
-        flex-direction: column;
-        align-items: center;
-        justify-content: left;
-        padding-left: 0px;
-        max-width: 100%;
-        zoom: 90%;
+    padding: 0 15px;
+    margin: 0 auto;
+
+    @media (min-width: 1024px) {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 60px;
+        max-width: 965px;
     }
 
-    @media (max-width: 320px) {
-        flex-direction: column;
-        align-items: center;
-        justify-content: left;
-        padding-left: 0px;
-        max-width: 100%;
-        zoom: 80%;
+    @media (max-width: 400px) {
+        zoom: 90%;
     }
 `;
 
 export const FooterColumn = styled.div`
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     justify-content: left;
-    width: 100%;
-
-    @media (max-width: 1024px) {
-        width: 80%;
-    }
-
-    @media (max-width: 320px) {
-        width: 100%;
-    }
 `;
 
 export const FooterTitle = styled.h2`
-    font-size: 18px;
+    font-size: 22px;
     font-family: 'Termina';
-    letter-spacing: -0.02em;
     font-weight: 700;
-    line-height: 22px;
-    margin: 0 0 10px 0;
+    line-height: 26px;
+    margin: 0 0 16px 0;
     color: #ffffff;
+
+    @media (max-width: 1024px) {
+        font-size: 16px;
+        line-height: 22px;
+        margin: 0 0 10px 0;
+    }
 `;
 
 export const FooterLogo = styled.img`
@@ -108,7 +52,6 @@ export const FooterLogo = styled.img`
 `;
 
 export const StyledText = styled.p`
-    letter-spacing: -0.02em;
     color: #ffffff;
     margin-top: 20px;
     font-family: 'Futura PT';
@@ -142,7 +85,7 @@ export const DateText = styled.div`
     font-weight: 400;
     line-height: 36px;
     color: #ffffff;
-    margin-top: 40px;
+    margin: 30px 0 20px 0;
 `;
 
 export const MailText = styled.p`

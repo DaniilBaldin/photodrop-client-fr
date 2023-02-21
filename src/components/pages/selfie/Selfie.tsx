@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Header } from '~/components/common/header/header';
+import { HeaderComponent } from '~/components/common/header/header';
 
 import { SelfieModal } from './components/SelfieModal';
 
@@ -12,7 +12,7 @@ export const Selfie = () => {
     const [show, setShow] = useState<boolean>(false);
     return (
         <Main>
-            <Header />
+            <HeaderComponent />
             <SelfieMain>
                 <SelfieDiv>
                     <TextTitle>Add a selfie</TextTitle>

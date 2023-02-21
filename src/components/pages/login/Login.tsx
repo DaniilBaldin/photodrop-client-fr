@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Header } from '~/components/common/header/header';
+import { HeaderComponent } from '~/components/common/header/header';
 import { FlagsButton } from './components/flagsButton/flagsButton';
 import { PhoneInput } from './components/phoneInput/PhoneInput';
 
@@ -41,7 +41,7 @@ export const Login = () => {
 
     return (
         <Main>
-            <Header />
+            <HeaderComponent />
             <LoginMain>
                 <LoginDiv>
                     <TextTitle>Let’s get started</TextTitle>

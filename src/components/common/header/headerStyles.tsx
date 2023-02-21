@@ -1,13 +1,18 @@
 import styled from 'styled-components';
 
+export const Header = styled.header`
+    border-bottom: 1px solid #f1f0ec;
+    padding: 20px 0 18px 0;
+`;
+
 export const HeaderMain = styled.div`
     display: flex;
     width: 100%;
-    flex-direction: row;
+    max-width: 1230px;
     align-items: center;
     justify-content: center;
-    height: 60px;
-    border-bottom: 1px solid #f1f0ec;
+    padding: 0 15px;
+    margin: 0 auto;
 `;
 
 export const Image = styled.img`
@@ -28,4 +33,9 @@ export const SettingsButton = styled.button`
     border-radius: 50%;
     border: none;
     background-color: #eeeeee;
+
+    @media (max-width: 480px) {
+        height: 30px;
+        width: 30px;
+    }
 `;
