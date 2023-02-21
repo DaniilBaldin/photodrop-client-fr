@@ -62,7 +62,7 @@ export const UseFileModal: FC<Props> = (props) => {
             formData.append('file', final as Blob, 'selfie.jpeg');
             console.log(formData.getAll('file'));
 
-            //TODO: here goes fetch hook.
+            //TODO: here goes fetch hook. Add redirect if OK.
         }
     };
 

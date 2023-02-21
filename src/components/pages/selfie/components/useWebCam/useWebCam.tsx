@@ -38,7 +38,7 @@ export const UseWebCamModal: FC<Props> = (props) => {
                 formData.append('file', blob as Blob, 'selfie.jpeg');
                 console.log(formData.getAll('file'));
 
-                //TODO: Here goes fetch hook
+                //TODO: Here goes fetch hook. Add redirect if OK.
             });
     };
 

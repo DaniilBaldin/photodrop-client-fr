@@ -2,7 +2,7 @@ import React, { FC, FunctionComponent } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from '~/components/common/layout/Layout';
 
-import { routes } from './routes';
+import { routes, protectedRoutes } from './routes';
 
 type RouterType = {
     path: string;
@@ -10,7 +10,7 @@ type RouterType = {
 };
 
 export const Router: FC = () => {
-    const jwtToken = '';
+    const jwtToken = 'token';
     return (
         <Routes>
             <Route path="/" element={<Layout />}>
@@ -18,7 +18,9 @@ export const Router: FC = () => {
                     ? routes.map((e: RouterType, index) => (
                           <Route key={index} path={e.path} element={<e.element />} />
                       ))
-                    : ''}
+                    : protectedRoutes.map((e: RouterType, index) => (
+                          <Route key={index} path={e.path} element={<e.element />} />
+                      ))}
             </Route>
         </Routes>
     );
