@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Main = styled.div`
     overflow-x: hidden;
+    height: 100%;
 
     @media (max-width: 1024px) {
         zoom: 80%;
@@ -14,8 +15,9 @@ export const Main = styled.div`
 
 export const VerifyMain = styled.div`
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     height: 100%;
 `;
 

@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { FreeMode } from 'swiper';
+
+import { Lightbox } from '~/components/common/modal/lightbox/Lightbox';
 
 import { ArtPrints } from '~/utils/artPrints';
 
@@ -32,6 +34,8 @@ type Art = {
 //TODO: page with data
 
 export const MainPage = () => {
+    const [show, setShow] = useState<boolean>(false);
+    const [image, setImage] = useState<string>('');
     const data: string[] = ['sadasdasadasd'];
     return (
         <Container>
@@ -64,18 +68,28 @@ export const MainPage = () => {
                                 >
                                     {ArtPrints.map((e: Art) => (
                                         <Slide key={e.index}>
-                                            <ArtButton>
-                                                <Art src={e.src}></Art>
+                                            <ArtButton
+                                                type="button"
+                                                onClick={() => {
+                                                    setShow(true);
+                                                    setImage(e.src);
+                                                }}
+                                            >
+                                                <Art src={e.src} alt={e.alt} loading="lazy"></Art>
                                             </ArtButton>
                                         </Slide>
                                     ))}
                                 </SwiperContainer>
                             </ArtsContainer>
+                            <Lightbox
+                                onClose={() => setShow(false)}
+                                show={show}
+                                image={image}
+                            ></Lightbox>
                         </MainNoData>
                     </Container>
                 </>
             )}
-            {/* <Footer /> */}
         </Container>
     );
 };

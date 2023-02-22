@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import { HeaderComponent } from '~/components/common/header/header';
-
 import { SelfieModal } from './components/SelfieModal';
 
 import AddIcon from '@mui/icons-material/Add';
@@ -12,7 +10,6 @@ export const Selfie = () => {
     const [show, setShow] = useState<boolean>(false);
     return (
         <Main>
-            <HeaderComponent />
             <SelfieMain>
                 <SelfieDiv>
                     <TextTitle>Add a selfie</TextTitle>

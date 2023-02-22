@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import { HeaderComponent } from '~/components/common/header/header';
-
 import OtpInput from 'react18-input-otp';
 
 import {
@@ -34,7 +32,6 @@ export const Verify = () => {
 
     return (
         <Main>
-            <HeaderComponent />
             <VerifyMain>
                 <VerifyDiv>
                     <TextTitle>What’s the code?</TextTitle>

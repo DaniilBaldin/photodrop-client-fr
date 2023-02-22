@@ -4,6 +4,8 @@ import { Verify } from '~/components/pages/verify/Verify';
 import { Selfie } from '~/components/pages/selfie/Selfie';
 import { MainPage } from '~/components/pages/main/MainPage';
 import { Settings } from '~/components/pages/settings/Settings';
+import { TermsOfService } from '~/components/pages/terms/TermsOfService';
+import { PrivacyPolicy } from '~/components/pages/privacy/PrivacyPolicy';
 
 export const routes = [
     {
@@ -29,14 +31,22 @@ export const protectedRoutes = [
         path: '/',
         element: MainPage,
     },
-    {
-        path: '/settings',
-        element: Settings,
-    },
     // {
     //     path: '/album/:id',
     //     element: Album,
     // },
+    {
+        path: '/settings',
+        element: Settings,
+    },
+    {
+        path: '/terms',
+        element: TermsOfService,
+    },
+    {
+        path: '/privacy',
+        element: PrivacyPolicy,
+    },
     {
         path: '*',
         element: NotFound,

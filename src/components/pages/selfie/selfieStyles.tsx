@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 export const Main = styled.div`
+    /* max-width: 1230px; */
     overflow-x: hidden;
+    height: 100%;
 
     @media (max-width: 1024px) {
         zoom: 80%;
@@ -14,8 +16,9 @@ export const Main = styled.div`
 
 export const SelfieMain = styled.div`
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     height: 100%;
 `;
 

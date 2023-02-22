@@ -17,8 +17,10 @@ import {
 } from './footerStyles';
 
 export const Footer: FC = () => {
+    const jwtToken = 'token';
+
     return (
-        <FooterMain>
+        <FooterMain hidden={!jwtToken}>
             <FooterContainer>
                 <FooterColumn>
                     <FooterTitle>PhotoDrop is brought to you by</FooterTitle>

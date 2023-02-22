@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { HeaderComponent } from '~/components/common/header/header';
 import { FlagsButton } from './components/flagsButton/flagsButton';
 import { PhoneInput } from './components/phoneInput/PhoneInput';
 
@@ -41,7 +40,6 @@ export const Login = () => {
 
     return (
         <Main>
-            <HeaderComponent />
             <LoginMain>
                 <LoginDiv>
                     <TextTitle>Let’s get started</TextTitle>

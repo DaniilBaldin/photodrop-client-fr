@@ -9,7 +9,7 @@ import { Container } from './layoutStyles';
 export const Layout = () => {
     return (
         <Container>
-            <HeaderComponent settingsButton={true} />
+            <HeaderComponent />
             <Outlet />
             <Footer />
         </Container>

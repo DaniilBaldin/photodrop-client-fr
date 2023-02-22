@@ -1,24 +1,28 @@
 import React, { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-import { Header, HeaderMain, Image, SettingsButton } from './headerStyles';
+import { Header, HeaderMain, Image, SettingsButton, BackButton } from './headerStyles';
+
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 type Props = {
     backArrow?: boolean;
-    settingsButton?: boolean;
 };
 
-export const HeaderComponent: FC<Props> = (props) => {
+export const HeaderComponent: FC<Props> = () => {
     const jwtToken = 'token';
     const navigate = useNavigate();
+    const location = useLocation();
 
     // TODO: link to user selfie image to settings button props
     return (
         <>
             {!jwtToken ? (
-                <HeaderMain>
-                    <Image src="/logo.svg" alt="Logo" />
-                </HeaderMain>
+                <Header>
+                    <HeaderMain>
+                        <Image src="/logo.svg" alt="Logo" />
+                    </HeaderMain>
+                </Header>
             ) : (
                 <Header>
                     <HeaderMain>
@@ -28,9 +32,18 @@ export const HeaderComponent: FC<Props> = (props) => {
                             onClick={() => {
                                 navigate('settings');
                             }}
-                            hidden={!props.settingsButton}
+                            hidden={location.pathname === '/settings'}
+                            path={location.pathname}
                         ></SettingsButton>
-                        {/* Arrow button */}
+                        <BackButton
+                            type="button"
+                            onClick={() => {
+                                navigate(-1);
+                            }}
+                            hidden={location.pathname === '/'}
+                        >
+                            <ArrowBackIosIcon />
+                        </BackButton>
                     </HeaderMain>
                 </Header>
             )}

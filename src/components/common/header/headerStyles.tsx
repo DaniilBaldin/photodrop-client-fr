@@ -25,7 +25,7 @@ export const Image = styled.img`
     }
 `;
 
-export const SettingsButton = styled.button`
+export const SettingsButton = styled.button<{ path: string }>`
     position: absolute;
     right: 38px;
     height: 35px;
@@ -33,6 +33,25 @@ export const SettingsButton = styled.button`
     border-radius: 50%;
     border: none;
     background-color: #eeeeee;
+    display: ${(props) => (props.path === '/' ? 'flex' : 'none')};
+
+    @media (max-width: 480px) {
+        height: 30px;
+        width: 30px;
+        display: ${(props) =>
+            props.path === '/terms' || props.path === '/privacy' || props.path === '/'
+                ? 'flex'
+                : 'none'};
+    }
+`;
+
+export const BackButton = styled.button`
+    position: absolute;
+    left: 38px;
+    height: 40px;
+    width: 40px;
+    border: none;
+    background-color: transparent;
 
     @media (max-width: 480px) {
         height: 30px;
