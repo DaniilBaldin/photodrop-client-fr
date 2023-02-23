@@ -15,6 +15,7 @@ export const Modal = styled.div<{ show: boolean }>`
     opacity: ${(props) => (props.show ? 1 : 0)};
     transition: all 0.3s ease-in-out;
     pointer-events: ${(props) => (props.show ? 'all' : 'none')};
+    z-index: 999;
 
     @media (max-width: 1024px) {
         zoom: 80%;

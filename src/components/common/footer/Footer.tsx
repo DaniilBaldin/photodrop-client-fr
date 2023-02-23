@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import {
     FooterMain,
@@ -18,9 +19,10 @@ import {
 
 export const Footer: FC = () => {
     const jwtToken = 'token';
+    const path = useLocation().pathname;
 
     return (
-        <FooterMain hidden={!jwtToken}>
+        <FooterMain hidden={!jwtToken || path === '/settings'}>
             <FooterContainer>
                 <FooterColumn>
                     <FooterTitle>PhotoDrop is brought to you by</FooterTitle>

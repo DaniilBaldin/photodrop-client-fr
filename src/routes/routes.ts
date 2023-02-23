@@ -6,6 +6,7 @@ import { MainPage } from '~/components/pages/main/MainPage';
 import { Settings } from '~/components/pages/settings/Settings';
 import { TermsOfService } from '~/components/pages/terms/TermsOfService';
 import { PrivacyPolicy } from '~/components/pages/privacy/PrivacyPolicy';
+import { ChangeName } from '~/components/pages/settings/components/ChangeName';
 
 export const routes = [
     {
@@ -38,6 +39,10 @@ export const protectedRoutes = [
     {
         path: '/settings',
         element: Settings,
+    },
+    {
+        path: '/settings-change-name',
+        element: ChangeName,
     },
     {
         path: '/terms',

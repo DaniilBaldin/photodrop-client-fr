@@ -67,7 +67,7 @@ export const UseWebCamModal: FC<Props> = (props) => {
     }, []);
 
     return createPortal(
-        <Modal onClick={(props.onClose, (e) => e.stopPropagation())} show={props.show}>
+        <Modal onClick={(e) => e.stopPropagation()} show={props.show}>
             <ModalContent onClick={(e) => e.stopPropagation()}>
                 <Header>
                     <CloseButton onClick={props.onClose}>

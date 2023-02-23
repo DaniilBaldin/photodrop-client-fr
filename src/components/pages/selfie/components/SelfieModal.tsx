@@ -60,7 +60,7 @@ export const SelfieModal: FC<Props> = (props) => {
         };
     }, []);
     return createPortal(
-        <Modal onClick={props.onClose} show={props.show}>
+        <Modal onClick={(e) => e.stopPropagation()} show={props.show}>
             <ModalContent onClick={(e) => e.stopPropagation()}>
                 <Header>
                     <CloseButton onClick={props.onClose}>
