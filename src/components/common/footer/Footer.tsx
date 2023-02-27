@@ -22,7 +22,7 @@ export const Footer: FC = () => {
     const path = useLocation().pathname;
 
     return (
-        <FooterMain hidden={!jwtToken || path === '/settings'}>
+        <FooterMain hidden={!jwtToken || path === '/settings' || path === '/settings-change-name'}>
             <FooterContainer>
                 <FooterColumn>
                     <FooterTitle>PhotoDrop is brought to you by</FooterTitle>
