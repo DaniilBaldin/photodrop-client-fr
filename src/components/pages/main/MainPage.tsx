@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { WithData } from './components/withData/WithData';
 import { NoData } from './components/noData/NoData';
 
