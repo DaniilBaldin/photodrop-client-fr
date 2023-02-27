@@ -6,6 +6,8 @@ import {
     ModalMain,
     Image,
     CloseButton,
+    ButtonContainer,
+    UnlockButton,
     BottomButtons,
     FrameButton,
     DownloadButton,
@@ -19,6 +21,7 @@ type Props = {
     image?: string;
     show: boolean;
     onClose: () => void;
+    buttons?: boolean;
 };
 
 export const Lightbox: FC<Props> = (props) => {
@@ -43,15 +46,21 @@ export const Lightbox: FC<Props> = (props) => {
             <ModalMain onClick={(e) => e.stopPropagation()}>
                 <Image src={props.image} alt="alt" loading="lazy" />
             </ModalMain>
-            <BottomButtons>
-                <DownloadButton href={props.image} download={'art'}>
-                    <ArrowDown src="/Vector.svg" alt="ArrowDown" />
-                    <img src="/Rectangle.svg" alt="Rectangle" />
-                    Download
-                </DownloadButton>
-                <FrameButton>See in a frame</FrameButton>
-            </BottomButtons>
-            <Gradient></Gradient>
+            {props.buttons === false ? (
+                <ButtonContainer>
+                    <UnlockButton>Unlock photos</UnlockButton>
+                </ButtonContainer>
+            ) : (
+                <BottomButtons>
+                    <DownloadButton href={props.image} download={'art'}>
+                        <ArrowDown src="/Vector.svg" alt="ArrowDown" />
+                        <img src="/Rectangle.svg" alt="Rectangle" />
+                        Download
+                    </DownloadButton>
+                    <FrameButton>See in a frame</FrameButton>
+                </BottomButtons>
+            )}
+            <Gradient />
         </Modal>,
         document.getElementById('root') as HTMLElement,
     );

@@ -25,14 +25,17 @@ export const Image = styled.img`
     }
 `;
 
-export const SettingsButton = styled.button<{ path: string }>`
+export const SettingsButton = styled.button<{ path: string; selfie: string }>`
     position: absolute;
     right: 38px;
     height: 35px;
     width: 35px;
     border-radius: 50%;
     border: none;
-    background-color: #eeeeee;
+    background-image: ${(props) =>
+        props.selfie ? `url(${props.selfie})` : `url(${'/avatar.png'})`};
+    background-repeat: no-repeat;
+    background-size: cover;
     display: ${(props) => (props.path === '/' ? 'flex' : 'none')};
 
     @media (max-width: 480px) {

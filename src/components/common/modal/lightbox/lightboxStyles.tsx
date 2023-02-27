@@ -16,7 +16,7 @@ export const Modal = styled.section<{ show: boolean }>`
 `;
 
 export const ModalMain = styled.div`
-    max-width: 1230px;
+    max-width: 1200px;
     height: 100%;
     display: grid;
     grid-template-rows: 1fr;
@@ -38,7 +38,7 @@ export const Image = styled.img`
     bottom: 0;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 100%;
+    max-width: 90%;
     max-height: 100%;
     width: auto;
     height: auto;
@@ -46,8 +46,6 @@ export const Image = styled.img`
 `;
 
 export const CloseButton = styled.button`
-    width: 50px;
-    height: 50px;
     background-color: transparent;
     border: none;
     color: #ffffff;
@@ -57,6 +55,49 @@ export const CloseButton = styled.button`
     justify-content: center;
     margin-top: 20px;
     margin-left: 30px;
+`;
+
+export const ButtonContainer = styled.div`
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    margin-right: 30px;
+    right: 45%;
+    left: 40%;
+    bottom: 30px;
+    padding: 0;
+    z-index: 12;
+
+    @media (max-width: 1024px) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        right: 0%;
+        left: 0%;
+        margin-left: 25px;
+    }
+`;
+
+export const UnlockButton = styled.button`
+    width: 200px;
+    height: 50px;
+    border-radius: 50px;
+    border: 1px solid #ffffff;
+    color: #262626;
+    background-color: #ffffff;
+    font-family: 'Futura PT';
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 28px;
+    text-align: center;
+
+    @media (max-width: 1024px) {
+        width: 345px;
+        font-size: 18px;
+        line-height: 23px;
+    }
 `;
 
 export const BottomButtons = styled.div`
