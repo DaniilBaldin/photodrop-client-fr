@@ -96,8 +96,7 @@ export const MainPage = () => {
     if (!photos.success || !albums.success) {
         return <NoData />;
     }
-
     if (albums.success && photos.success) {
         return <WithData albums={albums} photos={photos} />;
-    }
+    } else return <p>No Albums!</p>;
 };

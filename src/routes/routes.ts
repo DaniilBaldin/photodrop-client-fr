@@ -7,6 +7,7 @@ import { Settings } from '~/components/pages/settings/Settings';
 import { TermsOfService } from '~/components/pages/terms/TermsOfService';
 import { PrivacyPolicy } from '~/components/pages/privacy/PrivacyPolicy';
 import { ChangeName } from '~/components/pages/settings/components/ChangeName';
+import { Album } from '~/components/pages/album/Album';
 
 export const routes = [
     {
@@ -32,10 +33,10 @@ export const protectedRoutes = [
         path: '/',
         element: MainPage,
     },
-    // {
-    //     path: '/album/:id',
-    //     element: Album,
-    // },
+    {
+        path: '/album/:id',
+        element: Album,
+    },
     {
         path: '/settings',
         element: Settings,

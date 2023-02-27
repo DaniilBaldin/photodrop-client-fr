@@ -1,4 +1,4 @@
-import React, { FC, FunctionComponent } from 'react';
+import React, { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from '~/components/common/layout/Layout';
 
@@ -6,7 +6,7 @@ import { routes, protectedRoutes } from './routes';
 
 type RouterType = {
     path: string;
-    element: FunctionComponent;
+    element: () => JSX.Element;
 };
 
 export const Router: FC = () => {
@@ -15,11 +15,11 @@ export const Router: FC = () => {
         <Routes>
             <Route path="/" element={<Layout />}>
                 {!jwtToken
-                    ? routes.map((e: RouterType, index) => (
-                          <Route key={index} path={e.path} element={<e.element />} />
+                    ? routes.map((route: RouterType, index) => (
+                          <Route key={index} path={route.path} element={<route.element />} />
                       ))
-                    : protectedRoutes.map((e: RouterType, index) => (
-                          <Route key={index} path={e.path} element={<e.element />} />
+                    : protectedRoutes.map((route: RouterType, index) => (
+                          <Route key={index} path={route.path} element={<route.element />} />
                       ))}
             </Route>
         </Routes>

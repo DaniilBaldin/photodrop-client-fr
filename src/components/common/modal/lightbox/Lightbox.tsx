@@ -60,7 +60,7 @@ export const Lightbox: FC<Props> = (props) => {
                     <FrameButton>See in a frame</FrameButton>
                 </BottomButtons>
             )}
-            <Gradient />
+            <Gradient></Gradient>
         </Modal>,
         document.getElementById('root') as HTMLElement,
     );
