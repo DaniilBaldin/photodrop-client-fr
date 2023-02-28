@@ -19,6 +19,8 @@ import {
     PhotosContainer,
     ImageButton,
     Photos,
+    ButtonText,
+    Gradient,
 } from './mainPageWithDataStyles';
 
 type Photos = {
@@ -103,7 +105,10 @@ export const WithData: FC<Props> = (props) => {
                                     onClick={() => {
                                         navigate(`/album/${e.id}`);
                                     }}
-                                ></AlbumButton>
+                                >
+                                    <ButtonText>{e.album_name}</ButtonText>
+                                    <Gradient />
+                                </AlbumButton>
                             </Slide>
                         ))}
                     </SwiperContainer>

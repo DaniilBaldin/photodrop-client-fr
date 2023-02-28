@@ -81,6 +81,29 @@ export const AlbumButton = styled.button<{ image: string }>`
     }
 `;
 
+export const ButtonText = styled.p`
+    font-family: 'Futura PT';
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+    color: #ffffff;
+    position: absolute;
+    top: 80%;
+    left: 40%;
+    z-index: 200;
+`;
+
+export const Gradient = styled.div`
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.75) 44.34%, rgba(0, 0, 0, 0) 100%);
+    border-radius: 20px;
+`;
+
 export const PhotosContainer = styled.div`
     display: flex;
     flex-direction: column;
