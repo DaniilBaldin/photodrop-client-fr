@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 export const FooterMain = styled.footer`
     padding: 60px 0 30px 0;
     background-color: #262626;
+    width: 100%;
 `;
 
 export const FooterContainer = styled.div`
     max-width: 375px;
-
     padding: 0 15px;
     margin: 0 auto;
 

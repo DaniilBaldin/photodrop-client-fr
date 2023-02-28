@@ -8,6 +8,7 @@ import { TermsOfService } from '~/components/pages/terms/TermsOfService';
 import { PrivacyPolicy } from '~/components/pages/privacy/PrivacyPolicy';
 import { ChangeName } from '~/components/pages/settings/components/ChangeName';
 import { Album } from '~/components/pages/album/Album';
+import { SuccessPage } from '~/components/pages/success/SuccessPage';
 
 export const routes = [
     {
@@ -52,6 +53,10 @@ export const protectedRoutes = [
     {
         path: '/privacy',
         element: PrivacyPolicy,
+    },
+    {
+        path: '/success',
+        element: SuccessPage,
     },
     {
         path: '*',
