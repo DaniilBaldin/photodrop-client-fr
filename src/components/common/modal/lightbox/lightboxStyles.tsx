@@ -39,7 +39,7 @@ export const Image = styled.img`
     left: 50%;
     transform: translate(-50%, -50%);
     max-width: 90%;
-    max-height: 100%;
+    max-height: 90%;
     width: auto;
     height: auto;
     object-fit: cover;
