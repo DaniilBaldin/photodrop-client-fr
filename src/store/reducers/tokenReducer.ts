@@ -1,8 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-// const initialToken = localStorage.getItem('token');
-
-// type initToken = string | null;
+const initialToken = localStorage.getItem('token');
 
 type Token = string | null;
 
@@ -15,7 +13,7 @@ type TokenState = {
 };
 
 const initialState: TokenState = {
-    tokens: [],
+    tokens: [{ token: initialToken || '' }],
 };
 
 export const tokenReducer = createSlice({
