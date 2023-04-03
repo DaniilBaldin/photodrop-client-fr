@@ -29,6 +29,6 @@ export const tokenReducer = createSlice({
     },
 });
 
-export const { addToken } = tokenReducer.actions;
+export const { addToken, removeToken } = tokenReducer.actions;
 
 export default tokenReducer.reducer;

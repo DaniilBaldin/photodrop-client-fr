@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Main = styled.div`
+export const Main = styled.section`
     overflow-x: hidden;
     height: 100%;
 

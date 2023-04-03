@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Dispatch } from '~/store/hooks/hooks';
+import { addPhone } from '~/store/reducers/phoneReducer';
+
 import { FlagsButton } from './components/flagsButton/flagsButton';
 import { PhoneInput } from './components/phoneInput/PhoneInput';
 
@@ -14,12 +17,15 @@ import {
     TextBottom,
 } from './loginStyles';
 
-export const Login = () => {
+export const Login: FC = (): JSX.Element => {
     const [code, setCode] = useState<string>('');
     const [phone, setPhone] = useState<string>('');
-    // const [error, setError] = useState<string>('');
+    const [error, setError] = useState<string>('');
+
+    const baseUrl = import.meta.env.VITE_BASE_URL;
 
     const navigate = useNavigate();
+    const dispatch = Dispatch();
 
     const codeSet = (code: string) => {
         setCode(code);
@@ -29,13 +35,26 @@ export const Login = () => {
         setPhone(phone);
     };
 
-    const formSubmitHandler = (event: { preventDefault: () => void }) => {
-        // TODO:Add hook to send POST request with phone number in body.
-        // TODO: Error handling.
+    const formSubmitHandler = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
 
-        console.log(phone);
-        navigate('verify');
+        const response = await fetch(`${baseUrl}user/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                phoneNumber: phone,
+            }),
+        });
+        const data = await response.json();
+        if (!response.ok && !data.success) {
+            setError('Authorization was not successful.Check phone number.');
+        }
+        if (response.ok && data.success) {
+            dispatch(addPhone({ phone: phone }));
+            navigate('verify');
+        }
     };
 
     return (
@@ -55,7 +74,7 @@ export const Login = () => {
                     >
                         Create account
                     </CreateButton>
-                    {/* {error && <p>{error}</p>} */}
+                    {error && <p>{error}</p>}
                     <TextBottom>
                         By proceeding, you consent to get WhatsApp or SMS messages,
                     </TextBottom>

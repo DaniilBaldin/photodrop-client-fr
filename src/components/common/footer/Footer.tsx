@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
 import { useLocation } from 'react-router-dom';
+import { Selector } from '~/store/hooks/hooks';
+import { tokenSelector } from '~/store/selectors/tokenSelector';
 
 import {
     FooterMain,
@@ -18,7 +20,9 @@ import {
 } from './footerStyles';
 
 export const Footer: FC = () => {
-    const jwtToken = 'token';
+    const state = Selector(tokenSelector);
+    const tokenLast = state.slice(-1);
+    const jwtToken = tokenLast[0].token;
     const path = useLocation().pathname;
 
     return (

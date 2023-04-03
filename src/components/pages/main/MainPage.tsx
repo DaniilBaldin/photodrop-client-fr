@@ -64,7 +64,7 @@ export const MainPage = () => {
                 owned: false,
             },
         ],
-        success: true,
+        success: false,
     };
 
     const albums = {
@@ -90,7 +90,7 @@ export const MainPage = () => {
                 owned: false,
             },
         ],
-        success: true,
+        success: false,
     };
 
     if (!photos.success || !albums.success) {

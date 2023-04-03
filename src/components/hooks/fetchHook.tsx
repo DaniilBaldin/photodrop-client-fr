@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export const fetchHoook = <T,>(
+export const fetchHook = <T,>(
     method: string,
     slug: string,
     body: BodyInit,

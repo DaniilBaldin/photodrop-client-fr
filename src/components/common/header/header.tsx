@@ -20,6 +20,8 @@ import {
 
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { PaymentModal } from '../modal/payment/PaymentModal';
+import { tokenSelector } from '~/store/selectors/tokenSelector';
+import { Selector } from '~/store/hooks/hooks';
 
 type Props = {
     backArrow?: boolean;
@@ -28,7 +30,10 @@ type Props = {
 // TODO: Header unlock button hidden if album unlocked
 
 export const HeaderComponent: FC<Props> = () => {
-    const jwtToken = 'token';
+    const state = Selector(tokenSelector);
+    const tokenLast = state.slice(-1);
+    const jwtToken = tokenLast[0].token;
+
     const navigate = useNavigate();
     const location = useLocation();
 
