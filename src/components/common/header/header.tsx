@@ -22,6 +22,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { PaymentModal } from '../modal/payment/PaymentModal';
 import { tokenSelector } from '~/store/selectors/tokenSelector';
 import { Selector } from '~/store/hooks/hooks';
+import { userSelector } from '~/store/selectors/userSelector';
 
 type Props = {
     backArrow?: boolean;
@@ -30,21 +31,14 @@ type Props = {
 // TODO: Header unlock button hidden if album unlocked
 
 export const HeaderComponent: FC<Props> = () => {
-    const state = Selector(tokenSelector);
-    const tokenLast = state.slice(-1);
-    const jwtToken = tokenLast[0].token;
+    const jwtToken = Selector(tokenSelector);
 
     const navigate = useNavigate();
     const location = useLocation();
 
-    const [open, setOpen] = useState<boolean>(false);
+    const user = Selector(userSelector);
 
-    const user = {
-        person_id: 311,
-        phone_number: '+380672658690',
-        selfie_image:
-            'https://photodrop-s3-bucket.s3.amazonaws.com/upload/e435ea74-c28e-41de-83cc-a12eee31d1eb.jpg',
-    };
+    const [open, setOpen] = useState<boolean>(false);
 
     if (location.pathname.includes('album')) {
         return (
@@ -103,12 +97,16 @@ export const HeaderComponent: FC<Props> = () => {
                             }}
                             hidden={location.pathname === '/settings'}
                             path={location.pathname}
-                            selfie={user.selfie_image}
+                            selfie={user?.selfie as string}
                         ></SettingsButton>
                         <BackButton
                             type="button"
                             onClick={() => {
-                                navigate(-1);
+                                if (location.pathname === '/settings') {
+                                    navigate('/');
+                                } else {
+                                    navigate(-1);
+                                }
                             }}
                             hidden={location.pathname === '/'}
                         >

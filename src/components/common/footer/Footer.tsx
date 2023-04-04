@@ -20,9 +20,8 @@ import {
 } from './footerStyles';
 
 export const Footer: FC = () => {
-    const state = Selector(tokenSelector);
-    const tokenLast = state.slice(-1);
-    const jwtToken = tokenLast[0].token;
+    const jwtToken = Selector(tokenSelector);
+
     const path = useLocation().pathname;
 
     return (
@@ -66,8 +65,8 @@ export const Footer: FC = () => {
                     </MailText>
                     <FooterLogo src="/NeutralClimate.svg" alt="Climate" width={100} height={40} />
                     <TermsLinks>
-                        <TermsLink to="/terms">Terms of services</TermsLink>
-                        <TermsLink to="/privacy">Privacy Party</TermsLink>
+                        <TermsLink to="/terms">Terms of Services</TermsLink>
+                        <TermsLink to="/privacy">Privacy Policy</TermsLink>
                     </TermsLinks>
                 </FooterColumn>
             </FooterContainer>

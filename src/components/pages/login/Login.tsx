@@ -52,7 +52,7 @@ export const Login: FC = (): JSX.Element => {
             setError('Authorization was not successful.Check phone number.');
         }
         if (response.ok && data.success) {
-            dispatch(addPhone({ phone: phone }));
+            dispatch(addPhone(phone));
             navigate('verify');
         }
     };

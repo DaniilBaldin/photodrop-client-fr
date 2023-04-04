@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 export const fetchHook = <T,>(
     method: string,
     slug: string,
-    body: BodyInit,
-    headers: HeadersInit,
+    body?: BodyInit,
+    headers?: HeadersInit,
 ) => {
     const [data, setData] = useState<T | null>(null);
     const [loading, setLoading] = useState<boolean | null>(false);
@@ -22,6 +22,7 @@ export const fetchHook = <T,>(
                 headers = {
                     ...headers,
                     'Content-Type': 'application/json',
+                    'ngrok-skip-browser-warning': '69420',
                 };
             }
 

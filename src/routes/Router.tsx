@@ -13,10 +13,7 @@ type RouterType = {
 };
 
 export const Router = () => {
-    const state = Selector(tokenSelector);
-    const tokenLast = state.slice(-1);
-    const jwtToken = tokenLast[0].token;
-    console.log(jwtToken);
+    const jwtToken = Selector(tokenSelector);
 
     return (
         <Routes>

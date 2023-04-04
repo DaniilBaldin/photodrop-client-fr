@@ -24,6 +24,7 @@ TODO: add hook to send OTP code, connect resend OTP button
 */
 
 export const Verify: FC = (): JSX.Element => {
+    let counter = 0;
     const [otp, setOtp] = useState<string>('');
     const [error, setError] = useState<string>('');
 
@@ -32,11 +33,32 @@ export const Verify: FC = (): JSX.Element => {
     const navigate = useNavigate();
     const dispatch = Dispatch();
 
-    const state = Selector(phoneSelector);
-    const phone = state.slice(-1);
+    const phone = Selector(phoneSelector);
+    console.log(phone);
 
     const handleOtpChange = (enteredOtp: string) => {
         setOtp(enteredOtp);
+    };
+
+    const handleCodeResend = async (event: { preventDefault: () => void }) => {
+        event.preventDefault();
+
+        const response = await fetch(`${baseUrl}user/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                phoneNumber: phone,
+            }),
+        });
+        const data = await response.json();
+        if (!response.ok && !data.success) {
+            setError('Code resend was not successful.');
+        }
+        if (response.ok && data.success) {
+            counter += 1;
+        }
     };
 
     const handleOtpSubmit = async (event: { preventDefault: () => void }) => {
@@ -48,7 +70,7 @@ export const Verify: FC = (): JSX.Element => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                phoneNumber: phone[0].phone,
+                phoneNumber: phone,
                 code: otp,
             }),
         });
@@ -57,9 +79,8 @@ export const Verify: FC = (): JSX.Element => {
             setError('Code is not valid');
         }
         if (response.ok && data.success) {
-            console.log(data);
             const token = data.token;
-            dispatch(addToken({ token: token }));
+            dispatch(addToken(token));
             localStorage.setItem('token', token);
 
             if (data.newUser) {
@@ -78,7 +99,7 @@ export const Verify: FC = (): JSX.Element => {
                         <TextTitle>What’s the code?</TextTitle>
 
                         <Text>
-                            Enter the code sent to &nbsp; <TextBold>{`${phone[0].phone}`}</TextBold>
+                            Enter the code sent to &nbsp; <TextBold>{`${phone}`}</TextBold>
                         </Text>
                         <OtpInput
                             value={otp}
@@ -89,9 +110,15 @@ export const Verify: FC = (): JSX.Element => {
                             inputStyle={Input}
                             focusStyle={InputFocus}
                         />
-                        <ResendButton>Resend code</ResendButton>
-                        <NextButton
+                        <ResendButton
                             type="button"
+                            onClick={handleCodeResend}
+                            disabled={counter > 0}
+                        >
+                            Resend code
+                        </ResendButton>
+                        <NextButton
+                            type="submit"
                             disabled={!otp || otp.length < 6}
                             onClick={handleOtpSubmit}
                         >

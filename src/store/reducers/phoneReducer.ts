@@ -8,20 +8,16 @@ type Phones = {
     phone: Phone;
 };
 
-type TokenState = {
-    phones: Phones[];
-};
-
-const initialState: TokenState = {
-    phones: [{ phone: initialPhone || '' }],
+const initialState: Phones = {
+    phone: initialPhone || null,
 };
 
 export const phoneReducer = createSlice({
     name: 'phone',
     initialState: initialState,
     reducers: {
-        addPhone(state: TokenState, action: PayloadAction<Phones>) {
-            state.phones.push(action.payload);
+        addPhone(state: Phones, action: PayloadAction<Phone>) {
+            state.phone = action.payload;
         },
     },
 });

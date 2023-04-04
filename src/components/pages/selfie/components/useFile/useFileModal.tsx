@@ -20,6 +20,9 @@ import {
 } from './useFileStyles';
 
 import CloseIcon from '@mui/icons-material/Close';
+import { Dispatch, Selector } from '~/store/hooks/hooks';
+import { changeSelfie } from '~/store/reducers/userReducer';
+import { tokenSelector } from '~/store/selectors/tokenSelector';
 
 type Props = {
     open: boolean;
@@ -38,6 +41,11 @@ interface area {
 export const UseFileModal: FC<Props> = (props) => {
     const image = props.image;
 
+    const dispatch = Dispatch();
+
+    const baseUrl = import.meta.env.VITE_BASE_URL;
+    const jwtToken = Selector(tokenSelector);
+
     const [crop, setCrop] = useState<Point>({ x: 0, y: 0 });
     const [zoom, setZoom] = useState(1);
     const [minZoom, setMinZoom] = useState(1);
@@ -47,6 +55,7 @@ export const UseFileModal: FC<Props> = (props) => {
         width: 0,
         height: 0,
     });
+    const [error, setError] = useState<string>('');
 
     const onCropComplete = useCallback((_croppedArea: Area, croppedAreaPixels: Area) => {
         setArea(croppedAreaPixels);
@@ -59,10 +68,25 @@ export const UseFileModal: FC<Props> = (props) => {
 
             const formData = new FormData();
             formData.append('Content-Type', 'multipart/form-data');
-            formData.append('file', final as Blob, 'selfie.jpeg');
-            console.log(formData.getAll('file'));
+            formData.append('selfie', final, 'selfie.jpeg');
 
             //TODO: here goes fetch hook. Add redirect if OK.
+            const response = await fetch(`${baseUrl}user/upload-selfie`, {
+                method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${jwtToken}`,
+                    'ngrok-skip-browser-warning': '69420',
+                },
+                body: formData,
+            });
+            const data = await response.json();
+            if (!response.ok && !data.success) {
+                setError('Error in changing selfie!');
+            }
+            if (response.ok && data.success) {
+                dispatch(changeSelfie(URL.createObjectURL(final)));
+                props.onClose();
+            }
         }
     };
 
@@ -125,6 +149,7 @@ export const UseFileModal: FC<Props> = (props) => {
                         Save
                     </ButtonColored>
                 </Footer>
+                {error && <p>{error}</p>}
             </ModalContent>
         </Modal>,
         document.getElementById('root') as HTMLElement,

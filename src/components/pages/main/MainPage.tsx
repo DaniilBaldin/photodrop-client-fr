@@ -1,10 +1,47 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { WithData } from './components/withData/WithData';
 import { NoData } from './components/noData/NoData';
+import { Dispatch, Selector } from '~/store/hooks/hooks';
+import { tokenSelector } from '~/store/selectors/tokenSelector';
+import { fetchHook } from '~/components/hooks/fetchHook';
+import { addUser } from '~/store/reducers/userReducer';
+import { useNavigate } from 'react-router-dom';
 
 //TODO: data fetching hook
 
+type Data = {
+    user: {
+        id: number;
+        phoneNumber: string;
+        verified: boolean;
+        name: string;
+        ownedAlbums: string[];
+        selfie: string;
+    };
+    success: boolean;
+};
+
 export const MainPage = () => {
+    const dispatch = Dispatch();
+
+    const jwtToken = Selector(tokenSelector);
+
+    const method = 'GET';
+    const slug = 'user/profile';
+    const header = {
+        Authorization: `Bearer ${jwtToken}`,
+        'ngrok-skip-browser-warning': '69420',
+    };
+
+    const { data, error, loading } = fetchHook<Data>(method, slug, undefined, header);
+
+    useEffect(() => {
+        if (data) {
+            const user = data?.user;
+            dispatch(addUser(user));
+        }
+    }, []);
+
     const photos = {
         data: [
             {
@@ -92,6 +129,14 @@ export const MainPage = () => {
         ],
         success: false,
     };
+
+    if (!data && loading) {
+        return <h4>Loading...</h4>;
+    }
+
+    if (error) {
+        return <h4>Error in fetching user data.</h4>;
+    }
 
     if (!photos.success || !albums.success) {
         return <NoData />;

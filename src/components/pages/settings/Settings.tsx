@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Selector } from '~/store/hooks/hooks';
+import { userSelector } from '~/store/selectors/userSelector';
 
 import { SelfieModal } from '../selfie/components/SelfieModal';
 
@@ -18,24 +20,18 @@ import {
     ChangeNameLink,
 } from './settingsStyles';
 
-//TODO: Username, selfie image from user state
-
 export const Settings = () => {
     const [show, setShow] = useState<boolean>(false);
 
-    const user = {
-        person_id: 311,
-        phone_number: '+380672658690',
-        selfie_image:
-            'https://photodrop-s3-bucket.s3.amazonaws.com/upload/e435ea74-c28e-41de-83cc-a12eee31d1eb.jpg',
-    };
+    const user = Selector(userSelector);
+
     return (
         <Container>
             <Main>
-                <Title>{`Welcome, ${'user'}.`}</Title>
+                <Title>{`Welcome, ${user?.name as string}.`}</Title>
                 <SubTitle>Your selfie</SubTitle>
                 <Avatar>
-                    <Image src={user.selfie_image || '/avatar.png'} alt="Selfie" />
+                    <Image src={user?.selfie || '/avatar.png'} alt="Selfie" />
                     <ChangeSelfie
                         type="button"
                         onClick={() => {
