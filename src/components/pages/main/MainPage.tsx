@@ -40,7 +40,7 @@ export const MainPage = () => {
             const user = data?.user;
             dispatch(addUser(user));
         }
-    }, []);
+    }, [data]);
 
     const photos = {
         data: [
