@@ -19,10 +19,7 @@ export const routes = [
         path: '/verify',
         element: Verify,
     },
-    {
-        path: '/selfie',
-        element: Selfie,
-    },
+
     {
         path: '*',
         element: NotFound,
@@ -33,6 +30,10 @@ export const protectedRoutes = [
     {
         path: '/',
         element: MainPage,
+    },
+    {
+        path: '/selfie',
+        element: Selfie,
     },
     {
         path: '/album/:id',

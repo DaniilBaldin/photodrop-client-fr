@@ -19,14 +19,10 @@ import {
     InputFocus,
 } from './verifyStyles';
 
-/* TODO:Edit phone using redux
-TODO: add hook to send OTP code, connect resend OTP button
-*/
-
 export const Verify: FC = (): JSX.Element => {
-    let counter = 0;
     const [otp, setOtp] = useState<string>('');
     const [error, setError] = useState<string>('');
+    const [hidden, setHidden] = useState<boolean>(false);
 
     const baseUrl = import.meta.env.VITE_BASE_URL;
 
@@ -34,7 +30,6 @@ export const Verify: FC = (): JSX.Element => {
     const dispatch = Dispatch();
 
     const phone = Selector(phoneSelector);
-    console.log(phone);
 
     const handleOtpChange = (enteredOtp: string) => {
         setOtp(enteredOtp);
@@ -57,7 +52,7 @@ export const Verify: FC = (): JSX.Element => {
             setError('Code resend was not successful.');
         }
         if (response.ok && data.success) {
-            counter += 1;
+            setHidden(true);
         }
     };
 
@@ -84,7 +79,7 @@ export const Verify: FC = (): JSX.Element => {
             localStorage.setItem('token', token);
 
             if (data.newUser) {
-                navigate('selfie');
+                navigate('/selfie');
             } else {
                 navigate('/');
             }
@@ -110,11 +105,7 @@ export const Verify: FC = (): JSX.Element => {
                             inputStyle={Input}
                             focusStyle={InputFocus}
                         />
-                        <ResendButton
-                            type="button"
-                            onClick={handleCodeResend}
-                            disabled={counter > 0}
-                        >
+                        <ResendButton type="button" onClick={handleCodeResend} disabled={hidden}>
                             Resend code
                         </ResendButton>
                         <NextButton

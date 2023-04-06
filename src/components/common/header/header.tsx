@@ -23,12 +23,12 @@ import { PaymentModal } from '../modal/payment/PaymentModal';
 import { tokenSelector } from '~/store/selectors/tokenSelector';
 import { Selector } from '~/store/hooks/hooks';
 import { userSelector } from '~/store/selectors/userSelector';
+import { oneAlbumSelector } from '~/store/selectors/oneAlbumSelector';
+import { albumPhotoSelector } from '~/store/selectors/albumPhotoSelector';
 
 type Props = {
     backArrow?: boolean;
 };
-
-// TODO: Header unlock button hidden if album unlocked
 
 export const HeaderComponent: FC<Props> = () => {
     const jwtToken = Selector(tokenSelector);
@@ -37,8 +37,11 @@ export const HeaderComponent: FC<Props> = () => {
     const location = useLocation();
 
     const user = Selector(userSelector);
+    const album = Selector(oneAlbumSelector);
+    const photos = Selector(albumPhotoSelector);
 
     const [open, setOpen] = useState<boolean>(false);
+    const date = new Date(album?.date as string).toDateString();
 
     if (location.pathname.includes('album')) {
         return (
@@ -47,17 +50,17 @@ export const HeaderComponent: FC<Props> = () => {
                     <BackButton
                         type="button"
                         onClick={() => {
-                            navigate(-1);
+                            navigate('/');
                         }}
                         hidden={location.pathname === '/'}
                     >
                         <ArrowBackIosIcon />
                     </BackButton>
                     <LocationAndDate>
-                        <Title>Album 1</Title>
+                        <Title>{album?.name}</Title>
                         <DateContainer>
-                            <BlackText>{new Date().toDateString()}</BlackText>•{' '}
-                            <PurpleText>2 photos</PurpleText>
+                            <BlackText>{date}</BlackText>•{' '}
+                            <PurpleText>{photos?.length} photos</PurpleText>
                         </DateContainer>
                     </LocationAndDate>
                     <UnlockButton
@@ -65,7 +68,7 @@ export const HeaderComponent: FC<Props> = () => {
                             setOpen(true);
                         }}
                     >
-                        <ButtonText>Unlock your photos</ButtonText>
+                        <ButtonText hidden={album?.owned}>Unlock your photos</ButtonText>
                     </UnlockButton>
                     <PaymentModal
                         onClose={() => {
@@ -77,7 +80,7 @@ export const HeaderComponent: FC<Props> = () => {
             </HeaderAlbum>
         );
     }
-    // TODO: link to user selfie image to settings button props
+
     return (
         <>
             {!jwtToken ? (

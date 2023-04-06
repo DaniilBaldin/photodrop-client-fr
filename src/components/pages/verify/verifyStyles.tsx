@@ -95,6 +95,10 @@ export const ResendButton = styled.button`
     flex-direction: row;
     align-items: center;
     justify-content: left;
+
+    :disabled {
+        color: grey;
+    }
 `;
 
 export const NextButton = styled.button`

@@ -23,67 +23,74 @@ import {
     Gradient,
 } from './mainPageWithDataStyles';
 
-type Photos = {
-    data: {
-        id: number;
-        photo_logo: string;
-        client_name: string;
-        photo_url: string;
-        album_id: string;
-        marked_url: string;
-        marked_logo: string;
-        owned: boolean;
-    }[];
-    success: boolean;
-};
-
-type Photo = {
-    id: number;
-    photo_logo: string;
-    client_name: string;
-    photo_url: string;
-    album_id: string;
-    marked_url: string;
-    marked_logo: string;
-    owned: boolean;
-};
+import { Selector } from '~/store/hooks/hooks';
+import { albumSelector } from '~/store/selectors/albumSelector';
+import { photoSelector } from '~/store/selectors/photoSelector';
 
 type Albums = {
-    data: {
+    albums: {
         id: number;
-        album_name: string;
-        album_location: string;
+        name: string;
+        location: string;
         date: string;
-        person_id: string;
-        album_logo: string;
+        photographerId: number;
         owned: boolean;
+        coverImageUrl: string;
     }[];
     success: boolean;
-};
+} | null;
 
 type Album = {
     id: number;
-    album_name: string;
-    album_location: string;
+    name: string;
+    location: string;
     date: string;
-    person_id: string;
-    album_logo: string;
+    photographerId: number;
     owned: boolean;
+    coverImageUrl: string;
 };
 
-type Props = {
-    photos: Photos;
-    albums: Albums;
+type PhotosData = {
+    photos: {
+        id: string;
+        name: string;
+        ext: string;
+        phoneNumbers: string[];
+        albumId: number;
+        owned: boolean;
+        photoUrl: string;
+        thumbnailUrl: string;
+        phWatermarkUrl: string;
+        thumbWatermarkUrl: string;
+    }[];
+    success: boolean;
+} | null;
+
+type Photo = {
+    id: string;
+    name: string;
+    ext: string;
+    phoneNumbers: string[];
+    albumId: number;
+    owned: boolean;
+    photoUrl: string;
+    thumbnailUrl: string;
+    phWatermarkUrl: string;
+    thumbWatermarkUrl: string;
 };
 
-export const WithData: FC<Props> = (props) => {
-    const albums = props.albums;
-    const photos = props.photos;
+export const WithData: FC = () => {
     const [show, setShow] = useState<boolean>(false);
     const [image, setImage] = useState<string>('');
     const [buttons, setButtons] = useState<boolean>(true);
 
     const navigate = useNavigate();
+
+    const albums = Selector(albumSelector);
+    const photos = Selector(photoSelector);
+
+    const albumsArray = (albums as Albums)?.albums;
+    const photoArray = (photos as PhotosData)?.photos;
 
     return (
         <ContainerWithData>
@@ -97,43 +104,46 @@ export const WithData: FC<Props> = (props) => {
                         freeMode={true}
                         modules={[FreeMode]}
                     >
-                        {albums.data.map((e: Album) => (
-                            <Slide key={e.id}>
-                                <AlbumButton
-                                    image={e.album_logo}
-                                    type="button"
-                                    onClick={() => {
-                                        navigate(`/album/${e.id}`);
-                                    }}
-                                >
-                                    <ButtonText>{e.album_name}</ButtonText>
-                                    <Gradient />
-                                </AlbumButton>
-                            </Slide>
-                        ))}
+                        {albumsArray
+                            ?.slice()
+                            .reverse()
+                            .map((e: Album) => (
+                                <Slide key={e.id}>
+                                    <AlbumButton
+                                        image={e.coverImageUrl}
+                                        type="button"
+                                        onClick={() => {
+                                            navigate(`/album/${e.id}`);
+                                        }}
+                                    >
+                                        <ButtonText>{e.name}</ButtonText>
+                                        <Gradient />
+                                    </AlbumButton>
+                                </Slide>
+                            ))}
                     </SwiperContainer>
                 </AlbumsContainer>
                 <PhotosContainer>
                     <Subtitle>All photos</Subtitle>
                     <Photos>
-                        {photos.data.map((photo: Photo, index) =>
+                        {photoArray?.map((photo: Photo, index) =>
                             photo.owned ? (
                                 <ImageButton
                                     key={index}
-                                    image={photo.photo_logo}
+                                    image={photo.photoUrl}
                                     onClick={() => {
                                         setShow(true);
-                                        setImage(photo.photo_url);
+                                        setImage(photo.photoUrl);
                                         setButtons(true);
                                     }}
                                 ></ImageButton>
                             ) : (
                                 <ImageButton
-                                    key={photo.marked_logo}
-                                    image={photo.marked_logo}
+                                    key={photo.phWatermarkUrl}
+                                    image={photo.phWatermarkUrl}
                                     onClick={() => {
                                         setShow(true);
-                                        setImage(photo.marked_url);
+                                        setImage(photo.phWatermarkUrl);
                                         setButtons(false);
                                     }}
                                 ></ImageButton>

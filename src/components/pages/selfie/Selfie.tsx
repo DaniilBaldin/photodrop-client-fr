@@ -1,13 +1,35 @@
-import React, { useState } from 'react';
-
-import { SelfieModal } from './components/SelfieModal';
+import React, { ChangeEvent, useRef, useState } from 'react';
+import { UseFileModal } from '~/components/common/modal/useFile/useFileModal';
 
 import AddIcon from '@mui/icons-material/Add';
 
 import { Main, SelfieMain, SelfieDiv, TextTitle, Text, ImageBox, Button } from './selfieStyles';
 
 export const Selfie = () => {
-    const [show, setShow] = useState<boolean>(false);
+    const [open, setOpen] = useState<boolean>(false);
+    const [selfie, setSelfie] = useState<string | null>('');
+
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    const handleClick = () => {
+        setOpen(true);
+        inputRef.current?.click();
+    };
+
+    const handleRetake = () => {
+        setOpen(false);
+        inputRef.current?.click();
+        setOpen(true);
+    };
+
+    const handleFile = (event: ChangeEvent<HTMLInputElement>) => {
+        const file = event?.target?.files?.[0];
+        if (!file) {
+            return;
+        }
+
+        setSelfie(URL.createObjectURL(file));
+    };
     return (
         <Main>
             <SelfieMain>
@@ -16,23 +38,23 @@ export const Selfie = () => {
                     <Text>A selfie allows your photos to be synced with your account.</Text>
                     <ImageBox>
                         <img src="/avatar.png" alt="avatar" width={181} height={181} />
-                        <Button
-                            type="button"
-                            onClick={() => {
-                                setShow(true);
-                            }}
-                        >
+                        <Button type="button" onClick={handleClick}>
                             <AddIcon />
                         </Button>
-                        <SelfieModal
+                        <UseFileModal
+                            open={open}
                             onClose={() => {
-                                setShow(false);
+                                setOpen(false);
                             }}
-                            show={show}
-                            onRetake={() => {
-                                setShow(true);
-                            }}
-                        ></SelfieModal>
+                            image={selfie}
+                            onRetake={handleRetake}
+                        ></UseFileModal>
+                        <input
+                            type="file"
+                            style={{ display: 'none' }}
+                            ref={inputRef}
+                            onChange={handleFile}
+                        />
                     </ImageBox>
                 </SelfieDiv>
             </SelfieMain>

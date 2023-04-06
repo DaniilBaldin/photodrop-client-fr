@@ -23,6 +23,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Dispatch, Selector } from '~/store/hooks/hooks';
 import { changeSelfie } from '~/store/reducers/userReducer';
 import { tokenSelector } from '~/store/selectors/tokenSelector';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 type Props = {
     open: boolean;
@@ -40,6 +41,8 @@ interface area {
 
 export const UseFileModal: FC<Props> = (props) => {
     const image = props.image;
+    const path = useLocation().pathname;
+    const navigate = useNavigate();
 
     const dispatch = Dispatch();
 
@@ -70,7 +73,6 @@ export const UseFileModal: FC<Props> = (props) => {
             formData.append('Content-Type', 'multipart/form-data');
             formData.append('selfie', final, 'selfie.jpeg');
 
-            //TODO: here goes fetch hook. Add redirect if OK.
             const response = await fetch(`${baseUrl}user/upload-selfie`, {
                 method: 'POST',
                 headers: {
@@ -84,6 +86,9 @@ export const UseFileModal: FC<Props> = (props) => {
                 setError('Error in changing selfie!');
             }
             if (response.ok && data.success) {
+                if (path === '/selfie') {
+                    navigate('/');
+                }
                 dispatch(changeSelfie(URL.createObjectURL(final)));
                 props.onClose();
             }
@@ -140,7 +145,7 @@ export const UseFileModal: FC<Props> = (props) => {
                         type="button"
                         onClick={() => {
                             props.onRetake();
-                            props.onClose();
+                            // props.onClose();
                         }}
                     >
                         Retake

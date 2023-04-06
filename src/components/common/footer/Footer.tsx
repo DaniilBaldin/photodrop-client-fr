@@ -30,7 +30,8 @@ export const Footer: FC = () => {
                 !jwtToken ||
                 path === '/settings' ||
                 path === '/settings-change-name' ||
-                path === '/success'
+                path === '/success' ||
+                path === '/selfie'
             }
         >
             <FooterContainer>

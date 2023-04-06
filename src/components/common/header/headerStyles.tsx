@@ -73,7 +73,7 @@ export const HeaderMainAlbum = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    max-width: 1230px;
+    max-width: 1200px;
     padding: 0;
     margin: 0;
 
@@ -88,7 +88,7 @@ export const LocationAndDate = styled.div`
     align-items: center;
     justify-content: center;
     margin: 0;
-    margin-left: -15%;
+    margin-left: -9%;
 
     @media (max-width: 480px) {
         flex-direction: column;
@@ -165,7 +165,7 @@ export const DateContainer = styled.div`
 
 export const UnlockButton = styled.button`
     position: absolute;
-    left: 70%;
+    left: 69%;
     width: 300px;
     height: 15px;
     border: none;
