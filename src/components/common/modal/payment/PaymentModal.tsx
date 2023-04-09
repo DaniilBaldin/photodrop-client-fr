@@ -14,15 +14,43 @@ import {
 } from './paymentStyles';
 
 import CloseIcon from '@mui/icons-material/Close';
+import { useLocation } from 'react-router-dom';
+import { Selector } from '~/store/hooks/hooks';
+import { tokenSelector } from '~/store/selectors/tokenSelector';
+import { oneAlbumSelector } from '~/store/selectors/oneAlbumSelector';
 
 type Props = {
     show: boolean;
     onClose: () => void;
 };
 
-//TODO: Checkout session link to stripe payment
-
 export const PaymentModal: FC<Props> = (props) => {
+    const id = useLocation().pathname.split('/')[2];
+
+    const jwtToken = Selector(tokenSelector);
+    const album = Selector(oneAlbumSelector);
+
+    const baseUrl = import.meta.env.VITE_BASE_URL;
+
+    const chackoutHandler = async () => {
+        const response = await fetch(`${baseUrl}payment`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${jwtToken}`,
+                'ngrok-skip-browser-warning': '69420',
+            },
+            body: JSON.stringify({
+                albumId: id,
+            }),
+        });
+        const data = await response.json();
+        if (data?.success) {
+            localStorage.setItem('albumId', id);
+            window.location.replace(data.url);
+        }
+    };
+
     const closeOnEscapeKeyDown = (e: { charCode: number; keyCode: number }) => {
         if ((e.charCode || e.keyCode) === 27) {
             props.onClose();
@@ -47,13 +75,13 @@ export const PaymentModal: FC<Props> = (props) => {
                 </Header>
                 <Body>
                     <TextPlain>
-                        Get all the photos from <TextBold>Album 1</TextBold> in hi-resolution with
-                        no watermark.
+                        Get all the photos from <TextBold>{album?.name}</TextBold> in hi-resolution
+                        with no watermark.
                     </TextPlain>
                     <TextBold>$5</TextBold>
                 </Body>
                 <CheckoutButton>
-                    <ButtonText>Checkout</ButtonText>
+                    <ButtonText onClick={chackoutHandler}>Checkout</ButtonText>
                 </CheckoutButton>
             </ModalContent>
         </Modal>

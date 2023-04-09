@@ -130,7 +130,7 @@ export const WithData: FC = () => {
                             photo.owned ? (
                                 <ImageButton
                                     key={index}
-                                    image={photo.photoUrl}
+                                    image={photo.thumbnailUrl}
                                     onClick={() => {
                                         setShow(true);
                                         setImage(photo.photoUrl);
@@ -139,8 +139,8 @@ export const WithData: FC = () => {
                                 ></ImageButton>
                             ) : (
                                 <ImageButton
-                                    key={photo.phWatermarkUrl}
-                                    image={photo.phWatermarkUrl}
+                                    key={photo.thumbWatermarkUrl}
+                                    image={photo.thumbWatermarkUrl}
                                     onClick={() => {
                                         setShow(true);
                                         setImage(photo.phWatermarkUrl);

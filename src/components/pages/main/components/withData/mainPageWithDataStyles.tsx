@@ -89,7 +89,7 @@ export const ButtonText = styled.p`
     color: #ffffff;
     position: absolute;
     top: 80%;
-    left: 40%;
+    left: 35%;
     z-index: 200;
 `;
 

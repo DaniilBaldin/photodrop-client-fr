@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import {
@@ -12,25 +12,85 @@ import {
     ButtonText,
     TextSmall,
 } from './SuccessStyles';
+import { Dispatch, Selector } from '~/store/hooks/hooks';
 
-const album = {
-    id: 351,
-    album_name: 'album',
-    album_location: 'Kriviy Rih',
-    date: '2022-11-10T00:00:00.000Z',
-    person_id: '1',
-    album_logo:
-        'https://photodrop-s3-bucket.s3.amazonaws.com/upload/ba84cf8c-7838-4f80-8a04-fe00815fde7a.jpg',
-    owned: false,
+import { tokenSelector } from '~/store/selectors/tokenSelector';
+import { removeId } from '~/store/reducers/albumIdReducer';
+
+type Data = {
+    album: {
+        id: number;
+        name: string;
+        location: string;
+        date: string;
+        photographerId: number;
+        owned: boolean;
+        coverImageUrl: string;
+    };
+    success: boolean;
 };
-
-//TODO: Album data from global state
-//TODO: Link to album on button by id
 
 export const SuccessPage = () => {
     const navigate = useNavigate();
+    const dispatch = Dispatch();
+
+    const id = localStorage.getItem('albumId');
+
+    const jwtToken = Selector(tokenSelector);
+    const [album, setAlbum] = useState<Data | null>(null);
+    console.log(id);
+    console.log(album);
+
+    useEffect(() => {
+        if (!id) navigate('/');
+    }, [id]);
+
+    const baseUrl = import.meta.env.VITE_BASE_URL;
+
+    useEffect(() => {
+        const getAlbum = async () => {
+            const response = await fetch(`${baseUrl}user/album/${id}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${jwtToken}`,
+                    'ngrok-skip-browser-warning': '69420',
+                },
+                body: undefined,
+            });
+            const data = await response.json();
+            if (data.success) {
+                setAlbum(data);
+            }
+        };
+        void getAlbum();
+    }, [id]);
+
+    useEffect(() => {
+        const addAlbum = async () => {
+            const response = await fetch(`${baseUrl}user/add-album`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${jwtToken}`,
+                    'ngrok-skip-browser-warning': '69420',
+                },
+                body: JSON.stringify({
+                    albumId: id,
+                }),
+            });
+            const data = await response.json();
+            if (data?.success) {
+                dispatch(removeId);
+            }
+        };
+        if (id?.length) {
+            void addAlbum();
+        }
+    }, [id]);
+
     const buttonHandler = () => {
-        navigate('/album/351');
+        navigate(`/album/${id}`);
     };
 
     return (
@@ -38,13 +98,13 @@ export const SuccessPage = () => {
             <MainDiv>
                 <Title>Thank you</Title>
                 <TextPlain>
-                    The album <TextBold>Album 1</TextBold> is now unlocked.
+                    The album <TextBold>{album?.album.name}</TextBold> is now unlocked.
                 </TextPlain>
                 <TextPlain>
                     You can now download, share, post, and print your hi-res, watermark-free,
                     glorious memories.
                 </TextPlain>
-                <Image src={album.album_logo} alt="Album logo" />
+                <Image src={album?.album.coverImageUrl} alt="Album logo" />
                 <Button onClick={buttonHandler}>
                     <ButtonText>See photos</ButtonText>
                 </Button>

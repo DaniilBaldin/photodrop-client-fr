@@ -39,6 +39,7 @@ type PhotosData = {
 
 export const MainPage = () => {
     const dispatch = Dispatch();
+    localStorage.setItem('albumId', '');
 
     const jwtToken = Selector(tokenSelector);
     const userAlbums = Selector(albumSelector);

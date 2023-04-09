@@ -111,7 +111,7 @@ export const HeaderComponent: FC<Props> = () => {
                                     navigate(-1);
                                 }
                             }}
-                            hidden={location.pathname === '/'}
+                            hidden={location.pathname === '/' || location.pathname === '/success'}
                         >
                             <ArrowBackIosIcon />
                         </BackButton>

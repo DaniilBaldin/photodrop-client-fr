@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from '~/components/common/layout/Layout';
-import { fetchHook } from '~/components/hooks/fetchHook';
 
 import { Dispatch, Selector } from '~/store/hooks/hooks';
 import { addUser } from '~/store/reducers/userReducer';
@@ -14,38 +13,32 @@ type RouterType = {
     element: FunctionComponent;
 };
 
-type Data = {
-    user: {
-        id: number;
-        phoneNumber: string;
-        verified: boolean;
-        name: string;
-        ownedAlbums: string[];
-        selfie: string;
-    };
-    success: boolean;
-};
-
 export const Router = () => {
     const dispatch = Dispatch();
 
     const jwtToken = Selector(tokenSelector);
 
-    const method = 'GET';
-    const slug = 'user/profile';
-    const header = {
-        Authorization: `Bearer ${jwtToken}`,
-        'ngrok-skip-browser-warning': '69420',
-    };
-
-    const { data } = fetchHook<Data>(method, slug, undefined, header);
+    const baseUrl = import.meta.env.VITE_BASE_URL;
 
     useEffect(() => {
-        if (data) {
-            const user = data?.user;
-            dispatch(addUser(user));
-        }
-    }, [data]);
+        const getUser = async () => {
+            const response = await fetch(`${baseUrl}user/profile`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${jwtToken}`,
+                    'ngrok-skip-browser-warning': '69420',
+                },
+                body: undefined,
+            });
+            const data = await response.json();
+            if (data) {
+                const user = data?.user;
+                dispatch(addUser(user));
+            }
+        };
+        void getUser();
+    }, [jwtToken]);
 
     return (
         <Routes>

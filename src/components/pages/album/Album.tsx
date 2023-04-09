@@ -82,6 +82,7 @@ export const Album = () => {
     const baseUrl = import.meta.env.VITE_BASE_URL;
     const jwtToken = Selector(tokenSelector);
     const userPhotos = Selector(albumPhotoSelector);
+    localStorage.setItem('albumId', '');
 
     const dispatch = Dispatch();
 
@@ -156,7 +157,7 @@ export const Album = () => {
                             ),
                         )}
                     </Photos>
-                    <ButtonContainer>
+                    <ButtonContainer show={!(data as Data)?.album.owned}>
                         <UnlockButton
                             onClick={() => {
                                 setOpen(true);

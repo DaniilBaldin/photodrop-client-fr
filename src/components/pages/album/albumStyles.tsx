@@ -42,10 +42,10 @@ export const ImageButton = styled.button<{ image: string }>`
     }
 `;
 
-export const ButtonContainer = styled.div`
+export const ButtonContainer = styled.div<{ show: boolean }>`
     margin-top: 100px;
     margin-bottom: 100px;
-    display: flex;
+    display: ${(props) => (props.show ? `flex` : `none`)};
     flex-direction: column;
     align-items: center;
     justify-content: center;
