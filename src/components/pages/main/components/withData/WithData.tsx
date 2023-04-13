@@ -125,6 +125,7 @@ export const WithData: FC = () => {
                 </AlbumsContainer>
                 <PhotosContainer>
                     <Subtitle>All photos</Subtitle>
+
                     <Photos>
                         {photoArray?.map((photo: Photo, index) =>
                             photo.owned ? (
@@ -150,6 +151,7 @@ export const WithData: FC = () => {
                             ),
                         )}
                     </Photos>
+
                     <Lightbox
                         onClose={() => setShow(false)}
                         show={show}

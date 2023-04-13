@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { WithData } from './components/withData/WithData';
 import { NoData } from './components/noData/NoData';
 import { Dispatch, Selector } from '~/store/hooks/hooks';
@@ -7,6 +7,7 @@ import { albumSelector } from '~/store/selectors/albumSelector';
 import { addAlbums } from '~/store/reducers/albumsReducer';
 import { addPhotos } from '~/store/reducers/photosReducer';
 import { photoSelector } from '~/store/selectors/photoSelector';
+import { Loader } from './components/loader/loader';
 
 type Albums = {
     albums: {
@@ -47,7 +48,12 @@ export const MainPage = () => {
 
     const baseUrl = import.meta.env.VITE_BASE_URL;
 
+    const [albumLoading, setAlbumLoading] = useState<boolean>(false);
+    const [photoLoading, setPhotoLoading] = useState<boolean>(false);
+
     useEffect(() => {
+        setAlbumLoading(true);
+        setPhotoLoading(true);
         const getUserAlbums = async () => {
             const response = await fetch(`${baseUrl}user/album/all`, {
                 method: 'GET',
@@ -61,6 +67,7 @@ export const MainPage = () => {
             const data = await response.json();
             if (data) {
                 dispatch(addAlbums(data));
+                setAlbumLoading(false);
             }
         };
         const getUserPhotos = async () => {
@@ -76,6 +83,7 @@ export const MainPage = () => {
             const data = await response.json();
             if (data) {
                 dispatch(addPhotos(data));
+                setPhotoLoading(false);
             }
         };
         if (!userAlbums) {
@@ -86,10 +94,16 @@ export const MainPage = () => {
         }
     }, []);
 
+    if ((albumLoading && !userAlbums) || (photoLoading && !userPhotos)) {
+        return <Loader />;
+    }
+
     if (!(userAlbums as Albums)?.albums.length || !(userPhotos as PhotosData)?.photos.length) {
         return <NoData />;
-    }
-    if ((userAlbums as Albums)?.albums.length || !(userPhotos as PhotosData)?.photos.length) {
+    } else if (
+        (userAlbums as Albums)?.albums.length ||
+        !(userPhotos as PhotosData)?.photos.length
+    ) {
         return <WithData />;
-    } else return <p>No Albums!</p>;
+    } else return <p>Loading...</p>;
 };

@@ -88,7 +88,11 @@ export const LocationAndDate = styled.div`
     align-items: center;
     justify-content: center;
     margin: 0;
-    margin-left: -9%;
+    margin-left: -7%;
+
+    @media (max-width: 1440px) {
+        margin-left: -47%;
+    }
 
     @media (max-width: 480px) {
         flex-direction: column;

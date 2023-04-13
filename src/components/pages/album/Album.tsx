@@ -21,6 +21,7 @@ import { fetchHook } from '~/components/hooks/fetchHook';
 import { addOneAlbum } from '~/store/reducers/oneAlbumReducer';
 import { addAlbumPhotos } from '~/store/reducers/albumPhotosReducer';
 import { albumPhotoSelector } from '~/store/selectors/albumPhotoSelector';
+import { Loader } from '../main/components/loader/loader';
 
 type Data = {
     album: {
@@ -98,6 +99,8 @@ export const Album = () => {
         'ngrok-skip-browser-warning': '69420',
     };
 
+    const [photoLoading, setPhotoLoading] = useState<boolean>(false);
+
     const { data, error, loading } = fetchHook<Data>(method, slug, undefined, header);
 
     useEffect(() => {
@@ -108,6 +111,7 @@ export const Album = () => {
     }, [data]);
 
     useEffect(() => {
+        setPhotoLoading(true);
         const getPhotos = async () => {
             const response = await fetch(`${baseUrl}user/photo/all/${id}`, {
                 method: 'GET',
@@ -122,11 +126,16 @@ export const Album = () => {
             if (data) {
                 const payload = (data as DataPhotos).photos;
                 dispatch(addAlbumPhotos(payload));
+                setPhotoLoading(false);
             }
         };
 
         void getPhotos();
     }, []);
+
+    if (loading || (photoLoading && !userPhotos)) {
+        return <Loader />;
+    }
 
     return (
         <div>
