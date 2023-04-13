@@ -155,8 +155,8 @@ export const Album = () => {
                                 ></ImageButton>
                             ) : (
                                 <ImageButton
-                                    key={photo.phWatermarkUrl}
-                                    image={photo.phWatermarkUrl}
+                                    key={photo.thumbWatermarkUrl}
+                                    image={photo.thumbWatermarkUrl}
                                     onClick={() => {
                                         setShow(true);
                                         setImage(photo.phWatermarkUrl);
