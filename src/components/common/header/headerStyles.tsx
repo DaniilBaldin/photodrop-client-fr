@@ -88,10 +88,10 @@ export const LocationAndDate = styled.div`
     align-items: center;
     justify-content: center;
     margin: 0;
-    margin-left: -7%;
+    margin-left: -11%;
 
     @media (max-width: 1440px) {
-        margin-left: -47%;
+        margin-left: -49%;
     }
 
     @media (max-width: 480px) {
@@ -178,6 +178,10 @@ export const UnlockButton = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 1440px) {
+        left: 75%;
+    }
 
     @media (max-width: 480px) {
         display: none;

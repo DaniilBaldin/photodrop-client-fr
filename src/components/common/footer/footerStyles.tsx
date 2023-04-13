@@ -26,6 +26,7 @@ export const FooterContainer = styled.div`
 `;
 
 export const FooterColumn = styled.div`
+    margin-left: 40px;
     display: flex;
     flex-direction: column;
     justify-content: left;
