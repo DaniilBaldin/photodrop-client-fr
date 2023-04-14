@@ -37,7 +37,9 @@ export const Router = () => {
                 dispatch(addUser(user));
             }
         };
-        void getUser();
+        if (jwtToken) {
+            void getUser();
+        }
     }, [jwtToken]);
 
     return (
