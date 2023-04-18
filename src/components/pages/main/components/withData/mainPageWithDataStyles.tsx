@@ -70,6 +70,10 @@ export const AlbumButton = styled.button<{ image: string }>`
     height: 255px;
     border-radius: 20px;
     border: none;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-image: ${(props) => (props.image ? `url(${props.image})` : `url(${'/avatar.png'})`)};
     background-size: cover;
     background-position: center;
@@ -87,9 +91,7 @@ export const ButtonText = styled.p`
     line-height: 18px;
     text-align: center;
     color: #ffffff;
-    position: absolute;
-    top: 80%;
-    left: 35%;
+    margin-top: 200px;
     z-index: 200;
 `;
 
