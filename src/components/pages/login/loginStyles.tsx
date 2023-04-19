@@ -61,6 +61,10 @@ export const CreateButton = styled.button`
     border-radius: 50px;
     margin-top: 20px;
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     border: 1px solid #3300cc;
     background-color: #3300cc;
 

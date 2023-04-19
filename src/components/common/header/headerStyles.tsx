@@ -38,9 +38,14 @@ export const SettingsButton = styled.button<{ path: string; selfie: string }>`
     background-size: cover;
     display: ${(props) => (props.path === '/' ? 'flex' : 'none')};
 
+    @media (max-width: 1024px) {
+        right: 50px;
+    }
+
     @media (max-width: 480px) {
         height: 30px;
         width: 30px;
+        right: 20px;
         display: ${(props) =>
             props.path === '/terms' || props.path === '/privacy' || props.path === '/'
                 ? 'flex'
@@ -54,9 +59,10 @@ export const BackButton = styled.button`
     height: 40px;
     width: 40px;
     border: none;
+    margin-right: 20px;
     background-color: transparent;
 
-    @media (max-width: 480px) {
+    @media (max-width: 1024px) {
         height: 30px;
         width: 30px;
         left: 20px;
@@ -72,13 +78,13 @@ export const HeaderAlbum = styled.header`
 export const HeaderMainAlbum = styled.div`
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     max-width: 1200px;
     padding: 0;
     margin: 0;
 
     @media (max-width: 480px) {
-        padding: 0;
+        padding: 0 15px;
         margin: 0 auto;
     }
 `;
@@ -88,18 +94,19 @@ export const LocationAndDate = styled.div`
     align-items: center;
     justify-content: center;
     margin: 0;
-    margin-left: -11%;
+    margin-left: 9vw;
 
-    @media (max-width: 1440px) {
-        margin-left: -49%;
+    @media (min-width: 1500px) {
+        margin-left: 19vw;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 1024px) {
         flex-direction: column;
         align-items: left;
-        justify-content: space-between;
+        justify-content: left;
         margin-top: 5px;
-        margin-left: -30%;
+        margin-left: 50px;
+        /* margin-left: -30%; */
     }
 `;
 
@@ -112,11 +119,11 @@ export const Title = styled.h2`
     margin: 0;
     margin-right: 30px;
 
-    @media (max-width: 480px) {
+    @media (max-width: 1024px) {
         font-size: 18px;
         line-height: 22px;
         margin: 0;
-        text-align: left;
+        align-self: start;
     }
 `;
 
@@ -129,7 +136,7 @@ export const BlackText = styled.p`
     /* margin: 0; */
     margin-right: 10px;
 
-    @media (max-width: 480px) {
+    @media (max-width: 1024px) {
         font-size: 14px;
         line-height: 18px;
         margin: 0;
@@ -145,7 +152,7 @@ export const PurpleText = styled.p`
     /* margin: 0; */
     margin-left: 10px;
 
-    @media (max-width: 480px) {
+    @media (max-width: 1024px) {
         font-size: 14px;
         line-height: 18px;
         margin: 0;
@@ -159,17 +166,18 @@ export const DateContainer = styled.div`
     align-items: center;
     justify-content: center;
 
-    @media (max-width: 480px) {
+    @media (max-width: 1024px) {
         display: flex;
         flex-direction: row;
-        align-items: center;
-        justify-content: center;
+        /* align-items: left;
+        justify-content: left; */
+        align-self: start;
     }
 `;
 
 export const UnlockButton = styled.button`
     position: absolute;
-    left: 69%;
+    left: 75%;
     width: 300px;
     height: 15px;
     border: none;
@@ -179,11 +187,7 @@ export const UnlockButton = styled.button`
     align-items: center;
     justify-content: center;
 
-    @media (max-width: 1440px) {
-        left: 75%;
-    }
-
-    @media (max-width: 480px) {
+    @media (max-width: 1024px) {
         display: none;
     }
 `;

@@ -16,11 +16,13 @@ import {
     CreateButton,
     TextBottom,
 } from './loginStyles';
+import { Spinner } from '~/components/common/spinner/Spinner';
 
 export const Login: FC = (): JSX.Element => {
     const [code, setCode] = useState<string>('');
     const [phone, setPhone] = useState<string>('');
     const [error, setError] = useState<string>('');
+    const [loading, setLoading] = useState<boolean>(false);
 
     const baseUrl = import.meta.env.VITE_BASE_URL;
 
@@ -37,6 +39,7 @@ export const Login: FC = (): JSX.Element => {
 
     const formSubmitHandler = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
+        setLoading(true);
 
         const response = await fetch(`${baseUrl}user/login`, {
             method: 'POST',
@@ -50,9 +53,11 @@ export const Login: FC = (): JSX.Element => {
         const data = await response.json();
         if (!response.ok && !data.success) {
             setError('Authorization was not successful.Check phone number.');
+            setLoading(false);
         }
         if (response.ok && data.success) {
             dispatch(addPhone(phone));
+            setLoading(false);
             navigate('verify');
         }
     };
@@ -72,7 +77,7 @@ export const Login: FC = (): JSX.Element => {
                         disabled={!phone || phone.length <= 10}
                         onClick={formSubmitHandler}
                     >
-                        Create account
+                        Create account {loading && <Spinner />}
                     </CreateButton>
                     {error && <p>{error}</p>}
                     <TextBottom>

@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    max-width: 1230px;
+    max-width: 1200px;
     width: 100%;
-    padding: 0 15px;
+    padding: 0;
     margin: 0 auto;
 `;
 
@@ -22,7 +22,7 @@ export const Photos = styled.div`
     justify-content: center;
 
     @media (max-width: 1024px) {
-        grid-template-columns: 110px 110px 110px;
+        grid-template-columns: 1fr 1fr 1fr;
     }
 `;
 
@@ -30,15 +30,15 @@ export const ImageButton = styled.button<{ image: string }>`
     width: 400px;
     height: 400px;
     border: none;
-    margin: 0;
+    /* margin: 0; */
     background-image: ${(props) => (props.image ? `url(${props.image})` : `url(${'/avatar.png'})`)};
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 
     @media (max-width: 1024px) {
-        width: 110px;
-        height: 110px;
+        width: 100%;
+        height: 33vw;
     }
 `;
 
@@ -68,6 +68,10 @@ export const UnlockButton = styled.button<{ show: boolean }>`
 
     @media (max-width: 1024px) {
         width: 345px;
+    }
+
+    @media (max-width: 400px) {
+        width: 300px;
     }
 `;
 

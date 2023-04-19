@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 export const ContainerWithData = styled.main`
     max-width: 1230px;
     width: 100%;
-    padding: 0 15px;
+    padding: 0 0px;
     margin: 0 auto;
 `;
 
@@ -27,11 +27,12 @@ export const Subtitle = styled.h2`
     @media (max-width: 1024px) {
         font-size: 14px;
         line-height: 18px;
-        margin: 15px 0 16px 10px;
+        margin: 15px 0 16px 20px;
     }
 `;
 
 export const AlbumsContainer = styled.div`
+    max-width: 1200px;
     display: flex;
     flex-direction: column;
     align-items: left;
@@ -48,6 +49,8 @@ export const SwiperContainer = styled(Swiper)`
     @media (max-width: 1024px) {
         width: 100%;
         margin-right: 0;
+        padding-left: 15px;
+        /* margin-left: 20px; */
     }
 `;
 
@@ -59,6 +62,7 @@ export const Slide = styled(SwiperSlide)`
     @media (max-width: 1024px) {
         height: 140px;
         width: 110px;
+        margin: 0;
     }
 `;
 
@@ -93,6 +97,12 @@ export const ButtonText = styled.p`
     color: #ffffff;
     margin-top: 200px;
     z-index: 200;
+
+    @media (max-width: 1024px) {
+        margin-top: 100px;
+        font-size: 10px;
+        line-height: 14px;
+    }
 `;
 
 export const Gradient = styled.div`
@@ -107,6 +117,7 @@ export const Gradient = styled.div`
 `;
 
 export const PhotosContainer = styled.div`
+    max-width: 1200px;
     display: flex;
     flex-direction: column;
     align-items: left;
@@ -121,21 +132,22 @@ export const Photos = styled.div`
     justify-content: center;
 
     @media (max-width: 1024px) {
-        grid-template-columns: 110px 110px 110px;
+        grid-template-columns: 1fr 1fr 1fr;
     }
 `;
 
 export const ImageButton = styled.button<{ image: string }>`
-    width: 400px;
-    height: 400px;
+    width: 410px;
+    height: 410px;
     border: none;
+    /* margin: 0; */
     background-image: ${(props) => (props.image ? `url(${props.image})` : `url(${'/avatar.png'})`)};
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 
     @media (max-width: 1024px) {
-        width: 110px;
-        height: 110px;
+        width: 100%;
+        height: 33vw;
     }
 `;

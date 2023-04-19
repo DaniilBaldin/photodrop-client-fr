@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import OtpInput from 'react18-input-otp';
@@ -18,11 +18,13 @@ import {
     NextButton,
     InputFocus,
 } from './verifyStyles';
+import { Spinner } from '~/components/common/spinner/Spinner';
 
 export const Verify: FC = (): JSX.Element => {
     const [otp, setOtp] = useState<string>('');
     const [error, setError] = useState<string>('');
     const [hidden, setHidden] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
 
     const baseUrl = import.meta.env.VITE_BASE_URL;
 
@@ -30,6 +32,12 @@ export const Verify: FC = (): JSX.Element => {
     const dispatch = Dispatch();
 
     const phone = Selector(phoneSelector);
+
+    useEffect(() => {
+        if (phone === null) {
+            navigate('/');
+        }
+    }, [phone]);
 
     const handleOtpChange = (enteredOtp: string) => {
         setOtp(enteredOtp);
@@ -52,12 +60,14 @@ export const Verify: FC = (): JSX.Element => {
             setError('Code resend was not successful.');
         }
         if (response.ok && data.success) {
+            alert('Only one code resend available!');
             setHidden(true);
         }
     };
 
     const handleOtpSubmit = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
+        setLoading(true);
 
         const response = await fetch(`${baseUrl}user/verify`, {
             method: 'POST',
@@ -72,11 +82,13 @@ export const Verify: FC = (): JSX.Element => {
         const data = await response.json();
         if (!response.ok && !data.success) {
             setError('Code is not valid');
+            setLoading(false);
         }
         if (response.ok && data.success) {
             const token = data.token;
             dispatch(addToken(token));
             localStorage.setItem('token', token);
+            setLoading(false);
 
             if (data.newUser) {
                 navigate('/selfie');
@@ -113,7 +125,7 @@ export const Verify: FC = (): JSX.Element => {
                             disabled={!otp || otp.length < 6}
                             onClick={handleOtpSubmit}
                         >
-                            Next
+                            Next {loading && <Spinner />}
                         </NextButton>
                         {error && <p>{error}</p>}
                     </VerifyDiv>

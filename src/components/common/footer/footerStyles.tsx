@@ -10,7 +10,7 @@ export const FooterMain = styled.footer`
 
 export const FooterContainer = styled.div`
     max-width: 375px;
-    padding: 0 15px;
+    padding: 0;
     margin: 0 auto;
 
     @media (min-width: 1024px) {
@@ -18,6 +18,7 @@ export const FooterContainer = styled.div`
         grid-template-columns: 1.4fr 1fr;
         gap: 60px;
         max-width: 965px;
+        /* padding: 0; */
     }
 
     @media (max-width: 400px) {
@@ -30,6 +31,11 @@ export const FooterColumn = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: left;
+
+    @media (max-width: 1024px) {
+        margin-left: 0;
+        justify-content: center;
+    }
 `;
 
 export const FooterTitle = styled.h2`
@@ -41,7 +47,7 @@ export const FooterTitle = styled.h2`
     color: #ffffff;
 
     @media (max-width: 1024px) {
-        font-size: 16px;
+        font-size: 18px;
         line-height: 22px;
         margin: 0 0 10px 0;
     }
@@ -58,6 +64,14 @@ export const StyledText = styled.p`
     font-family: 'Futura PT';
     font-size: 18px;
     font-weight: 400;
+    text-align: left;
+
+    @media (max-width: 1024px) {
+        font-size: 16px;
+        line-height: 21px;
+        letter-spacing: -2%;
+        margin-top: 10px;
+    }
 `;
 
 export const FrameButton = styled.button`
@@ -71,6 +85,11 @@ export const FrameButton = styled.button`
     justify-content: center;
     align-items: center;
     margin: 0;
+
+    @media (max-width: 1024px) {
+        width: 345px;
+        /* margin-left: 10px; */
+    }
 `;
 
 export const ButtonText = styled.p`

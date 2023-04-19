@@ -113,6 +113,10 @@ export const NextButton = styled.button`
     margin-bottom: 20px;
     border: 1px solid #3300cc;
     background-color: #3300cc;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 
     :disabled {
         background-color: #c59fe1;

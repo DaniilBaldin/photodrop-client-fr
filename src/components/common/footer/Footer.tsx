@@ -53,7 +53,7 @@ export const Footer: FC = () => {
                     </FrameButton>
                     <DateText>© {new Date().getFullYear()} FOM Online Inc</DateText>
                 </FooterColumn>
-                <FooterColumn style={{ marginLeft: '-20px' }}>
+                <FooterColumn>
                     <MailText>
                         Questions? Get in touch -{' '}
                         <MailLink
