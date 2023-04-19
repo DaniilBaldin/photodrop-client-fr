@@ -7,6 +7,7 @@ export const Modal = styled.section<{ show: boolean }>`
     top: 0;
     bottom: 0;
     width: 100%;
+    height: 100%;
     background-color: rgb(0, 0, 0, 0.9);
     opacity: ${(props) => (props.show ? 1 : 0)};
     transition: all 0.3s ease-in-out;
@@ -38,7 +39,7 @@ export const Image = styled.img`
     bottom: 0;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 90%;
+    max-width: 100%;
     max-height: 90%;
     width: auto;
     height: auto;
