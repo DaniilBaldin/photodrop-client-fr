@@ -69,8 +69,8 @@ export const Image = styled.img`
 
 export const ChangeSelfie = styled.button`
     position: absolute;
-    left: 115px;
-    top: 100px;
+    left: 110px;
+    top: 98px;
     width: 43px;
     height: 43px;
     color: #ffffff;
@@ -83,8 +83,10 @@ export const ChangeSelfie = styled.button`
 `;
 
 export const PencilImage = styled.img`
-    width: 15px;
+    width: 16px;
     height: 40px;
+    margin-left: 1px;
+    margin-bottom: 2px;
 `;
 
 export const ChangeName = styled.button`

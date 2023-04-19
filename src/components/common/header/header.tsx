@@ -59,7 +59,7 @@ export const HeaderComponent: FC<Props> = () => {
                     <LocationAndDate>
                         <Title>{album?.name}</Title>
                         <DateContainer>
-                            <BlackText>{date}</BlackText>•{' '}
+                            <BlackText>{date}</BlackText> •{' '}
                             <PurpleText>{photos?.length} photos</PurpleText>
                         </DateContainer>
                     </LocationAndDate>

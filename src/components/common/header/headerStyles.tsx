@@ -140,6 +140,7 @@ export const BlackText = styled.p`
         font-size: 14px;
         line-height: 18px;
         margin: 0;
+        margin-right: 6px;
     }
 `;
 
@@ -156,6 +157,7 @@ export const PurpleText = styled.p`
         font-size: 14px;
         line-height: 18px;
         margin: 0;
+        margin-left: 6px;
     }
 `;
 
@@ -169,8 +171,8 @@ export const DateContainer = styled.div`
     @media (max-width: 1024px) {
         display: flex;
         flex-direction: row;
-        /* align-items: left;
-        justify-content: left; */
+        /* align-items: center;
+        justify-content: center; */
         align-self: start;
     }
 `;

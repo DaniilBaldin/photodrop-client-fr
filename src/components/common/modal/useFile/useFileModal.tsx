@@ -145,7 +145,6 @@ export const UseFileModal: FC<Props> = (props) => {
                         type="button"
                         onClick={() => {
                             props.onRetake();
-                            // props.onClose();
                         }}
                     >
                         Retake

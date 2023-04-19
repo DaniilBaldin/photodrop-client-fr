@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useRef, useState } from 'react';
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { Selector } from '~/store/hooks/hooks';
 import { userSelector } from '~/store/selectors/userSelector';
 
@@ -21,15 +21,20 @@ import {
 } from './settingsStyles';
 
 export const Settings = () => {
+    const user = Selector(userSelector);
+    // console.log(user);
+
     const [open, setOpen] = useState<boolean>(false);
     const [selfie, setSelfie] = useState<string | null>('');
 
-    const user = Selector(userSelector);
+    useEffect(() => {
+        setSelfie(user?.selfie as string);
+    }, [user]);
 
     const inputRef = useRef<HTMLInputElement>(null);
     const handleClick = () => {
         setOpen(true);
-        inputRef.current?.click();
+        // inputRef.current?.click();
     };
 
     const handleRetake = () => {
@@ -41,7 +46,7 @@ export const Settings = () => {
     const handleFile = (event: ChangeEvent<HTMLInputElement>) => {
         const file = event?.target?.files?.[0];
         if (!file) {
-            return;
+            return user?.selfie;
         }
 
         setSelfie(URL.createObjectURL(file));

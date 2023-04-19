@@ -32,8 +32,10 @@ export const Router = () => {
                 body: undefined,
             });
             const data = await response.json();
+
             if (data) {
                 const user = data?.user;
+                console.log(user);
                 dispatch(addUser(user));
             }
         };

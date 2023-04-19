@@ -5,6 +5,7 @@ export const Converter = (url: string, area: Area) => {
     const context = <CanvasRenderingContext2D | null>canvas.getContext('2d');
 
     const image = new Image();
+    image.crossOrigin = 'Anonymous';
     image.src = url;
 
     canvas.width = area.width;
