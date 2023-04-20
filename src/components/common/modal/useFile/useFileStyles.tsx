@@ -22,6 +22,9 @@ export const Modal = styled.div<{ show: boolean }>`
     @media (max-width: 400px) {
         zoom: 100%;
     }
+    @media (max-width: 330px) {
+        zoom: 90%;
+    }
 `;
 
 export const ModalContent = styled.div`
