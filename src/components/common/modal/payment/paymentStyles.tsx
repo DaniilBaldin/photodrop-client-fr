@@ -115,3 +115,32 @@ export const ButtonText = styled.h2`
     line-height: 28px;
     color: #ffffff;
 `;
+
+export const SpinnerAnimation = styled.div`
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-left: 12px;
+    margin-bottom: 6px;
+
+    :after {
+        content: ' ';
+        display: block;
+        width: 14px;
+        height: 14px;
+
+        /* margin: 8px; */
+        border-radius: 50%;
+        border: 6px solid #fff;
+        border-color: #fff transparent #fff transparent;
+        animation: lds-dual-ring 1.2s linear infinite;
+    }
+    @keyframes lds-dual-ring {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+`;

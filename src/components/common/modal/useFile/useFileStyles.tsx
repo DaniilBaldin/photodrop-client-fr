@@ -54,7 +54,7 @@ export const FileWindow = styled.span`
     -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
 
     @media (max-width: 400px) {
-        left: calc(100% / 6);
+        left: calc(100% / 7);
         right: calc(100% / 7);
     }
 
@@ -119,7 +119,7 @@ export const TextSmall = styled.div`
     justify-content: center;
 
     @media (max-width: 400px) {
-        margin-right: 1vw;
+        margin-left: 1%;
     }
 `;
 
@@ -130,8 +130,8 @@ export const Footer = styled.div`
     justify-content: left;
 
     @media (max-width: 374px) {
-        margin-left: -2%;
-        margin-right: 2%;
+        margin-left: -1%;
+        margin-right: 1%;
     }
 `;
 

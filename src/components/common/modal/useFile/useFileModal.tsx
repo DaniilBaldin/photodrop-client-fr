@@ -99,6 +99,10 @@ export const UseFileModal: FC<Props> = (props) => {
             }
         }
     };
+    if (error) {
+        alert(error);
+        setError('');
+    }
 
     const closeOnEscapeKeyDown = (e: { charCode: number; keyCode: number }) => {
         if ((e.charCode || e.keyCode) === 27) {
@@ -158,12 +162,11 @@ export const UseFileModal: FC<Props> = (props) => {
                         Save{' '}
                         {loading && (
                             <div>
-                                <SpinnerAnimation></SpinnerAnimation>
+                                <SpinnerAnimation />
                             </div>
                         )}
                     </ButtonColored>
                 </Footer>
-                {error && <p>{error}</p>}
             </ModalContent>
         </Modal>,
         document.getElementById('root') as HTMLElement,

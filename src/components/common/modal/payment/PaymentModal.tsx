@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import {
     Modal,
@@ -11,6 +11,7 @@ import {
     TextBold,
     CheckoutButton,
     ButtonText,
+    SpinnerAnimation,
 } from './paymentStyles';
 
 import CloseIcon from '@mui/icons-material/Close';
@@ -27,12 +28,15 @@ type Props = {
 export const PaymentModal: FC<Props> = (props) => {
     const id = useLocation().pathname.split('/')[2];
 
+    const [loading, setLoading] = useState<boolean>(false);
+
     const jwtToken = Selector(tokenSelector);
     const album = Selector(oneAlbumSelector);
 
     const baseUrl = import.meta.env.VITE_BASE_URL;
 
     const chackoutHandler = async () => {
+        setLoading(true);
         const response = await fetch(`${baseUrl}payment`, {
             method: 'POST',
             headers: {
@@ -46,6 +50,7 @@ export const PaymentModal: FC<Props> = (props) => {
         });
         const data = await response.json();
         if (data?.success) {
+            setLoading(false);
             localStorage.setItem('albumId', id);
             window.location.replace(data.url);
         }
@@ -81,7 +86,12 @@ export const PaymentModal: FC<Props> = (props) => {
                     <TextBold>$5</TextBold>
                 </Body>
                 <CheckoutButton>
-                    <ButtonText onClick={chackoutHandler}>Checkout</ButtonText>
+                    <ButtonText onClick={chackoutHandler}>Checkout </ButtonText>
+                    {loading && (
+                        <div>
+                            <SpinnerAnimation />
+                        </div>
+                    )}
                 </CheckoutButton>
             </ModalContent>
         </Modal>
