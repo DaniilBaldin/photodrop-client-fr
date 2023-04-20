@@ -19,7 +19,10 @@ export const Modal = styled.div<{ show: boolean }>`
         zoom: 70%;
     }
 
-    @media (max-width: 320px) {
+    @media (max-width: 400px) {
+        zoom: 80%;
+    }
+    @media (max-width: 350px) {
         zoom: 70%;
     }
 `;
@@ -31,6 +34,11 @@ export const ModalContent = styled.div`
     background-color: white;
     transform: translateY(-200px);
     border-radius: 20px;
+
+    @media (max-width: 425px) {
+        transform: translateY(100%);
+        height: 210px;
+    }
 `;
 
 export const Header = styled.div`
