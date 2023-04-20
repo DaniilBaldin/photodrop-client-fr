@@ -10,7 +10,7 @@ export const Modal = styled.section<{ show: boolean }>`
     height: 100%;
     background-color: rgb(0, 0, 0, 0.9);
     opacity: ${(props) => (props.show ? 1 : 0)};
-    transition: all 0.3s ease-in-out;
+    transition: all 0.1s ease-in-out;
     pointer-events: ${(props) => (props.show ? 'all' : 'none')};
     z-index: 999;
     overflow-y: hidden;

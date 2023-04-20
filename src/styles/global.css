@@ -22,3 +22,11 @@ body {
     overflow-x: hidden;
     overflow-y: auto;
 }
+
+input,
+textarea,
+button,
+select,
+a {
+    -webkit-tap-highlight-color: transparent;
+}

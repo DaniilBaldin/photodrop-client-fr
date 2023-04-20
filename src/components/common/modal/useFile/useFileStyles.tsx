@@ -11,7 +11,7 @@ export const Modal = styled.div<{ show: boolean }>`
     align-items: center;
     justify-content: center;
     opacity: ${(props) => (props.show ? 1 : 0)};
-    transition: all 0.3s ease-in-out;
+    transition: all 0.1s ease-in-out;
     pointer-events: ${(props) => (props.show ? 'all' : 'none')};
     z-index: 999;
 
