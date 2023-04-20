@@ -129,7 +129,12 @@ export const Footer = styled.div`
     align-items: center;
     justify-content: left;
 
-    @media (max-width: 374px) {
+    @media (max-width: 399px) {
+        margin-left: 2%;
+        margin-right: -2%;
+    }
+
+    @media (max-width: 375px) {
         margin-left: -1%;
         margin-right: 1%;
     }
