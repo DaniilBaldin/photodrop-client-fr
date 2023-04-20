@@ -70,7 +70,6 @@ export const UseFileModal: FC<Props> = (props) => {
         if (image && area) {
             setLoading(true);
             const final = (await Converter(image, area)) as Blob;
-            console.log(URL.createObjectURL(final));
 
             const formData = new FormData();
             formData.append('Content-Type', 'multipart/form-data');

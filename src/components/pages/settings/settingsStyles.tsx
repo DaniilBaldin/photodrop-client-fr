@@ -18,6 +18,9 @@ export const Container = styled.div`
     @media (max-width: 600px) {
         zoom: 80%;
     }
+    @media (max-width: 350px) {
+        zoom: 70%;
+    }
 `;
 export const Main = styled.div`
     display: flex;

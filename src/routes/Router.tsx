@@ -35,7 +35,6 @@ export const Router = () => {
 
             if (data) {
                 const user = data?.user;
-                // console.log(user);
                 dispatch(addUser(user));
             }
         };

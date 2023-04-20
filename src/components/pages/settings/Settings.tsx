@@ -25,7 +25,6 @@ export const Settings = () => {
 
     const [open, setOpen] = useState<boolean>(false);
     const [selfie, setSelfie] = useState<string | null>('');
-    console.log(selfie);
 
     useEffect(() => {
         setSelfie(user?.selfie as string);

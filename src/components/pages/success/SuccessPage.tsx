@@ -38,8 +38,6 @@ export const SuccessPage = () => {
 
     const jwtToken = Selector(tokenSelector);
     const [album, setAlbum] = useState<Data | null>(null);
-    console.log(id);
-    console.log(album);
 
     useEffect(() => {
         if (!id) navigate('/');
