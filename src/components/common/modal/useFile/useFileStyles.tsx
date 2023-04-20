@@ -15,12 +15,12 @@ export const Modal = styled.div<{ show: boolean }>`
     pointer-events: ${(props) => (props.show ? 'all' : 'none')};
     z-index: 999;
 
-    @media (max-width: 1024px) {
-        zoom: 80%;
+    @media (max-width: 1440px) {
+        zoom: 90%;
     }
 
-    @media (max-width: 320px) {
-        zoom: 70%;
+    @media (max-width: 400px) {
+        zoom: 100%;
     }
 `;
 
@@ -31,6 +31,13 @@ export const ModalContent = styled.div`
     background-color: #262626;
     transform: translateY(-200px);
     border-radius: 20px;
+
+    @media (max-width: 400px) {
+        width: 100%;
+        margin-top: 400px;
+        height: 100%;
+        border-radius: 0px;
+    }
 `;
 
 export const FileWindow = styled.span`
@@ -45,6 +52,16 @@ export const FileWindow = styled.span`
     overflow: hide;
     mask-image: '';
     -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+
+    @media (max-width: 400px) {
+        left: calc(100% / 6);
+        right: calc(100% / 7);
+    }
+
+    @media (max-width: 320px) {
+        left: calc(100% / 8);
+        right: calc(100% / 8);
+    }
 `;
 
 export const Header = styled.div`
@@ -80,6 +97,10 @@ export const CloseButton = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 400px) {
+        margin-right: 30%;
+    }
 `;
 
 export const TextSmall = styled.div`
@@ -96,6 +117,10 @@ export const TextSmall = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 400px) {
+        margin-right: 1vw;
+    }
 `;
 
 export const Footer = styled.div`
@@ -103,6 +128,11 @@ export const Footer = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: left;
+
+    @media (max-width: 374px) {
+        margin-left: -2%;
+        margin-right: 2%;
+    }
 `;
 
 export const Button = styled.button`
@@ -143,3 +173,32 @@ export const ButtonColored = styled.button`
 export const CropStyle = {
     border: '1px solid #262626',
 };
+
+export const SpinnerAnimation = styled.div`
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-left: 12px;
+    margin-bottom: 5px;
+
+    :after {
+        content: ' ';
+        display: block;
+        width: 15px;
+        height: 15px;
+
+        /* margin: 8px; */
+        border-radius: 50%;
+        border: 6px solid #262626;
+        border-color: #262626 transparent #262626 transparent;
+        animation: lds-dual-ring 1.2s linear infinite;
+    }
+    @keyframes lds-dual-ring {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+`;

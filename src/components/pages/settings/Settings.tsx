@@ -22,10 +22,10 @@ import {
 
 export const Settings = () => {
     const user = Selector(userSelector);
-    // console.log(user);
 
     const [open, setOpen] = useState<boolean>(false);
     const [selfie, setSelfie] = useState<string | null>('');
+    console.log(selfie);
 
     useEffect(() => {
         setSelfie(user?.selfie as string);
@@ -46,7 +46,7 @@ export const Settings = () => {
     const handleFile = (event: ChangeEvent<HTMLInputElement>) => {
         const file = event?.target?.files?.[0];
         if (!file) {
-            return user?.selfie;
+            return;
         }
 
         setSelfie(URL.createObjectURL(file));

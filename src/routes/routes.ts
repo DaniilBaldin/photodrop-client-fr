@@ -1,5 +1,4 @@
 import { Login } from '~/components/pages/login/Login';
-import { NotFound } from '~/components/pages/notFound/notFound';
 import { Verify } from '~/components/pages/verify/Verify';
 import { Selfie } from '~/components/pages/selfie/Selfie';
 import { MainPage } from '~/components/pages/main/MainPage';
@@ -18,11 +17,6 @@ export const routes = [
     {
         path: '/verify',
         element: Verify,
-    },
-
-    {
-        path: '*',
-        element: NotFound,
     },
 ];
 
@@ -58,9 +52,5 @@ export const protectedRoutes = [
     {
         path: '/success',
         element: SuccessPage,
-    },
-    {
-        path: '*',
-        element: NotFound,
     },
 ];

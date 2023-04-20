@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { Layout } from '~/components/common/layout/Layout';
 
 import { Dispatch, Selector } from '~/store/hooks/hooks';
@@ -35,7 +35,7 @@ export const Router = () => {
 
             if (data) {
                 const user = data?.user;
-                console.log(user);
+                // console.log(user);
                 dispatch(addUser(user));
             }
         };
@@ -55,6 +55,7 @@ export const Router = () => {
                           <Route key={index} path={route.path} element={<route.element />} />
                       ))}
             </Route>
+            <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
     );
 };

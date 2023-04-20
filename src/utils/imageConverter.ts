@@ -1,12 +1,24 @@
 import { Area } from 'react-easy-crop';
 
-export const Converter = (url: string, area: Area) => {
+const createImage = async (url: string): Promise<HTMLImageElement> => {
+    return new Promise((resolve, reject) => {
+        const image = new Image();
+        image.addEventListener('load', () => resolve(image));
+        image.addEventListener('error', reject);
+        image.setAttribute('crossOrigin', 'anonymous');
+        image.src = url;
+    });
+};
+
+export const Converter = async (url: string, area: Area) => {
+    const image = await createImage(url);
     const canvas = document.createElement('canvas');
     const context = <CanvasRenderingContext2D | null>canvas.getContext('2d');
+    if (!context) return;
 
-    const image = new Image();
-    image.crossOrigin = 'Anonymous';
-    image.src = url;
+    // const image = new Image();
+    // image.crossOrigin = 'Anonymous';
+    // image.src = url;
 
     canvas.width = area.width;
     canvas.height = area.height;

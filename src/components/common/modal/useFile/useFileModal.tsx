@@ -17,6 +17,7 @@ import {
     Button,
     ButtonColored,
     CropStyle,
+    SpinnerAnimation,
 } from './useFileStyles';
 
 import CloseIcon from '@mui/icons-material/Close';
@@ -59,6 +60,7 @@ export const UseFileModal: FC<Props> = (props) => {
         height: 0,
     });
     const [error, setError] = useState<string>('');
+    const [loading, setLoading] = useState<boolean>(false);
 
     const onCropComplete = useCallback((_croppedArea: Area, croppedAreaPixels: Area) => {
         setArea(croppedAreaPixels);
@@ -66,8 +68,9 @@ export const UseFileModal: FC<Props> = (props) => {
 
     const imageHandler = async () => {
         if (image && area) {
+            setLoading(true);
             const final = (await Converter(image, area)) as Blob;
-            console.log(final);
+            console.log(URL.createObjectURL(final));
 
             const formData = new FormData();
             formData.append('Content-Type', 'multipart/form-data');
@@ -84,11 +87,13 @@ export const UseFileModal: FC<Props> = (props) => {
             const data = await response.json();
             if (!response.ok && !data.success) {
                 setError('Error in changing selfie!');
+                setLoading(false);
             }
             if (response.ok && data.success) {
                 if (path === '/selfie') {
                     navigate('/');
                 }
+                setLoading(false);
                 dispatch(changeSelfie(URL.createObjectURL(final)));
                 props.onClose();
             }
@@ -150,7 +155,12 @@ export const UseFileModal: FC<Props> = (props) => {
                         Retake
                     </Button>
                     <ButtonColored type="button" onClick={imageHandler}>
-                        Save
+                        Save{' '}
+                        {loading && (
+                            <div>
+                                <SpinnerAnimation></SpinnerAnimation>
+                            </div>
+                        )}
                     </ButtonColored>
                 </Footer>
                 {error && <p>{error}</p>}
