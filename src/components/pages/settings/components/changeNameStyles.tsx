@@ -12,7 +12,7 @@ export const Container = styled.main`
     }
 
     @media (max-width: 600px) {
-        zoom: 70%;
+        zoom: 80%;
     }
 `;
 

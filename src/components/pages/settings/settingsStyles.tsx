@@ -16,7 +16,7 @@ export const Container = styled.div`
     }
 
     @media (max-width: 600px) {
-        zoom: 70%;
+        zoom: 80%;
     }
 `;
 export const Main = styled.div`
