@@ -90,7 +90,6 @@ export const SuccessPage = () => {
     const buttonHandler = () => {
         navigate(`/album/${id}`);
     };
-    console.log(window.screen.width);
 
     return (
         <Main>

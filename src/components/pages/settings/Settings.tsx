@@ -25,6 +25,8 @@ export const Settings = () => {
 
     const [open, setOpen] = useState<boolean>(false);
     const [selfie, setSelfie] = useState<string | null>('');
+    const [loading, setLoading] = useState<boolean>(false);
+    console.log(loading);
 
     useEffect(() => {
         if (user?.selfie.split(':')[0] !== 'blob') {
@@ -55,18 +57,28 @@ export const Settings = () => {
         setSelfie(URL.createObjectURL(file));
     };
 
+    const handleLoading = () => {
+        setLoading(true);
+    };
+    // setLoading(true);
+
+    const imageStyle = !loading ? { display: 'none' } : {};
+
     return (
         <Container>
             <Main>
                 <Title>{`Welcome, ${(user?.name as string) || 'User'}.`}</Title>
                 <SubTitle>Your selfie</SubTitle>
                 <Avatar>
+                    {!loading && <Image src={'/avatar.png'} alt="Selfie" />}
                     <Image
                         src={selfie || user?.selfie || '/avatar.png'}
                         alt="Selfie"
                         loading="lazy"
-                        id="images-wrapper"
+                        style={imageStyle}
+                        onLoad={handleLoading}
                     />
+
                     <ChangeSelfie type="button" onClick={handleClick}>
                         <PencilImage src="/Pencil.svg" alt="Pencil" />
                     </ChangeSelfie>

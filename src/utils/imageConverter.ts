@@ -23,7 +23,6 @@ export const Converter = async (url: string, area: Area) => {
     const canvas = document.createElement('canvas');
     const context = <CanvasRenderingContext2D | null>canvas.getContext('2d');
     if (!context) return;
-    console.log(image);
 
     // const image = new Image();
     // image.crossOrigin = 'Anonymous';
