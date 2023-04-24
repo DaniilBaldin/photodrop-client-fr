@@ -43,8 +43,6 @@ export const Router = () => {
         }
     }, [jwtToken]);
 
-    console.log(document.getElementsByClassName('image'));
-
     return (
         <Routes>
             <Route path="/" element={<Layout />}>

@@ -94,7 +94,7 @@ export const SuccessPage = () => {
     return (
         <Main>
             <MainDiv>
-                <Title>Thank you</Title>
+                <Title>Thank you!</Title>
                 <TextPlain>
                     The album <TextBold>{album?.album.name}</TextBold> is now unlocked.
                 </TextPlain>

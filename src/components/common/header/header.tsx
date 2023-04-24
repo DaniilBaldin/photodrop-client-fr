@@ -110,7 +110,7 @@ export const HeaderComponent: FC<Props> = () => {
                             }}
                             hidden={location.pathname === '/settings'}
                             path={location.pathname}
-                            selfie={selfie as string}
+                            selfie={selfie || user?.selfie || '/avatar.png'}
                         ></SettingsButton>
                         <BackButton
                             type="button"

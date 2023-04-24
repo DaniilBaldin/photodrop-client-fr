@@ -50,7 +50,8 @@ export const NotificationTitle = styled.h2`
     margin: 0 0 19px 0;
 
     @media (max-width: 1024px) {
-        font-size: 22px;
+        max-width: 345px;
+        font-size: 24px;
         line-height: 28px;
         margin: 0 0 16px 0;
     }
@@ -65,7 +66,8 @@ export const NotificationMessage = styled.p`
     text-align: center;
 
     @media (max-width: 1024px) {
-        font-size: 18px;
+        max-width: 345px;
+        font-size: 20px;
         line-height: 23px;
         margin: 0 0 41px 0;
     }

@@ -28,9 +28,14 @@ export const Title = styled.h2`
     font-family: 'Termina';
     font-weight: 700;
     font-size: 30px;
-    font-weight: 36px;
+    line-height: 36px;
     margin-top: 40px;
     margin-bottom: 0;
+
+    @media (max-width: 425px) {
+        font-size: 18px;
+        line-height: 22px;
+    }
 `;
 
 export const TextPlain = styled.p`
@@ -43,6 +48,12 @@ export const TextPlain = styled.p`
     max-width: 420px;
     margin-top: 20px;
     margin-bottom: 0;
+
+    @media (max-width: 425px) {
+        max-width: 360px;
+        font-size: 18px;
+        line-height: 23px;
+    }
 `;
 
 export const TextBold = styled.span`
@@ -52,6 +63,11 @@ export const TextBold = styled.span`
     font-weight: 28px;
     text-align: left;
     color: #262626;
+
+    @media (max-width: 425px) {
+        font-size: 18px;
+        line-height: 23px;
+    }
 `;
 
 export const Image = styled.img`
@@ -62,6 +78,12 @@ export const Image = styled.img`
     margin-top: 40px;
     margin-left: -10px;
     margin-bottom: 20px;
+
+    @media (max-width: 425px) {
+        width: 360px;
+        height: 228px;
+        margin-top: 30px;
+    }
 `;
 
 export const Button = styled.button`

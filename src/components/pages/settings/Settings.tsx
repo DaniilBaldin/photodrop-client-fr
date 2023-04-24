@@ -62,7 +62,7 @@ export const Settings = () => {
                 <SubTitle>Your selfie</SubTitle>
                 <Avatar>
                     <Image
-                        src={selfie || '/avatar.png'}
+                        src={selfie || user?.selfie || '/avatar.png'}
                         alt="Selfie"
                         loading="lazy"
                         id="images-wrapper"
@@ -87,7 +87,7 @@ export const Settings = () => {
                     onClose={() => {
                         setOpen(false);
                     }}
-                    image={selfie}
+                    image={selfie || user?.selfie || '/avatar.png'}
                     onRetake={handleRetake}
                 ></UseFileModal>
                 <input
