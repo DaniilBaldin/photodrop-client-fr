@@ -90,6 +90,7 @@ export const SuccessPage = () => {
     const buttonHandler = () => {
         navigate(`/album/${id}`);
     };
+    console.log(window.screen.width);
 
     return (
         <Main>
@@ -106,7 +107,9 @@ export const SuccessPage = () => {
                 <Button onClick={buttonHandler}>
                     <ButtonText>See photos</ButtonText>
                 </Button>
-                <TextSmall>You will receive an email with your order details.</TextSmall>
+                <TextSmall hidden={window.screen.width < 425}>
+                    You will receive an email with your order details.
+                </TextSmall>
             </MainDiv>
         </Main>
     );

@@ -50,7 +50,7 @@ export const TextPlain = styled.p`
     margin-bottom: 0;
 
     @media (max-width: 425px) {
-        max-width: 360px;
+        max-width: 380px;
         font-size: 18px;
         line-height: 23px;
     }
@@ -80,14 +80,14 @@ export const Image = styled.img`
     margin-bottom: 20px;
 
     @media (max-width: 425px) {
-        width: 360px;
+        width: 380px;
         height: 228px;
         margin-top: 30px;
     }
 `;
 
 export const Button = styled.button`
-    width: 350px;
+    width: 380px;
     height: 50px;
     border-radius: 50px;
     border: 1px solid #3300cc;
@@ -100,6 +100,7 @@ export const Button = styled.button`
     -webkit-justify-content: center;
     margin-top: 20px;
     margin-bottom: 10px;
+    margin-left: -10px;
 `;
 
 export const ButtonText = styled.h2`
