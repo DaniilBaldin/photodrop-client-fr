@@ -29,12 +29,15 @@ export const FooterContainer = styled.div`
 export const FooterColumn = styled.div`
     margin-left: 40px;
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
     justify-content: left;
+    -webkit-justify-content: left;
 
     @media (max-width: 1024px) {
         margin-left: 0;
         justify-content: center;
+        -webkit-justify-content: center;
     }
 `;
 
@@ -79,6 +82,7 @@ export const FrameButton = styled.button`
     height: 50px;
     border-radius: 50px;
     color: #ffffff;
+    padding: 0;
     background-color: transparent;
     border: 1px solid #ffffff;
     display: flex;

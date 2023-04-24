@@ -1,12 +1,20 @@
 import { Area } from 'react-easy-crop';
 
 const createImage = async (url: string): Promise<HTMLImageElement> => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         const image = new Image();
         image.addEventListener('load', () => resolve(image));
-        image.addEventListener('error', reject);
-        image.setAttribute('crossOrigin', 'anonymous');
-        image.src = url;
+        image.addEventListener('error', () => {
+            const errMsg = `Error loading image at ${url}`;
+            console.log(errMsg);
+        });
+        image.crossOrigin = 'anonymous';
+        image.alt = 'image';
+        if (url.split(':')[0] !== 'blob') {
+            image.src = url + '-' + Math.random();
+        } else {
+            image.src = url;
+        }
     });
 };
 
@@ -15,6 +23,7 @@ export const Converter = async (url: string, area: Area) => {
     const canvas = document.createElement('canvas');
     const context = <CanvasRenderingContext2D | null>canvas.getContext('2d');
     if (!context) return;
+    console.log(image);
 
     // const image = new Image();
     // image.crossOrigin = 'Anonymous';

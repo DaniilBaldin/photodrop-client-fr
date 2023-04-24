@@ -54,7 +54,7 @@ export const Lightbox: FC<Props> = (props) => {
                 <BottomButtons>
                     <DownloadButton href={props.image} download={'art'}>
                         <ArrowDown src="/Vector.svg" alt="ArrowDown" />
-                        <img src="/Rectangle.svg" alt="Rectangle" />
+                        <img src="/Rectangle.svg" alt="Rectangle" style={{ marginBottom: '2px' }} />
                         Download
                     </DownloadButton>
                     <FrameButton>See in a frame</FrameButton>

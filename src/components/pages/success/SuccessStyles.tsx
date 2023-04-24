@@ -15,9 +15,12 @@ export const Main = styled.div`
 
 export const MainDiv = styled.div`
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: left;
+    -webkit-justify-content: left;
     height: 100%;
 `;
 
@@ -68,8 +71,11 @@ export const Button = styled.button`
     border: 1px solid #3300cc;
     background-color: #3300cc;
     display: flex;
+    display: -webkit-flex;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: center;
+    -webkit-justify-content: center;
     margin-top: 20px;
     margin-bottom: 10px;
 `;

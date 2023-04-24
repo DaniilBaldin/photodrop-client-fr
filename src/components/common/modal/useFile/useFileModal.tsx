@@ -51,8 +51,8 @@ export const UseFileModal: FC<Props> = (props) => {
     const jwtToken = Selector(tokenSelector);
 
     const [crop, setCrop] = useState<Point>({ x: 0, y: 0 });
-    const [zoom, setZoom] = useState(1);
-    const [minZoom, setMinZoom] = useState(1);
+    const [zoom, setZoom] = useState<number>(1);
+    const [minZoom, setMinZoom] = useState<number>(1);
     const [area, setArea] = useState<area>({
         x: 0,
         y: 0,

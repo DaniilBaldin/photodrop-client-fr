@@ -23,6 +23,8 @@ import { addAlbumPhotos } from '~/store/reducers/albumPhotosReducer';
 import { albumPhotoSelector } from '~/store/selectors/albumPhotoSelector';
 import { Loader } from '../main/components/loader/loader';
 
+import lozad from 'lozad';
+
 type Data = {
     album: {
         id: number;
@@ -145,6 +147,7 @@ export const Album = () => {
                         {userPhotos?.map((photo: Photo, index) =>
                             (data as Data)?.album.owned ? (
                                 <ImageButton
+                                    className="image"
                                     key={index}
                                     image={photo.thumbnailUrl}
                                     onClick={() => {

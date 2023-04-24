@@ -5,7 +5,7 @@ export const SpinnerAnimation = styled.div`
     width: 20px;
     height: 20px;
     margin-left: 12px;
-    margin-bottom: 5px;
+    margin-top: 7px;
 
     :after {
         content: ' ';
@@ -15,7 +15,7 @@ export const SpinnerAnimation = styled.div`
 
         /* margin: 8px; */
         border-radius: 50%;
-        border: 6px solid #fff;
+        border: 4px solid #fff;
         border-color: #fff transparent #fff transparent;
         animation: lds-dual-ring 1.2s linear infinite;
     }

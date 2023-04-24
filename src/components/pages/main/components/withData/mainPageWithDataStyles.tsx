@@ -11,9 +11,12 @@ export const ContainerWithData = styled.main`
 
 export const MainWithData = styled.div`
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: center;
+    -webkit-justify-content: center;
 `;
 
 export const Subtitle = styled.h2`
@@ -34,9 +37,12 @@ export const Subtitle = styled.h2`
 export const AlbumsContainer = styled.div`
     max-width: 1200px;
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
     align-items: left;
+    -webkit-align-items: left;
     justify-content: left;
+    -webkit-justify-content: left;
     width: 100%;
 `;
 
@@ -76,8 +82,11 @@ export const AlbumButton = styled.button<{ image: string }>`
     border: none;
     text-align: center;
     display: flex;
+    display: -webkit-flex;
     justify-content: center;
+    -webkit-justify-content: center;
     align-items: center;
+    -webkit-align-items: center;
     background-image: ${(props) => (props.image ? `url(${props.image})` : `url(${'/avatar.png'})`)};
     background-size: cover;
     background-position: center;
@@ -119,9 +128,12 @@ export const Gradient = styled.div`
 export const PhotosContainer = styled.div`
     max-width: 1200px;
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
     align-items: left;
+    -webkit-align-items: left;
     justify-content: left;
+    -webkit-justify-content: left;
     width: 100%;
 `;
 

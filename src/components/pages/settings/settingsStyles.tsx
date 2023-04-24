@@ -8,8 +8,11 @@ export const Container = styled.div`
     overflow-x: hidden;
     height: 100%;
     display: flex;
+    display: -webkit-flex;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: center;
+    -webkit-justify-content: center;
 
     @media (max-width: 1024px) {
         zoom: 90%;
@@ -24,9 +27,12 @@ export const Container = styled.div`
 `;
 export const Main = styled.div`
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
     align-items: normal;
+    -webkit-align-items: normal;
     justify-content: left;
+    -webkit-justify-content: left;
     height: 100%;
     margin-top: 150px;
     width: 430px;
@@ -81,8 +87,11 @@ export const ChangeSelfie = styled.button`
     border: 2px solid #ffffff;
     border-radius: 50%;
     display: flex;
+    display: -webkit-flex;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: center;
+    -webkit-justify-content: center;
 `;
 
 export const PencilImage = styled.img`
@@ -100,9 +109,12 @@ export const ChangeName = styled.button`
     background-color: #ffffff;
     margin-top: 20px;
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
     align-items: left;
+    -webkit-align-items: left;
     justify-content: left;
+    -webkit-justify-content: left;
 `;
 
 export const ButtonTitle = styled.h2`
@@ -114,6 +126,10 @@ export const ButtonTitle = styled.h2`
     text-align: left;
     margin: 5px 0px 0px 15px;
     text-decoration: none;
+
+    @media (max-width: 425px) {
+        font-size: 14px;
+    }
 `;
 
 export const ButtonText = styled.p`
@@ -125,6 +141,10 @@ export const ButtonText = styled.p`
     color: #262626;
     margin: 2px 0px 0px 15px;
     text-decoration: none;
+
+    @media (max-width: 425px) {
+        font-size: 14px;
+    }
 `;
 
 export const ArrowRight = styled(ArrowForwardIosIcon)`
@@ -132,6 +152,12 @@ export const ArrowRight = styled(ArrowForwardIosIcon)`
     top: -32px;
     left: 380px;
     color: #262626;
+    height: 20px;
+    width: 20px;
+
+    @media (max-width: 425px) {
+        left: 370px;
+    }
 `;
 
 export const ChangeNameLink = styled(Link)`

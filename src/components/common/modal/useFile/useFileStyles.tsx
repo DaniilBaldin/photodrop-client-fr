@@ -8,8 +8,11 @@ export const Modal = styled.div<{ show: boolean }>`
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
     display: flex;
+    display: -webkit-flex;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: center;
+    -webkit-justify-content: center;
     opacity: ${(props) => (props.show ? 1 : 0)};
     transition: all 0.1s ease-in-out;
     pointer-events: ${(props) => (props.show ? 'all' : 'none')};
@@ -19,7 +22,7 @@ export const Modal = styled.div<{ show: boolean }>`
         zoom: 90%;
     }
 
-    @media (max-width: 400px) {
+    @media (max-width: 425px) {
         zoom: 100%;
     }
     @media (max-width: 330px) {
@@ -35,7 +38,7 @@ export const ModalContent = styled.div`
     transform: translateY(-200px);
     border-radius: 20px;
 
-    @media (max-width: 400px) {
+    @media (max-width: 425px) {
         width: 100%;
         margin-top: 400px;
         height: 100%;
@@ -56,9 +59,13 @@ export const FileWindow = styled.span`
     mask-image: '';
     -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
 
+    @media (max-width: 425px) {
+        left: calc(100% / 6);
+        right: calc(100% / 9);
+    }
     @media (max-width: 400px) {
-        left: calc(100% / 7);
-        right: calc(100% / 7);
+        left: calc(100% / 8);
+        right: calc(100% / 8);
     }
 
     @media (max-width: 320px) {
@@ -69,9 +76,12 @@ export const FileWindow = styled.span`
 
 export const Header = styled.div`
     display: flex;
+    display: -webkit-flex;
     flex-direction: row;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: left;
+    -webkit-justify-content: left;
 `;
 
 export const Text = styled.div`
@@ -82,10 +92,13 @@ export const Text = styled.div`
     line-height: 23px;
     margin-top: 16px;
     display: flex;
+    display: -webkit-flex;
     color: #ffffff;
     flex-direction: row;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: center;
+    -webkit-justify-content: center;
 `;
 
 export const CloseButton = styled.button`
@@ -98,10 +111,13 @@ export const CloseButton = styled.button`
     color: white;
     background-color: #262626;
     display: flex;
+    display: -webkit-flex;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: center;
+    -webkit-justify-content: center;
 
-    @media (max-width: 400px) {
+    @media (max-width: 425px) {
         margin-right: 30%;
     }
 `;
@@ -116,21 +132,32 @@ export const TextSmall = styled.div`
     margin-right: 10px;
     margin-bottom: 400px;
     display: flex;
+    display: -webkit-flex;
     color: #ffffff;
     flex-direction: row;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: center;
+    -webkit-justify-content: center;
 
-    @media (max-width: 400px) {
+    @media (max-width: 425px) {
         margin-left: 1%;
     }
 `;
 
 export const Footer = styled.div`
     display: flex;
+    display: -webkit-flex;
     flex-direction: row;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: left;
+    -webkit-justify-content: left;
+
+    @media (max-width: 425px) {
+        margin-left: 5%;
+        margin-right: -3%;
+    }
 
     @media (max-width: 399px) {
         margin-left: 2%;
@@ -156,8 +183,11 @@ export const Button = styled.button`
     font-size: 18px;
     line-height: 23px;
     display: flex;
+    display: -webkit-flex;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: center;
+    -webkit-justify-content: center;
 `;
 
 export const ButtonColored = styled.button`
@@ -174,8 +204,11 @@ export const ButtonColored = styled.button`
     font-size: 18px;
     line-height: 23px;
     display: flex;
+    display: -webkit-flex;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: center;
+    -webkit-justify-content: center;
 `;
 
 export const CropStyle = {
@@ -184,20 +217,20 @@ export const CropStyle = {
 
 export const SpinnerAnimation = styled.div`
     display: inline-block;
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
     margin-left: 12px;
-    margin-bottom: 5px;
+    margin-top: 5px;
 
     :after {
         content: ' ';
         display: block;
-        width: 15px;
-        height: 15px;
+        width: 20px;
+        height: 20px;
 
         /* margin: 8px; */
         border-radius: 50%;
-        border: 6px solid #262626;
+        border: 4px solid #262626;
         border-color: #262626 transparent #262626 transparent;
         animation: lds-dual-ring 1.2s linear infinite;
     }

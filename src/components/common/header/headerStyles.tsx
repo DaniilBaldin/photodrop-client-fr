@@ -7,10 +7,13 @@ export const Header = styled.header`
 
 export const HeaderMain = styled.div`
     display: flex;
+    display: -webkit-flex;
     width: 100%;
     max-width: 1230px;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: center;
+    -webkit-justify-content: center;
     padding: 0 15px;
     margin: 0 auto;
 `;
@@ -32,6 +35,7 @@ export const SettingsButton = styled.button<{ path: string; selfie: string }>`
     width: 35px;
     border-radius: 50%;
     border: none;
+    padding: 0;
     background-image: ${(props) =>
         props.selfie ? `url(${props.selfie})` : `url(${'/avatar.png'})`};
     background-repeat: no-repeat;
@@ -59,8 +63,10 @@ export const BackButton = styled.button`
     height: 40px;
     width: 40px;
     border: none;
+    padding: 0;
     margin-right: 20px;
     background-color: transparent;
+    color: #262626;
 
     @media (max-width: 1024px) {
         height: 30px;
@@ -77,8 +83,11 @@ export const HeaderAlbum = styled.header`
 
 export const HeaderMainAlbum = styled.div`
     display: flex;
+    display: -webkit-flex;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: left;
+    -webkit-justify-content: left;
     max-width: 1200px;
     padding: 0;
     margin: 0;
@@ -91,8 +100,11 @@ export const HeaderMainAlbum = styled.div`
 
 export const LocationAndDate = styled.div`
     display: flex;
+    display: -webkit-flex;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: center;
+    -webkit-justify-content: center;
     margin: 0;
     margin-left: 9vw;
 
@@ -164,12 +176,16 @@ export const PurpleText = styled.p`
 export const DateContainer = styled.div`
     margin: 0;
     display: flex;
+    display: -webkit-flex;
     flex-direction: row;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: center;
+    -webkit-justify-content: center;
 
     @media (max-width: 1024px) {
         display: flex;
+        display: -webkit-flex;
         flex-direction: row;
         /* align-items: center;
         justify-content: center; */
@@ -185,9 +201,13 @@ export const UnlockButton = styled.button`
     border: none;
     background-color: transparent;
     margin: 0;
+    padding: 0;
     display: flex;
+    display: -webkit-flex;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: center;
+    -webkit-justify-content: center;
 
     @media (max-width: 1024px) {
         display: none;

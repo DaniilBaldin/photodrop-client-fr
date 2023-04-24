@@ -51,9 +51,13 @@ export const CloseButton = styled.button`
     border: none;
     color: #ffffff;
     font-size: 22px;
+    padding: 0;
     display: flex;
+    display: -webkit-flex;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: center;
+    -webkit-justify-content: center;
     margin-top: 20px;
     margin-left: 30px;
 `;
@@ -61,8 +65,11 @@ export const CloseButton = styled.button`
 export const ButtonContainer = styled.div`
     position: absolute;
     display: flex;
+    display: -webkit-flex;
     justify-content: flex-end;
+    -webkit-justify-content: flex-end;
     align-items: center;
+    -webkit-align-items: center;
     gap: 20px;
     margin-right: 30px;
     right: 45%;
@@ -73,8 +80,11 @@ export const ButtonContainer = styled.div`
 
     @media (max-width: 1024px) {
         display: flex;
+        display: -webkit-flex;
         justify-content: center;
+        -webkit-justify-content: center;
         align-items: center;
+        -webkit-align-items: center;
         right: 0%;
         left: 0%;
         margin-left: 25px;
@@ -84,6 +94,7 @@ export const ButtonContainer = styled.div`
 export const UnlockButton = styled.button`
     width: 200px;
     height: 50px;
+    padding: 0;
     border-radius: 50px;
     border: 1px solid #ffffff;
     color: #262626;
@@ -104,8 +115,11 @@ export const UnlockButton = styled.button`
 export const BottomButtons = styled.div`
     position: absolute;
     display: flex;
+    display: -webkit-flex;
     justify-content: flex-end;
+    -webkit-justify-content: flex-end;
     align-items: center;
+    -webkit-align-items: center;
     gap: 20px;
     margin-right: 30px;
     right: 0;
@@ -116,8 +130,11 @@ export const BottomButtons = styled.div`
 
     @media (max-width: 1024px) {
         display: flex;
+        display: -webkit-flex;
         justify-content: flex-end;
+        -webkit-justify-content: flex-end;
         align-items: center;
+        -webkit-align-items: center;
         padding: 0 15px;
         margin-right: 10px;
         margin-top: 30px;
@@ -125,14 +142,18 @@ export const BottomButtons = styled.div`
 `;
 
 export const DownloadButton = styled.a`
+    margin-top: 5px;
     padding: 0;
     z-index: 12;
     width: 60px;
     height: 80px;
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: center;
+    -webkit-justify-content: center;
     color: #ffffff;
     border: none;
     background-color: transparent;
@@ -145,8 +166,11 @@ export const DownloadButton = styled.a`
 
     @media (max-width: 1024px) {
         display: flex;
+        display: -webkit-flex;
         justify-content: center;
+        -webkit-justify-content: center;
         align-items: center;
+        -webkit-align-items: center;
         padding: 0 15px;
     }
 `;
@@ -155,6 +179,7 @@ export const FrameButton = styled.button`
     width: 201px;
     height: 50px;
     border-radius: 50px;
+    padding: 0;
     border: 1px solid #ffffff;
     color: #ffffff;
     background-color: transparent;

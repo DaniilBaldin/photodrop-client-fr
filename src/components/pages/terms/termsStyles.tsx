@@ -9,9 +9,12 @@ export const Container = styled.main`
 
 export const Main = styled.div`
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
     align-items: stretch;
+    -webkit-align-items: stretch;
     justify-content: left;
+    -webkit-justify-content: left;
 `;
 
 export const Title = styled.h1`

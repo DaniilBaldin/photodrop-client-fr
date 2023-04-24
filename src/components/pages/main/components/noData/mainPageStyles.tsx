@@ -11,16 +11,22 @@ export const Container = styled.main`
 
 export const MainNoData = styled.div`
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: center;
+    -webkit-justify-content: center;
 `;
 
 export const Notification = styled.div`
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: center;
+    -webkit-justify-content: center;
 `;
 
 export const NotificationImage = styled.img`
@@ -67,9 +73,12 @@ export const NotificationMessage = styled.p`
 
 export const ArtsContainer = styled.div`
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
     align-items: left;
+    -webkit-align-items: left;
     justify-content: left;
+    -webkit-justify-content: left;
     width: 100%;
 `;
 

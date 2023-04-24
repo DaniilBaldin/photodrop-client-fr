@@ -16,9 +16,12 @@ export const Main = styled.div`
 
 export const SelfieMain = styled.div`
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: left;
+    -webkit-justify-content: left;
     height: 100%;
 `;
 
@@ -44,16 +47,22 @@ export const Text = styled.div`
     line-height: 23px;
     margin: 0px 0px 0px 5px;
     display: flex;
+    display: -webkit-flex;
     flex-direction: row;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: left;
+    -webkit-justify-content: left;
 `;
 
 export const ImageBox = styled.div`
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: center;
+    -webkit-justify-content: center;
     margin-top: 28px;
 `;
 
@@ -62,8 +71,11 @@ export const Button = styled.button`
     height: 42px;
     border-radius: 50%;
     display: flex;
+    display: -webkit-lex;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: center;
+    -webkit-justify-content: center;
     border: 1px solid #3300cc;
     background-color: #3300cc;
     color: white;

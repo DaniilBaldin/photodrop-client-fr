@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import {
@@ -39,6 +39,16 @@ export const HeaderComponent: FC<Props> = () => {
     const user = Selector(userSelector);
     const album = Selector(oneAlbumSelector);
     const photos = Selector(albumPhotoSelector);
+
+    const [selfie, setSelfie] = useState<string | null>('');
+
+    useEffect(() => {
+        if (user?.selfie.split(':')[0] !== 'blob') {
+            setSelfie((user?.selfie as string) + '?_' + new Date().getTime());
+        } else {
+            setSelfie(user?.selfie as string);
+        }
+    }, [user]);
 
     const [open, setOpen] = useState<boolean>(false);
     const date = new Date(album?.date as string).toDateString();
@@ -100,7 +110,7 @@ export const HeaderComponent: FC<Props> = () => {
                             }}
                             hidden={location.pathname === '/settings'}
                             path={location.pathname}
-                            selfie={user?.selfie as string}
+                            selfie={selfie as string}
                         ></SettingsButton>
                         <BackButton
                             type="button"

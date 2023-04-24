@@ -35,6 +35,11 @@ export const CountriesModal = (props: Props) => {
     const [countriesList, setCountriesList] = useState(countries);
 
     useEffect(() => {
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+        });
         setCountriesList(
             countries.filter((e) => {
                 return e.name.startsWith(letter as string);
@@ -57,6 +62,7 @@ export const CountriesModal = (props: Props) => {
 
     const handleClose = () => {
         props.onClose();
+
         setLetter('');
         props.setCountry({
             name: 'United States',
@@ -101,7 +107,7 @@ export const CountriesModal = (props: Props) => {
                             </CountryButton>
                         ))}
                     </Body>
-                    <Aside onClick={(e) => e.stopPropagation()}>
+                    <Aside id="sticky" onClick={(e) => e.stopPropagation()}>
                         {letters.map((e: string, index) => (
                             <LetterButton
                                 key={index}

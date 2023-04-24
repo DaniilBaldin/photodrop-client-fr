@@ -4,8 +4,11 @@ export const Container = styled.main`
     overflow-x: hidden;
     height: 100%;
     display: flex;
+    display: -webkit-flex;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: center;
+    -webkit-justify-content: center;
 
     @media (max-width: 1024px) {
         zoom: 90%;
@@ -22,9 +25,12 @@ export const Container = styled.main`
 
 export const Main = styled.div`
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
     align-items: normal;
+    -webkit-align-items: normal;
     justify-content: left;
+    -webkit-justify-content: left;
     height: 100%;
     margin-top: 380px;
     width: 430px;
@@ -71,8 +77,11 @@ export const Button = styled.button`
     border: 1px solid #3300cc;
     color: #ffffff;
     display: flex;
+    display: -webkit-flex;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: center;
+    -webkit-justify-content: center;
     margin: 10px 0 100px 0;
 `;
 

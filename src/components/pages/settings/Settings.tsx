@@ -27,7 +27,11 @@ export const Settings = () => {
     const [selfie, setSelfie] = useState<string | null>('');
 
     useEffect(() => {
-        setSelfie(user?.selfie as string);
+        if (user?.selfie.split(':')[0] !== 'blob') {
+            setSelfie((user?.selfie as string) + '?_' + new Date().getTime());
+        } else {
+            setSelfie(user?.selfie as string);
+        }
     }, [user]);
 
     const inputRef = useRef<HTMLInputElement>(null);
@@ -57,7 +61,12 @@ export const Settings = () => {
                 <Title>{`Welcome, ${(user?.name as string) || 'User'}.`}</Title>
                 <SubTitle>Your selfie</SubTitle>
                 <Avatar>
-                    <Image src={user?.selfie || '/avatar.png'} alt="Selfie" />
+                    <Image
+                        src={selfie || '/avatar.png'}
+                        alt="Selfie"
+                        loading="lazy"
+                        id="images-wrapper"
+                    />
                     <ChangeSelfie type="button" onClick={handleClick}>
                         <PencilImage src="/Pencil.svg" alt="Pencil" />
                     </ChangeSelfie>
@@ -65,8 +74,12 @@ export const Settings = () => {
                 <ChangeNameLink to={'/settings-change-name'}>
                     <ChangeName>
                         <ButtonTitle>Your name</ButtonTitle>
-                        <ButtonText>Tell us your name to personalize communications</ButtonText>
-                        <ArrowRight fontSize="medium" />
+                        <ButtonText>Tell us your name to personalize communications.</ButtonText>
+                        {window.screen.width > 425 ? (
+                            <ArrowRight fontSize="medium" />
+                        ) : (
+                            <ArrowRight fontSize="small" />
+                        )}
                     </ChangeName>
                 </ChangeNameLink>
                 <UseFileModal

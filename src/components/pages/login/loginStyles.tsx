@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Main = styled.div`
@@ -15,9 +16,12 @@ export const Main = styled.div`
 
 export const LoginMain = styled.div`
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: left;
+    -webkit-justify-content: left;
     height: 100%;
 `;
 
@@ -46,9 +50,12 @@ export const TextPhone = styled.p`
 
 export const LoginForm = styled.form`
     display: flex;
+    display: -webkit-flex;
     flex-direction: row;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: left;
+    -webkit-justify-content: left;
 `;
 
 export const CreateButton = styled.button`
@@ -62,9 +69,12 @@ export const CreateButton = styled.button`
     margin-top: 20px;
     margin-bottom: 20px;
     display: flex;
+    display: -webkit-flex;
     flex-direction: row;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: center;
+    -webkit-justify-content: center;
     border: 1px solid #3300cc;
     background-color: #3300cc;
 
@@ -80,7 +90,54 @@ export const TextBottom = styled.p`
     line-height: 20.51px;
     font-family: 'Futura PT';
     display: flex;
-    align-items: center;
+    display: -webkit-flex;
+    max-width: 420px;
+    width: 100%;
+    justify-content: center;
+    -webkit-justify-content: center;
+    /* align-items: left;
+    -webkit-align-items: left; */
     color: #6d6d6d;
     margin: 0px;
+    /* text-align: left;
+    -webkit-text-align: left; */
+
+    @media (max-width: 440px) {
+        font-size: 14px;
+        line-height: 18px;
+    }
+`;
+
+export const TermsLinks = styled.p`
+    font-size: 14px;
+    line-height: 20.51px;
+    font-family: 'Futura PT';
+    display: inline-block;
+    display: -webkit-inline-block;
+    justify-content: center;
+    -webkit-justify-content: center;
+    max-width: 420px;
+    width: 100%;
+    color: #6d6d6d;
+    justify-content: center;
+    -webkit-justify-content: center;
+
+    @media (min-width: 440px) {
+        display: none;
+    }
+`;
+
+export const LinkText = styled(Link)`
+    font-size: 14px;
+    line-height: 20.51px;
+    max-width: 420px;
+    width: 100%;
+    font-family: 'Futura PT';
+    text-decoration: underline;
+    color: #6d6d6d;
+    margin: 0;
+
+    @media (min-width: 440px) {
+        display: none;
+    }
 `;

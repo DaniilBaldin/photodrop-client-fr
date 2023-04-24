@@ -15,6 +15,8 @@ import {
     LoginForm,
     CreateButton,
     TextBottom,
+    LinkText,
+    TermsLinks,
 } from './loginStyles';
 import { Spinner } from '~/components/common/spinner/Spinner';
 
@@ -81,12 +83,15 @@ export const Login: FC = (): JSX.Element => {
                     </CreateButton>
                     {error && <p>{error}</p>}
                     <TextBottom>
-                        By proceeding, you consent to get WhatsApp or SMS messages,
+                        By proceeding, you consent to get WhatsApp or SMS messages, from PhotoDrop
+                        and its affiliates to the number provided. Text &quot;STOP&quot; to 89203 to
+                        opt out.
                     </TextBottom>
-                    <TextBottom>
-                        from PhotoDrop and its affiliates to the number provided. Text{' '}
-                    </TextBottom>
-                    <TextBottom>&quot;STOP&quot; to 89203 to opt out. </TextBottom>
+                    <TermsLinks>
+                        By continuing, you indicate that you have read and agree to our{' '}
+                        <LinkText to="/terms">Terms of Use</LinkText> &#38;{' '}
+                        <LinkText to="/privacy">Privacy Policy</LinkText>
+                    </TermsLinks>
                 </LoginDiv>
             </LoginMain>
         </Main>

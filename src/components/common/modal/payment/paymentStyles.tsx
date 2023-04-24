@@ -8,8 +8,11 @@ export const Modal = styled.div<{ show: boolean }>`
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
     display: flex;
+    display: -webkit-flex;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: center;
+    -webkit-justify-content: center;
     opacity: ${(props) => (props.show ? 1 : 0)};
     transition: all 0.1s ease-in-out;
     pointer-events: ${(props) => (props.show ? 'all' : 'none')};
@@ -43,9 +46,12 @@ export const ModalContent = styled.div`
 
 export const Header = styled.div`
     display: flex;
+    display: -webkit-flex;
     flex-direction: row;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: left;
+    -webkit-justify-content: left;
     margin-bottom: 0px;
 `;
 
@@ -56,23 +62,38 @@ export const Text = styled.div`
     font-weight: 700;
     line-height: 27px;
     margin-top: 20px;
+    margin-left: 20px;
     display: flex;
+    display: -webkit-flex;
     flex-direction: row;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: left;
+    -webkit-justify-content: left;
+
+    @media (max-width: 425px) {
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 22px;
+    }
 `;
 
 export const CloseButton = styled.button`
+    padding: 0;
     border: none;
     height: 27px;
     width: 22px;
     margin-top: 18px;
+    margin-right: 20px;
     margin-left: 20px;
-    margin-right: 70px;
     background-color: white;
+    color: #262626;
     display: flex;
+    display: -webkit-flex;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: center;
+    -webkit-justify-content: center;
 `;
 
 export const Body = styled.div`
@@ -91,6 +112,11 @@ export const TextPlain = styled.p`
     font-weight: 400;
     line-height: 23px;
     margin: 0;
+
+    @media (max-width: 425px) {
+        font-size: 16px;
+        line-height: 21px;
+    }
 `;
 
 export const TextBold = styled.span`
@@ -100,6 +126,11 @@ export const TextBold = styled.span`
     font-weight: 500;
     line-height: 23px;
     margin: 0;
+
+    @media (max-width: 425px) {
+        font-size: 16px;
+        line-height: 21px;
+    }
 `;
 
 export const CheckoutButton = styled.button`
@@ -111,8 +142,15 @@ export const CheckoutButton = styled.button`
     margin-left: 20px;
     margin-top: 10px;
     display: flex;
+    display: -webkit-flex;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: center;
+    -webkit-justify-content: center;
+
+    @media (max-width: 425px) {
+        margin-top: 30px;
+    }
 `;
 
 export const ButtonText = styled.h2`
@@ -126,20 +164,20 @@ export const ButtonText = styled.h2`
 
 export const SpinnerAnimation = styled.div`
     display: inline-block;
-    width: 14px;
-    height: 14px;
+    width: 20px;
+    height: 20px;
     margin-left: 12px;
-    margin-bottom: 6px;
+    margin-top: 7px;
 
     :after {
         content: ' ';
         display: block;
-        width: 14px;
-        height: 14px;
+        width: 20px;
+        height: 20px;
 
         /* margin: 8px; */
         border-radius: 50%;
-        border: 6px solid #fff;
+        border: 4px solid #fff;
         border-color: #fff transparent #fff transparent;
         animation: lds-dual-ring 1.2s linear infinite;
     }

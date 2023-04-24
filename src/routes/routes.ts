@@ -18,6 +18,14 @@ export const routes = [
         path: '/verify',
         element: Verify,
     },
+    {
+        path: '/terms',
+        element: TermsOfService,
+    },
+    {
+        path: '/privacy',
+        element: PrivacyPolicy,
+    },
 ];
 
 export const protectedRoutes = [

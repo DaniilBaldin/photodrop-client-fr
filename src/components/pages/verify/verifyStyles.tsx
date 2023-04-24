@@ -15,9 +15,12 @@ export const Main = styled.section`
 
 export const VerifyMain = styled.div`
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: left;
+    -webkit-justify-content: left;
     height: 100%;
 `;
 
@@ -43,9 +46,12 @@ export const Text = styled.div`
     line-height: 23px;
     margin: 0px 0px 0px 5px;
     display: flex;
+    display: -webkit-flex;
     flex-direction: row;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: left;
+    -webkit-justify-content: left;
 `;
 
 export const TextBold = styled.p`
@@ -87,14 +93,19 @@ export const ResendButton = styled.button`
     color: #3300cc;
     height: 13px;
     margin-top: 20px;
+    margin-left: 0px;
+    padding: 0;
     width: 420px;
     font-size: 18px;
     font-family: 'Futura PT';
     font-weight: 400;
     display: flex;
+    display: -webkit-flex;
     flex-direction: row;
     align-items: center;
+    -webkit-align-items: center;
     justify-content: left;
+    -webkit-justify-content: left;
 
     :disabled {
         color: grey;
