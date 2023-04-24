@@ -137,6 +137,9 @@ export const Title = styled.h2`
         margin: 0;
         align-self: start;
     }
+    @media (max-width: 350px) {
+        font-size: 16px;
+    }
 `;
 
 export const BlackText = styled.p`
