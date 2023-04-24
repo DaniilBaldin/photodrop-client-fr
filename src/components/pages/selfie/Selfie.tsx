@@ -13,7 +13,7 @@ export const Selfie = () => {
 
     const handleClick = () => {
         setOpen(true);
-        inputRef.current?.click();
+        // inputRef.current?.click();
     };
 
     const handleRetake = () => {
@@ -37,7 +37,7 @@ export const Selfie = () => {
                     <TextTitle>Add a selfie</TextTitle>
                     <Text>A selfie allows your photos to be synced with your account.</Text>
                     <ImageBox>
-                        <img src="/avatar.png" alt="avatar" width={181} height={181} />
+                        <img src={selfie || '/avatar.png'} alt="avatar" width={181} height={181} />
                         <Button type="button" onClick={handleClick}>
                             <AddIcon />
                         </Button>
