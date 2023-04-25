@@ -83,6 +83,12 @@ export const Button = styled.button`
     justify-content: center;
     -webkit-justify-content: center;
     margin: 10px 0 100px 0;
+
+    :disabled {
+        background-color: #c59fe1;
+        border: 1px solid #c59fe1;
+        cursor: auto;
+    }
 `;
 
 export const ButtonText = styled.h2`
@@ -92,4 +98,10 @@ export const ButtonText = styled.h2`
     font-weight: 500;
     line-height: 28px;
     text-align: center;
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    -webkit-align-items: center;
+    justify-content: center;
+    -webkit-justify-content: center;
 `;

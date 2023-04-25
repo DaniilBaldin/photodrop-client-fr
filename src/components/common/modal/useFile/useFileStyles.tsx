@@ -52,7 +52,7 @@ export const FileWindow = styled.span`
     left: 50px;
     right: 0;
     bottom: 0px;
-    max-width: 280px;
+    max-width: 260px;
     max-height: 260px;
     border-radius: 50%;
     overflow: hide;
@@ -60,11 +60,11 @@ export const FileWindow = styled.span`
     -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
 
     @media (max-width: 425px) {
-        left: calc(100% / 6);
+        left: calc(100% / 5.5);
         right: calc(100% / 9);
     }
     @media (max-width: 400px) {
-        left: calc(100% / 8);
+        left: calc(100% / 6);
         right: calc(100% / 8);
     }
 
@@ -141,7 +141,7 @@ export const TextSmall = styled.div`
     -webkit-justify-content: center;
 
     @media (max-width: 425px) {
-        margin-left: 1%;
+        /* margin-left: 1%; */
     }
 `;
 
@@ -217,16 +217,16 @@ export const CropStyle = {
 
 export const SpinnerAnimation = styled.div`
     display: inline-block;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     margin-left: 12px;
-    margin-top: 5px;
+    margin-bottom: 3px;
 
     :after {
         content: ' ';
         display: block;
-        width: 20px;
-        height: 20px;
+        width: 18px;
+        height: 18px;
 
         /* margin: 8px; */
         border-radius: 50%;

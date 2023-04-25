@@ -26,7 +26,6 @@ export const Settings = () => {
     const [open, setOpen] = useState<boolean>(false);
     const [selfie, setSelfie] = useState<string | null>('');
     const [loading, setLoading] = useState<boolean>(false);
-    console.log(loading);
 
     useEffect(() => {
         if (user?.selfie.split(':')[0] !== 'blob') {

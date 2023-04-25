@@ -2,16 +2,16 @@ import styled from 'styled-components';
 
 export const SpinnerAnimation = styled.div`
     display: inline-block;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     margin-left: 12px;
-    margin-top: 7px;
+    margin-bottom: 3px;
 
     :after {
         content: ' ';
         display: block;
-        width: 20px;
-        height: 20px;
+        width: 18px;
+        height: 18px;
 
         /* margin: 8px; */
         border-radius: 50%;

@@ -23,8 +23,6 @@ import { addAlbumPhotos } from '~/store/reducers/albumPhotosReducer';
 import { albumPhotoSelector } from '~/store/selectors/albumPhotoSelector';
 import { Loader } from '../main/components/loader/loader';
 
-import lozad from 'lozad';
-
 type Data = {
     album: {
         id: number;
