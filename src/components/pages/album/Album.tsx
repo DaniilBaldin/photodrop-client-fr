@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useCallback, useEffect, useState } from 'react';
-// import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 
 import { PaymentModal } from '~/components/common/modal/payment/PaymentModal';
 import { Lightbox } from '~/components/common/modal/lightbox/Lightbox';
@@ -22,6 +20,8 @@ import { addOneAlbum } from '~/store/reducers/oneAlbumReducer';
 import { addAlbumPhotos } from '~/store/reducers/albumPhotosReducer';
 import { albumPhotoSelector } from '~/store/selectors/albumPhotoSelector';
 import { Loader } from '../main/components/loader/loader';
+
+import 'react-lazy-load-image-component/src/effects/opacity.css';
 
 type Data = {
     album: {
@@ -51,19 +51,6 @@ type DataPhotos = {
     }[];
     success: boolean;
 };
-
-type PhotosArray = {
-    id: string;
-    name: string;
-    ext: string;
-    phoneNumbers: string[];
-    albumId: number;
-    owned: boolean;
-    photoUrl: string;
-    thumbnailUrl: string;
-    phWatermarkUrl: string;
-    thumbWatermarkUrl: string;
-}[];
 
 type Photo = {
     id: string;
@@ -101,7 +88,7 @@ export const Album = () => {
 
     const [photoLoading, setPhotoLoading] = useState<boolean>(false);
 
-    const { data, error, loading } = fetchHook<Data>(method, slug, undefined, header);
+    const { data, loading } = fetchHook<Data>(method, slug, undefined, header);
 
     useEffect(() => {
         if (data) {
@@ -147,22 +134,24 @@ export const Album = () => {
                                 <ImageButton
                                     className="image"
                                     key={index}
-                                    image={photo.thumbnailUrl}
+                                    src={photo.thumbnailUrl}
                                     onClick={() => {
                                         setShow(true);
                                         setImage(photo.photoUrl);
                                         setButtons(true);
                                     }}
+                                    effect="opacity"
                                 ></ImageButton>
                             ) : (
                                 <ImageButton
                                     key={photo.thumbWatermarkUrl}
-                                    image={photo.thumbWatermarkUrl}
+                                    src={photo.thumbWatermarkUrl}
                                     onClick={() => {
                                         setShow(true);
                                         setImage(photo.phWatermarkUrl);
                                         setButtons(false);
                                     }}
+                                    effect="opacity"
                                 ></ImageButton>
                             ),
                         )}

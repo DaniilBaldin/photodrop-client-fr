@@ -31,13 +31,13 @@ export const ModalMain = styled.div`
     }
 `;
 
-export const Image = styled.img`
-    display: block;
+export const Img = styled.img`
     position: absolute;
     top: 50%;
     right: 0;
     bottom: 0;
     left: 50%;
+    display: inline-block;
     transform: translate(-50%, -50%);
     max-width: 100%;
     max-height: 90%;
@@ -213,5 +213,42 @@ export const Gradient = styled.div`
 
     @media (max-width: 600px) {
         display: none;
+    }
+`;
+
+export const Loader = styled.div`
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    position: fixed;
+    margin-left: -10px;
+    margin-top: -10px;
+    /* margin: 0; */
+    top: 50%;
+    right: 0;
+    bottom: 0;
+    left: 50%;
+
+    :after {
+        content: ' ';
+        display: block;
+        width: 30px;
+        height: 30px;
+        z-index: 999;
+        margin: 0;
+
+        /* margin: 8px; */
+        border-radius: 50%;
+        border: 4px solid #fff;
+        border-color: #fff transparent #fff transparent;
+        animation: lds-dual-ring 1.2s linear infinite;
+    }
+    @keyframes lds-dual-ring {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
     }
 `;

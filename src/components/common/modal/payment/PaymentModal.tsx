@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC,  useState } from 'react';
 
 import {
     Modal,
@@ -55,19 +55,6 @@ export const PaymentModal: FC<Props> = (props) => {
             window.location.replace(data.url);
         }
     };
-
-    const closeOnEscapeKeyDown = (e: { charCode: number; keyCode: number }) => {
-        if ((e.charCode || e.keyCode) === 27) {
-            props.onClose();
-        }
-    };
-
-    useEffect(() => {
-        document.body.addEventListener('keydown', closeOnEscapeKeyDown);
-        return function cleanUp() {
-            document.body.removeEventListener('keydown', closeOnEscapeKeyDown);
-        };
-    }, []);
 
     return (
         <Modal onClick={(e) => e.stopPropagation()} show={props.show}>

@@ -47,19 +47,6 @@ export const CountriesModal = (props: Props) => {
         );
     }, [letter]);
 
-    const closeOnEscapeKeyDown = (e: { charCode: number; keyCode: number }) => {
-        if ((e.charCode || e.keyCode) === 27) {
-            props.onClose();
-        }
-    };
-
-    useEffect(() => {
-        document.body.addEventListener('keydown', closeOnEscapeKeyDown);
-        return function cleanUp() {
-            document.body.removeEventListener('keydown', closeOnEscapeKeyDown);
-        };
-    }, []);
-
     const handleClose = () => {
         props.onClose();
 

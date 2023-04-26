@@ -1,3 +1,4 @@
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -29,15 +30,14 @@ export const Photos = styled.div`
     }
 `;
 
-export const ImageButton = styled.button<{ image: string }>`
+export const ImageButton = styled(LazyLoadImage)`
     width: 400px;
     height: 400px;
     border: none;
-    /* margin: 0; */
-    background-image: ${(props) => (props.image ? `url(${props.image})` : `url(${'/avatar.png'})`)};
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    outline: none;
+    margin: 0;
+    object-fit: cover;
+    display: block;
 
     @media (max-width: 1024px) {
         width: 100%;

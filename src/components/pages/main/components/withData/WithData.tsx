@@ -27,6 +27,8 @@ import { Selector } from '~/store/hooks/hooks';
 import { albumSelector } from '~/store/selectors/albumSelector';
 import { photoSelector } from '~/store/selectors/photoSelector';
 
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
 type Albums = {
     albums: {
         id: number;
@@ -131,22 +133,24 @@ export const WithData: FC = () => {
                             photo.owned ? (
                                 <ImageButton
                                     key={index}
-                                    image={photo.thumbnailUrl}
+                                    src={photo.thumbnailUrl}
                                     onClick={() => {
                                         setShow(true);
                                         setImage(photo.photoUrl);
                                         setButtons(true);
                                     }}
+                                    effect="blur"
                                 ></ImageButton>
                             ) : (
                                 <ImageButton
                                     key={photo.thumbWatermarkUrl}
-                                    image={photo.thumbWatermarkUrl}
+                                    src={photo.thumbWatermarkUrl}
                                     onClick={() => {
                                         setShow(true);
                                         setImage(photo.phWatermarkUrl);
                                         setButtons(false);
                                     }}
+                                    effect="blur"
                                 ></ImageButton>
                             ),
                         )}

@@ -1,10 +1,10 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import {
     Modal,
     ModalMain,
-    Image,
+    Img,
     CloseButton,
     ButtonContainer,
     UnlockButton,
@@ -13,6 +13,7 @@ import {
     DownloadButton,
     ArrowDown,
     Gradient,
+    Loader,
 } from './lightboxStyles';
 
 import CloseIcon from '@mui/icons-material/Close';
@@ -25,26 +26,41 @@ type Props = {
 };
 
 export const Lightbox: FC<Props> = (props) => {
-    const closeOnEscapeKeyDown = (e: { charCode: number; keyCode: number }) => {
-        if ((e.charCode || e.keyCode) === 27) {
-            props.onClose();
-        }
+    const [image, setImage] = useState<string>('');
+    const [loaded, setLoaded] = useState<boolean>(false);
+
+    const handleClose = () => {
+        props.onClose();
+        setImage('');
+        setLoaded(false);
     };
 
     useEffect(() => {
-        document.body.addEventListener('keydown', closeOnEscapeKeyDown);
-        return function cleanUp() {
-            document.body.removeEventListener('keydown', closeOnEscapeKeyDown);
+        setImage(props?.image as string);
+    });
+
+    useEffect(() => {
+        setLoaded(false);
+        const img = new Image();
+        img.src = image as string;
+        img.onload = () => {
+            setLoaded(true);
         };
-    }, []);
+    }, [image]);
 
     return createPortal(
         <Modal show={props.show}>
-            <CloseButton onClick={props.onClose}>
+            <CloseButton onClick={handleClose}>
                 <CloseIcon fontSize="large" />
             </CloseButton>
             <ModalMain onClick={(e) => e.stopPropagation()}>
-                <Image src={props.image} alt="alt" loading="lazy" />
+                {!loaded && <Loader />}
+                <Img
+                    style={{ display: !loaded ? 'none' : 'inline-block' }}
+                    src={props?.image}
+                    alt={props.image}
+                    loading="lazy"
+                />
             </ModalMain>
             {props.buttons === false ? (
                 <ButtonContainer>
