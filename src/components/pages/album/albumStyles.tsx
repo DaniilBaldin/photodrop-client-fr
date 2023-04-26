@@ -35,13 +35,13 @@ export const ImageButton = styled(LazyLoadImage)`
     height: 400px;
     border: none;
     outline: none;
-    margin: -1px;
+    margin: 0px;
     object-fit: cover;
     display: block;
 
     @media (max-width: 1024px) {
         width: 100%;
-        height: 33vw;
+        height: 33.34vw;
     }
 `;
 
