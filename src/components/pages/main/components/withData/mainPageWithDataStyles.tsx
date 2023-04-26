@@ -160,6 +160,6 @@ export const ImageButton = styled(LazyLoadImage)`
 
     @media (max-width: 1024px) {
         width: 100%;
-        height: 33vw;
+        height: 33.33vw;
     }
 `;

@@ -139,7 +139,7 @@ export const WithData: FC = () => {
                                         setImage(photo.photoUrl);
                                         setButtons(true);
                                     }}
-                                    effect="blur"
+                                    effect="opacity"
                                 ></ImageButton>
                             ) : (
                                 <ImageButton
@@ -150,7 +150,7 @@ export const WithData: FC = () => {
                                         setImage(photo.phWatermarkUrl);
                                         setButtons(false);
                                     }}
-                                    effect="blur"
+                                    effect="opacity"
                                 ></ImageButton>
                             ),
                         )}
