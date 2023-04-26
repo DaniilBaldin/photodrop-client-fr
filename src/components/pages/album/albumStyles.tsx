@@ -35,7 +35,7 @@ export const ImageButton = styled(LazyLoadImage)`
     height: 400px;
     border: none;
     outline: none;
-    margin: 0;
+    margin: -1px;
     object-fit: cover;
     display: block;
 
