@@ -8,6 +8,7 @@ import photosReducer from './reducers/photosReducer';
 import oneAlbumReducer from './reducers/oneAlbumReducer';
 import albumPhotoReducer from './reducers/albumPhotosReducer';
 import albumIdReducer from './reducers/albumIdReducer';
+import newUserReducer from './reducers/newUserReducer';
 
 export const store = configureStore({
     reducer: {
@@ -19,6 +20,7 @@ export const store = configureStore({
         album: oneAlbumReducer,
         albumPhoto: albumPhotoReducer,
         id: albumIdReducer,
+        newUser: newUserReducer,
     },
 });
 

@@ -7,7 +7,7 @@ import { Main, SelfieMain, SelfieDiv, TextTitle, Text, ImageBox, Button } from '
 
 export const Selfie = () => {
     const [open, setOpen] = useState<boolean>(false);
-    const [selfie, setSelfie] = useState<string | null>('');
+    const [selfie, setSelfie] = useState<string | null>('/avatar.jpg');
 
     const inputRef = useRef<HTMLInputElement>(null);
 

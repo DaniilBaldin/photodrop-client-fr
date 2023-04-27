@@ -19,6 +19,13 @@ import {
     InputFocus,
 } from './verifyStyles';
 import { Spinner } from '~/components/common/spinner/Spinner';
+import { addUserState } from '~/store/reducers/newUserReducer';
+
+type Data = {
+    token: string;
+    newUser: boolean;
+    success: boolean;
+};
 
 export const Verify: FC = (): JSX.Element => {
     const [otp, setOtp] = useState<string>('');
@@ -79,22 +86,23 @@ export const Verify: FC = (): JSX.Element => {
                 code: otp,
             }),
         });
-        const data = await response.json();
-        if (!response.ok && !data.success) {
+        const data: Data = await response.json();
+        if (!data.success) {
             setError('Code is not valid');
             setLoading(false);
         }
-        if (response.ok && data.success) {
+
+        if (data.success) {
+            const newUser = data.newUser;
             const token = data.token;
             dispatch(addToken(token));
             localStorage.setItem('token', token);
             setLoading(false);
 
-            if (data.newUser) {
-                navigate('/selfie');
-            } else {
-                navigate('/');
+            if (newUser) {
+                dispatch(addUserState(newUser));
             }
+            // navigate('/');
         }
     };
 

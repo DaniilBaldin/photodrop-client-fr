@@ -1,6 +1,8 @@
 import { Area } from 'react-easy-crop';
 
 const createImage = async (url: string): Promise<HTMLImageElement> => {
+    const path = window.location.pathname;
+
     return new Promise((resolve) => {
         const image = new Image();
         image.addEventListener('load', () => resolve(image));
@@ -10,8 +12,9 @@ const createImage = async (url: string): Promise<HTMLImageElement> => {
         });
         image.crossOrigin = 'anonymous';
         image.alt = 'image';
-        if (url.split(':')[0] !== 'blob') {
-            image.src = url + '-' + Math.random();
+
+        if (url.split(':')[0] !== 'blob' && path !== '/selfie') {
+            image.src = url + '?' + new Date().getTime();
         } else {
             image.src = url;
         }
@@ -20,6 +23,7 @@ const createImage = async (url: string): Promise<HTMLImageElement> => {
 
 export const Converter = async (url: string, area: Area) => {
     const image = await createImage(url);
+    console.log(url);
     const canvas = document.createElement('canvas');
     const context = <CanvasRenderingContext2D | null>canvas.getContext('2d');
     if (!context) return;

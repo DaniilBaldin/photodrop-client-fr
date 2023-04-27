@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { WithData } from './components/withData/WithData';
 import { NoData } from './components/noData/NoData';
 import { Dispatch, Selector } from '~/store/hooks/hooks';
@@ -8,6 +8,8 @@ import { addAlbums } from '~/store/reducers/albumsReducer';
 import { addPhotos } from '~/store/reducers/photosReducer';
 import { photoSelector } from '~/store/selectors/photoSelector';
 import { Loader } from './components/loader/loader';
+import { newUserSelector } from '~/store/selectors/newUseSelector';
+import { useNavigate } from 'react-router-dom';
 
 type Albums = {
     albums: {
@@ -38,13 +40,17 @@ type PhotosData = {
     success: boolean;
 } | null;
 
-export const MainPage = () => {
+export const MainPage: FC = () => {
     const dispatch = Dispatch();
+    const navigate = useNavigate();
+
     localStorage.setItem('albumId', '');
 
     const jwtToken = Selector(tokenSelector);
+
     const userAlbums = Selector(albumSelector);
     const userPhotos = Selector(photoSelector);
+    const newUser = Selector(newUserSelector);
 
     const baseUrl = import.meta.env.VITE_BASE_URL;
 
@@ -93,6 +99,12 @@ export const MainPage = () => {
             void getUserPhotos();
         }
     }, []);
+
+    useEffect(() => {
+        if (newUser) {
+            navigate('/selfie');
+        }
+    }, [newUser]);
 
     if ((albumLoading && !userAlbums) || (photoLoading && !userPhotos)) {
         return <Loader />;

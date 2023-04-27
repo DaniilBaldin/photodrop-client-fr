@@ -25,11 +25,12 @@ import { Dispatch, Selector } from '~/store/hooks/hooks';
 import { changeSelfie } from '~/store/reducers/userReducer';
 import { tokenSelector } from '~/store/selectors/tokenSelector';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { addUserState } from '~/store/reducers/newUserReducer';
 
 type Props = {
     open: boolean;
     onClose: () => void;
-    image: string | null;
+    image?: string | null;
     onRetake: () => void;
 };
 
@@ -41,7 +42,6 @@ interface area {
 }
 
 export const UseFileModal: FC<Props> = (props) => {
-    const image = props.image;
     const path = useLocation().pathname;
     const navigate = useNavigate();
 
@@ -49,6 +49,7 @@ export const UseFileModal: FC<Props> = (props) => {
 
     const baseUrl = import.meta.env.VITE_BASE_URL;
     const jwtToken = Selector(tokenSelector);
+    const image = props.image;
 
     const [crop, setCrop] = useState<Point>({ x: 0, y: 0 });
     const [zoom, setZoom] = useState<number>(1);
@@ -90,6 +91,7 @@ export const UseFileModal: FC<Props> = (props) => {
             }
             if (response.ok && data.success) {
                 if (path === '/selfie') {
+                    dispatch(addUserState(false));
                     navigate('/');
                 }
                 setLoading(false);

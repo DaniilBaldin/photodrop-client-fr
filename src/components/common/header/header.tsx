@@ -40,18 +40,14 @@ export const HeaderComponent: FC<Props> = () => {
     const album = Selector(oneAlbumSelector);
     const photos = Selector(albumPhotoSelector);
 
-    const [selfie, setSelfie] = useState<string | null>('');
-
-    useEffect(() => {
-        if (user?.selfie.split(':')[0] !== 'blob') {
-            setSelfie((user?.selfie as string) + '?_' + new Date().getTime());
-        } else {
-            setSelfie(user?.selfie as string);
-        }
-    }, [user]);
-
     const [open, setOpen] = useState<boolean>(false);
+
+    // const [selfie, setSelfie] = useState<string>(user?.selfie as string);
     const date = new Date(album?.date as string).toDateString();
+
+    // useEffect(() => {
+    //     if (user) setSelfie(user.selfie);
+    // }, [user]);
 
     if (location.pathname.includes('album')) {
         return (
@@ -110,7 +106,7 @@ export const HeaderComponent: FC<Props> = () => {
                             }}
                             hidden={location.pathname === '/settings'}
                             path={location.pathname}
-                            selfie={selfie || user?.selfie || '/avatar.png'}
+                            selfie={user?.selfie as string}
                         ></SettingsButton>
                         <BackButton
                             type="button"
@@ -121,7 +117,11 @@ export const HeaderComponent: FC<Props> = () => {
                                     navigate(-1);
                                 }
                             }}
-                            hidden={location.pathname === '/' || location.pathname === '/success'}
+                            hidden={
+                                location.pathname === '/' ||
+                                location.pathname === '/success' ||
+                                location.pathname === '/selfie'
+                            }
                         >
                             <ArrowBackIosIcon />
                         </BackButton>

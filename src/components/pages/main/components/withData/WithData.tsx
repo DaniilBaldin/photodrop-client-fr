@@ -27,7 +27,7 @@ import { Selector } from '~/store/hooks/hooks';
 import { albumSelector } from '~/store/selectors/albumSelector';
 import { photoSelector } from '~/store/selectors/photoSelector';
 
-import 'react-lazy-load-image-component/src/effects/blur.css';
+import 'react-lazy-load-image-component/src/effects/opacity.css';
 
 type Albums = {
     albums: {
