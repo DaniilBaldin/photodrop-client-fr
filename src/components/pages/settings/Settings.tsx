@@ -4,8 +4,6 @@ import { userSelector } from '~/store/selectors/userSelector';
 
 import { UseFileModal } from '~/components/common/modal/useFile/useFileModal';
 
-import LazyLoad from 'react-lazyload';
-
 import {
     Container,
     Main,
@@ -78,18 +76,16 @@ export const Settings = () => {
                 <Title>{`Welcome, ${(user?.name as string) || 'User'}.`}</Title>
                 <SubTitle>Your selfie</SubTitle>
                 <Avatar>
-                    <LazyLoad height={140}>
-                        {!imageLoaded && <Img src={'/avatar.png'} alt="Selfie" />}
-                        <Img
-                            alt={'selfie'}
-                            src={user?.selfie}
-                            style={!imageLoaded ? { display: 'none' } : { display: 'inline-block' }}
-                            decoding="sync"
-                            onLoad={() => {
-                                setImageLoaded(true);
-                            }}
-                        />
-                    </LazyLoad>
+                    {!imageLoaded && <Img src={'/avatar.png'} alt="Selfie" />}
+                    <Img
+                        alt={'selfie'}
+                        src={user?.selfie}
+                        style={!imageLoaded ? { display: 'none' } : { display: 'inline-block' }}
+                        decoding="sync"
+                        onLoad={() => {
+                            setImageLoaded(true);
+                        }}
+                    />
 
                     <ChangeSelfie type="button" onClick={handleClick}>
                         <PencilImage src="/pencil.png" alt="Pencil" />
