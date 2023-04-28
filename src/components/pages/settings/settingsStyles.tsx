@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import { Link } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export const Container = styled.div`
     overflow-x: hidden;
@@ -69,14 +70,13 @@ export const Avatar = styled.div`
     margin-bottom: 20px;
 `;
 
-export const Img = styled.img`
+export const Img = styled(LazyLoadImage)`
     width: 140px;
     height: 140px;
     /* display: inline-block; */
     border-radius: 50%;
     border: 1px solid white;
-    z-index: 10;
-    border: 1px solod grey;
+    z-index: 1;
 `;
 
 export const ChangeSelfie = styled.button`

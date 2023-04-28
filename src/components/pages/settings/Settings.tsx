@@ -27,7 +27,6 @@ export const Settings = () => {
 
     const [open, setOpen] = useState<boolean>(false);
     const [selfie, setSelfie] = useState<string>('');
-    const [imageLoaded, setImageLoaded] = useState(false);
 
     const [userLoaded, setUserLoaded] = useState<boolean>(false);
 
@@ -76,16 +75,7 @@ export const Settings = () => {
                 <Title>{`Welcome, ${(user?.name as string) || 'User'}.`}</Title>
                 <SubTitle>Your selfie</SubTitle>
                 <Avatar>
-                    {!imageLoaded && <Img src={'/avatar.png'} alt="Selfie" />}
-                    <Img
-                        alt={'selfie'}
-                        src={user?.selfie}
-                        style={!imageLoaded ? { display: 'none' } : { display: 'inline-block' }}
-                        decoding="sync"
-                        onLoad={() => {
-                            setImageLoaded(true);
-                        }}
-                    />
+                    <Img alt={'selfie'} src={user?.selfie} placeholderSrc="/avatar.png" />
 
                     <ChangeSelfie type="button" onClick={handleClick}>
                         <PencilImage src="/pencil.png" alt="Pencil" />
