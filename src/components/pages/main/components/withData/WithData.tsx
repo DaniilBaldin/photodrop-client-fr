@@ -19,7 +19,7 @@ import {
     PhotosContainer,
     ImageButton,
     Photos,
-    ButtonText,
+    Text,
     Gradient,
 } from './mainPageWithDataStyles';
 
@@ -28,6 +28,9 @@ import { albumSelector } from '~/store/selectors/albumSelector';
 import { photoSelector } from '~/store/selectors/photoSelector';
 
 import 'react-lazy-load-image-component/src/effects/opacity.css';
+// import { UnlockButton } from '~/components/common/header/headerStyles';
+import { PaymentModal } from '~/components/common/modal/payment/PaymentModal';
+import { ButtonContainer, UnlockButton, ButtonText } from '~/components/pages/album/albumStyles';
 
 type Albums = {
     albums: {
@@ -41,6 +44,16 @@ type Albums = {
     }[];
     success: boolean;
 } | null;
+
+type AlbumsArray = {
+    id: number;
+    name: string;
+    location: string;
+    date: string;
+    photographerId: number;
+    owned: boolean;
+    coverImageUrl: string;
+}[];
 
 type Album = {
     id: number;
@@ -83,6 +96,7 @@ type Photo = {
 
 export const WithData: FC = () => {
     const [show, setShow] = useState<boolean>(false);
+    const [open, setOpen] = useState<boolean>(false);
     const [image, setImage] = useState<string>('');
     const [buttons, setButtons] = useState<boolean>(true);
 
@@ -118,7 +132,7 @@ export const WithData: FC = () => {
                                             navigate(`/album/${e.id}`);
                                         }}
                                     >
-                                        <ButtonText>{e.name}</ButtonText>
+                                        <Text>{e.name}</Text>
                                         <Gradient />
                                     </AlbumButton>
                                 </Slide>
@@ -127,7 +141,6 @@ export const WithData: FC = () => {
                 </AlbumsContainer>
                 <PhotosContainer>
                     <Subtitle>All photos</Subtitle>
-
                     <Photos>
                         {photoArray?.map((photo: Photo, index) =>
                             photo.owned ? (
@@ -163,6 +176,35 @@ export const WithData: FC = () => {
                         buttons={buttons}
                     ></Lightbox>
                 </PhotosContainer>
+
+                <ButtonContainer
+                    show={
+                        !(albumsArray as AlbumsArray)[0].owned &&
+                        (albumsArray as AlbumsArray).length <= 1
+                    }
+                >
+                    <UnlockButton
+                        onClick={() => {
+                            setOpen(true);
+                        }}
+                        show={(albumsArray as AlbumsArray)[0].owned}
+                    >
+                        <ButtonText>Unlock your photos</ButtonText>
+                    </UnlockButton>
+                </ButtonContainer>
+                <PaymentModal
+                    onClose={() => {
+                        setOpen(false);
+                    }}
+                    id={(albumsArray as AlbumsArray)[0].id.toString()}
+                    show={open}
+                ></PaymentModal>
+                <Lightbox
+                    onClose={() => setShow(false)}
+                    show={show}
+                    image={image}
+                    buttons={buttons}
+                ></Lightbox>
             </MainWithData>
         </ContainerWithData>
     );

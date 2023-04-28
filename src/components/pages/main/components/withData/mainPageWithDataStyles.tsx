@@ -99,7 +99,7 @@ export const AlbumButton = styled.button<{ image: string }>`
     }
 `;
 
-export const ButtonText = styled.p`
+export const Text = styled.p`
     font-family: 'Futura PT';
     font-size: 14px;
     line-height: 18px;

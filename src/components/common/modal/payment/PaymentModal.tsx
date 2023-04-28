@@ -1,4 +1,4 @@
-import React, { FC,  useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import {
     Modal,
@@ -16,17 +16,35 @@ import {
 
 import CloseIcon from '@mui/icons-material/Close';
 import { useLocation } from 'react-router-dom';
-import { Selector } from '~/store/hooks/hooks';
+import { Dispatch, Selector } from '~/store/hooks/hooks';
 import { tokenSelector } from '~/store/selectors/tokenSelector';
 import { oneAlbumSelector } from '~/store/selectors/oneAlbumSelector';
+import { addOneAlbum } from '~/store/reducers/oneAlbumReducer';
 
 type Props = {
     show: boolean;
     onClose: () => void;
+    id?: string;
+};
+
+type Data = {
+    album: {
+        id: number;
+        name: string;
+        location: string;
+        date: string;
+        photographerId: number;
+        owned: boolean;
+        coverImageUrl: string;
+    };
+    success: boolean;
 };
 
 export const PaymentModal: FC<Props> = (props) => {
-    const id = useLocation().pathname.split('/')[2];
+    const id = useLocation().pathname.split('/')[2] || props.id;
+    console.log(id);
+
+    const dispatch = Dispatch();
 
     const [loading, setLoading] = useState<boolean>(false);
 
@@ -35,7 +53,31 @@ export const PaymentModal: FC<Props> = (props) => {
 
     const baseUrl = import.meta.env.VITE_BASE_URL;
 
-    const chackoutHandler = async () => {
+    useEffect(() => {
+        const getAlbum = async () => {
+            // const { data } = fetchHook<Data>(method, slug, undefined, header);
+
+            const response = await fetch(`${baseUrl}user/album/${id}`, {
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${jwtToken}`,
+                    'ngrok-skip-browser-warning': '69420',
+                },
+                body: undefined,
+            });
+            const data: Data = await response.json();
+
+            if (data) {
+                const albumData = data?.album;
+                dispatch(addOneAlbum(albumData));
+            }
+        };
+        if (!album) {
+            void getAlbum();
+        }
+    }, [album]);
+
+    const checkoutHandler = async () => {
         setLoading(true);
         const response = await fetch(`${baseUrl}payment`, {
             method: 'POST',
@@ -51,7 +93,7 @@ export const PaymentModal: FC<Props> = (props) => {
         const data = await response.json();
         if (data?.success) {
             setLoading(false);
-            localStorage.setItem('albumId', id);
+            localStorage.setItem('albumId', id as string);
             window.location.replace(data.url);
         }
     };
@@ -73,7 +115,7 @@ export const PaymentModal: FC<Props> = (props) => {
                     <TextBold>$5</TextBold>
                 </Body>
                 <CheckoutButton>
-                    <ButtonText onClick={chackoutHandler}>Checkout </ButtonText>
+                    <ButtonText onClick={checkoutHandler}>Checkout </ButtonText>
                     {loading && (
                         <div>
                             <SpinnerAnimation />
