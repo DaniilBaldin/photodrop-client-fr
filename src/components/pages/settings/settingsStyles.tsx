@@ -69,13 +69,14 @@ export const Avatar = styled.div`
     margin-bottom: 20px;
 `;
 
-export const Image = styled.img`
+export const Img = styled.img`
     width: 140px;
     height: 140px;
     /* display: inline-block; */
     border-radius: 50%;
     border: 1px solid white;
     z-index: 10;
+    border: 1px solod grey;
 `;
 
 export const ChangeSelfie = styled.button`
@@ -97,10 +98,10 @@ export const ChangeSelfie = styled.button`
 `;
 
 export const PencilImage = styled.img`
-    width: 16px;
-    height: 40px;
-    margin-left: 1px;
-    margin-bottom: 2px;
+    width: 17px;
+    height: 23px;
+    /* margin-left: 1px;
+    margin-bottom: 2px; */
 `;
 
 export const ChangeName = styled.button`

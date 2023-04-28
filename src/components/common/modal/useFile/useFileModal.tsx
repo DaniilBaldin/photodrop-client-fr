@@ -5,6 +5,8 @@ import ReactCrop, { Area, Point } from 'react-easy-crop';
 
 import { Converter } from '~/utils/imageConverter';
 
+import LazyLoad from 'react-lazyload';
+
 import {
     Modal,
     ModalContent,
@@ -71,6 +73,7 @@ export const UseFileModal: FC<Props> = (props) => {
         if (image && area) {
             setLoading(true);
             const final = (await Converter(image, area)) as Blob;
+            dispatch(changeSelfie(URL.createObjectURL(final)));
 
             const formData = new FormData();
             formData.append('Content-Type', 'multipart/form-data');
@@ -95,7 +98,7 @@ export const UseFileModal: FC<Props> = (props) => {
                     navigate('/');
                 }
                 setLoading(false);
-                dispatch(changeSelfie(URL.createObjectURL(final)));
+
                 props.onClose();
             }
         }
@@ -116,26 +119,28 @@ export const UseFileModal: FC<Props> = (props) => {
                 </Header>
                 <TextSmall>Drag and zoom image to crop</TextSmall>
                 <FileWindow>
-                    <ReactCrop
-                        image={image ? image : ''}
-                        aspect={1}
-                        style={{ cropAreaStyle: CropStyle }}
-                        crop={crop}
-                        zoom={zoom}
-                        showGrid={false}
-                        minZoom={minZoom}
-                        cropShape="round"
-                        objectFit="vertical-cover"
-                        cropSize={{ width: 280, height: 260 }}
-                        onCropChange={setCrop}
-                        onCropComplete={onCropComplete}
-                        onZoomChange={setZoom}
-                        onMediaLoaded={({ height, width }) => {
-                            const smallSide = height >= width ? width : height;
-                            setMinZoom(285 / smallSide);
-                            setZoom(285 / smallSide);
-                        }}
-                    />
+                    <LazyLoad>
+                        <ReactCrop
+                            image={image ? image : ''}
+                            aspect={1}
+                            style={{ cropAreaStyle: CropStyle }}
+                            crop={crop}
+                            zoom={zoom}
+                            showGrid={false}
+                            minZoom={minZoom}
+                            cropShape="round"
+                            objectFit="vertical-cover"
+                            cropSize={{ width: 280, height: 260 }}
+                            onCropChange={setCrop}
+                            onCropComplete={onCropComplete}
+                            onZoomChange={setZoom}
+                            onMediaLoaded={({ height, width }) => {
+                                const smallSide = height >= width ? width : height;
+                                setMinZoom(285 / smallSide);
+                                setZoom(285 / smallSide);
+                            }}
+                        />
+                    </LazyLoad>
                 </FileWindow>
                 <Footer>
                     <Button

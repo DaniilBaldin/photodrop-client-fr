@@ -12,7 +12,7 @@ import {
     Title,
     SubTitle,
     Avatar,
-    Image,
+    Img,
     ChangeSelfie,
     PencilImage,
     ChangeName,
@@ -22,34 +22,37 @@ import {
     ChangeNameLink,
 } from './settingsStyles';
 import { Loader } from '../main/components/loader/loader';
+import { getBlob } from '~/utils/getBlob';
 
 export const Settings = () => {
     const user = Selector(userSelector);
 
     const [open, setOpen] = useState<boolean>(false);
-    const [selfie, setSelfie] = useState<string>(user?.selfie as string);
+    const [selfie, setSelfie] = useState<string>('');
     const [imageLoaded, setImageLoaded] = useState(false);
 
     const [userLoaded, setUserLoaded] = useState<boolean>(false);
 
     useEffect(() => {
         if (user?.selfie.split(':')[0] !== 'blob') {
-            setSelfie((user?.selfie as string) + '?' + new Date().getTime());
+            getBlob(user?.selfie as string).then((result: Blob | undefined) => {
+                setSelfie(URL.createObjectURL(result as Blob));
+            });
         } else {
             setSelfie(user?.selfie as string);
         }
     }, [user]);
 
+    console.log(selfie);
+
     const inputRef = useRef<HTMLInputElement>(null);
+
     const handleClick = () => {
         setOpen(true);
-        // inputRef.current?.click();
     };
 
     const handleRetake = () => {
-        setOpen(false);
         inputRef.current?.click();
-        setOpen(true);
     };
 
     const handleFile = (event: ChangeEvent<HTMLInputElement>) => {
@@ -60,8 +63,6 @@ export const Settings = () => {
 
         setSelfie(URL.createObjectURL(file));
     };
-
-    const imageStyle = !imageLoaded ? { display: 'none' } : { display: 'inline-block' };
 
     useEffect(() => {
         if (user) setUserLoaded(true);
@@ -77,12 +78,12 @@ export const Settings = () => {
                 <Title>{`Welcome, ${(user?.name as string) || 'User'}.`}</Title>
                 <SubTitle>Your selfie</SubTitle>
                 <Avatar>
-                    <LazyLoad height={150}>
-                        {!imageLoaded && <Image src={'/avatar.png'} alt="Selfie" />}
-                        <Image
+                    <LazyLoad height={140}>
+                        {!imageLoaded && <Img src={'/avatar.png'} alt="Selfie" />}
+                        <Img
                             alt={'selfie'}
-                            src={user?.selfie as string}
-                            style={imageStyle}
+                            src={user?.selfie}
+                            style={!imageLoaded ? { display: 'none' } : { display: 'inline-block' }}
                             decoding="sync"
                             onLoad={() => {
                                 setImageLoaded(true);
@@ -91,7 +92,7 @@ export const Settings = () => {
                     </LazyLoad>
 
                     <ChangeSelfie type="button" onClick={handleClick}>
-                        <PencilImage src="/Pencil.svg" alt="Pencil" />
+                        <PencilImage src="/pencil.png" alt="Pencil" />
                     </ChangeSelfie>
                 </Avatar>
                 <ChangeNameLink to={'/settings-change-name'}>
