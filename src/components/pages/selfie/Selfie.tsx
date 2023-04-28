@@ -7,19 +7,16 @@ import { Main, SelfieMain, SelfieDiv, TextTitle, Text, ImageBox, Button } from '
 
 export const Selfie = () => {
     const [open, setOpen] = useState<boolean>(false);
-    const [selfie, setSelfie] = useState<string | null>('/avatar.jpg');
+    const [selfie, setSelfie] = useState<string>('/avatar.png');
 
     const inputRef = useRef<HTMLInputElement>(null);
 
     const handleClick = () => {
         setOpen(true);
-        // inputRef.current?.click();
     };
 
     const handleRetake = () => {
-        setOpen(false);
         inputRef.current?.click();
-        setOpen(true);
     };
 
     const handleFile = (event: ChangeEvent<HTMLInputElement>) => {
@@ -27,9 +24,20 @@ export const Selfie = () => {
         if (!file) {
             return;
         }
+        const fileSize = file.size; // 3MB
+
+        if (fileSize > 2 * 1000000) {
+            alert(
+                `File size is too large, please upload image of size less than 2MB.\nSelected File Size: ${
+                    fileSize / 1000000
+                }MB only`,
+            );
+            return;
+        }
 
         setSelfie(URL.createObjectURL(file));
     };
+
     return (
         <Main>
             <SelfieMain>
@@ -54,6 +62,9 @@ export const Selfie = () => {
                             style={{ display: 'none' }}
                             ref={inputRef}
                             onChange={handleFile}
+                            accept="image/*"
+                            title="Upload file smaller than 2MB"
+                            placeholder="Upload file smaller than 2MB"
                         />
                     </ImageBox>
                 </SelfieDiv>

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import { Selector } from '~/store/hooks/hooks';
 import { userSelector } from '~/store/selectors/userSelector';
 
@@ -20,9 +20,8 @@ import {
     ChangeNameLink,
 } from './settingsStyles';
 import { Loader } from '../main/components/loader/loader';
-import { getBlob } from '~/utils/getBlob';
 
-export const Settings = () => {
+export const Settings: FC = () => {
     const user = Selector(userSelector);
 
     const [open, setOpen] = useState<boolean>(false);
@@ -31,16 +30,8 @@ export const Settings = () => {
     const [userLoaded, setUserLoaded] = useState<boolean>(false);
 
     useEffect(() => {
-        if (user?.selfie.split(':')[0] !== 'blob') {
-            getBlob(user?.selfie as string).then((result: Blob | undefined) => {
-                setSelfie(URL.createObjectURL(result as Blob));
-            });
-        } else {
-            setSelfie(user?.selfie as string);
-        }
+        if (user) setSelfie(user.selfie);
     }, [user]);
-
-    console.log(selfie);
 
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -55,6 +46,16 @@ export const Settings = () => {
     const handleFile = (event: ChangeEvent<HTMLInputElement>) => {
         const file = event?.target?.files?.[0];
         if (!file) {
+            return;
+        }
+        const fileSize = file.size; // 3MB
+
+        if (fileSize > 2 * 1000000) {
+            alert(
+                `File size is too large, please upload image of size less than 2MB.\nSelected File Size: ${
+                    fileSize / 1000000
+                }MB only`,
+            );
             return;
         }
 
@@ -76,7 +77,6 @@ export const Settings = () => {
                 <SubTitle>Your selfie</SubTitle>
                 <Avatar>
                     <Img alt={'selfie'} src={user?.selfie} placeholderSrc="/avatar.png" />
-
                     <ChangeSelfie type="button" onClick={handleClick}>
                         <PencilImage src="/pencil.png" alt="Pencil" />
                     </ChangeSelfie>
@@ -105,6 +105,9 @@ export const Settings = () => {
                     style={{ display: 'none' }}
                     ref={inputRef}
                     onChange={handleFile}
+                    accept="image/*"
+                    title="Upload file smaller than 2MB"
+                    placeholder="Upload file smaller than 2MB"
                 />
             </Main>
         </Container>

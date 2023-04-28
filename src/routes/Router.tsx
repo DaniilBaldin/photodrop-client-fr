@@ -3,10 +3,11 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { Layout } from '~/components/common/layout/Layout';
 
 import { Dispatch, Selector } from '~/store/hooks/hooks';
-import { addUser } from '~/store/reducers/userReducer';
+import { addUser, changeSelfie } from '~/store/reducers/userReducer';
 import { tokenSelector } from '~/store/selectors/tokenSelector';
 
 import { routes, protectedRoutes } from './routes';
+import { getBlob } from '~/utils/getBlob';
 
 type RouterType = {
     path: string;
@@ -36,6 +37,9 @@ export const Router = () => {
             if (data) {
                 const user = data?.user;
                 dispatch(addUser(user));
+                getBlob(user?.selfie as string).then((result: Blob | undefined) => {
+                    dispatch(changeSelfie(URL.createObjectURL(result as Blob)));
+                });
             }
         };
         if (jwtToken) {

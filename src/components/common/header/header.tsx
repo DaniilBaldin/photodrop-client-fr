@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import {
@@ -25,7 +25,6 @@ import { Selector } from '~/store/hooks/hooks';
 import { userSelector } from '~/store/selectors/userSelector';
 import { oneAlbumSelector } from '~/store/selectors/oneAlbumSelector';
 import { albumPhotoSelector } from '~/store/selectors/albumPhotoSelector';
-import { getBlob } from '~/utils/getBlob';
 
 type Props = {
     backArrow?: boolean;
@@ -43,24 +42,7 @@ export const HeaderComponent: FC<Props> = () => {
 
     const [open, setOpen] = useState<boolean>(false);
 
-    const [selfie, setSelfie] = useState<string>(user?.selfie as string);
     const date = new Date(album?.date as string).toDateString();
-
-    useEffect(() => {
-        if (user?.selfie.split(':')[0] !== 'blob') {
-            // setSelfie((user?.selfie as string) + '?' + new Date().getTime());
-
-            getBlob(user?.selfie as string)
-                .then((result: Blob | undefined) => {
-                    setSelfie(URL.createObjectURL(result as Blob));
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-        } else {
-            setSelfie(user?.selfie as string);
-        }
-    }, [user]);
 
     if (location.pathname.includes('album')) {
         return (
@@ -119,7 +101,7 @@ export const HeaderComponent: FC<Props> = () => {
                             }}
                             hidden={location.pathname === '/settings'}
                             path={location.pathname}
-                            selfie={selfie as string}
+                            selfie={user?.selfie as string}
                         ></SettingsButton>
                         <BackButton
                             type="button"

@@ -73,9 +73,8 @@ export const Avatar = styled.div`
 export const Img = styled(LazyLoadImage)`
     width: 140px;
     height: 140px;
-    /* display: inline-block; */
+    display: inline-block;
     border-radius: 50%;
-    border: 1px solid white;
     z-index: 1;
 `;
 
