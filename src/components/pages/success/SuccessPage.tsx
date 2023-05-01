@@ -16,6 +16,7 @@ import { Dispatch, Selector } from '~/store/hooks/hooks';
 
 import { tokenSelector } from '~/store/selectors/tokenSelector';
 import { removeId } from '~/store/reducers/albumIdReducer';
+import { Loader } from '../main/components/loader/loader';
 
 type Data = {
     album: {
@@ -63,6 +64,10 @@ export const SuccessPage = () => {
         };
         void getAlbum();
     }, [id]);
+
+    if (!album) {
+        return <Loader />;
+    }
 
     useEffect(() => {
         const addAlbum = async () => {

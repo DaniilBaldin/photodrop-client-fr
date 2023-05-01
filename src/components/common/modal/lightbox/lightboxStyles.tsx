@@ -60,6 +60,7 @@ export const CloseButton = styled.button`
     -webkit-justify-content: center;
     margin-top: 20px;
     margin-left: 30px;
+    z-index: 999;
 `;
 
 export const ButtonContainer = styled.div`
