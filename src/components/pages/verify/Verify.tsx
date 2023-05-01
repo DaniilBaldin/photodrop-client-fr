@@ -27,7 +27,7 @@ type Data = {
     success: boolean;
 };
 
-export const Verify: FC = (): JSX.Element => {
+export const Verify: FC = () => {
     const [otp, setOtp] = useState<string>('');
     const [error, setError] = useState<string>('');
     const [hidden, setHidden] = useState<boolean>(false);

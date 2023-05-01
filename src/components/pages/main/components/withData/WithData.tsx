@@ -28,71 +28,11 @@ import { albumSelector } from '~/store/selectors/albumSelector';
 import { photoSelector } from '~/store/selectors/photoSelector';
 
 import 'react-lazy-load-image-component/src/effects/opacity.css';
-// import { UnlockButton } from '~/components/common/header/headerStyles';
+
 import { PaymentModal } from '~/components/common/modal/payment/PaymentModal';
 import { ButtonContainer, UnlockButton, ButtonText } from '~/components/pages/album/albumStyles';
 
-type Albums = {
-    albums: {
-        id: number;
-        name: string;
-        location: string;
-        date: string;
-        photographerId: number;
-        owned: boolean;
-        coverImageUrl: string;
-    }[];
-    success: boolean;
-} | null;
-
-type AlbumsArray = {
-    id: number;
-    name: string;
-    location: string;
-    date: string;
-    photographerId: number;
-    owned: boolean;
-    coverImageUrl: string;
-}[];
-
-type Album = {
-    id: number;
-    name: string;
-    location: string;
-    date: string;
-    photographerId: number;
-    owned: boolean;
-    coverImageUrl: string;
-};
-
-type PhotosData = {
-    photos: {
-        id: string;
-        name: string;
-        ext: string;
-        phoneNumbers: string[];
-        albumId: number;
-        owned: boolean;
-        photoUrl: string;
-        thumbnailUrl: string;
-        phWatermarkUrl: string;
-        thumbWatermarkUrl: string;
-    }[];
-    success: boolean;
-} | null;
-
-type Photo = {
-    id: string;
-    name: string;
-    ext: string;
-    phoneNumbers: string[];
-    albumId: number;
-    owned: boolean;
-    photoUrl: string;
-    thumbnailUrl: string;
-    phWatermarkUrl: string;
-    thumbWatermarkUrl: string;
-};
+import { Albums, PhotosData, Album, Photo, AlbumsArray } from '~/types/withDataTypes';
 
 export const WithData: FC = () => {
     const [show, setShow] = useState<boolean>(false);

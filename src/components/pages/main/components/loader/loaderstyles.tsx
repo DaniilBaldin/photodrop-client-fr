@@ -18,28 +18,3 @@ export const Image = styled.img`
     width: 75px;
     height: auto;
 `;
-
-export const Spinner = styled.div`
-    width: 64px;
-    height: 64px;
-    border: 8px solid;
-    border-color: #3d5af1 transparent #3d5af1 transparent;
-    border-radius: 50%;
-    animation: spin-anim 1.2s linear infinite;
-
-    @keyframes spin-anim {
-        0% {
-            transform: rotate(0deg);
-        }
-        100% {
-            transform: rotate(360deg);
-        }
-    }
-`;
-
-export const Text = styled.p`
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 23px;
-    margin: 20px 0 0 0;
-`;

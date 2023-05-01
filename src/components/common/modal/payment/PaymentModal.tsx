@@ -21,28 +21,10 @@ import { tokenSelector } from '~/store/selectors/tokenSelector';
 import { oneAlbumSelector } from '~/store/selectors/oneAlbumSelector';
 import { addOneAlbum } from '~/store/reducers/oneAlbumReducer';
 
-type Props = {
-    show: boolean;
-    onClose: () => void;
-    id?: string;
-};
-
-type Data = {
-    album: {
-        id: number;
-        name: string;
-        location: string;
-        date: string;
-        photographerId: number;
-        owned: boolean;
-        coverImageUrl: string;
-    };
-    success: boolean;
-};
+import { Props, Data } from '~/types/paymentModalTypes';
 
 export const PaymentModal: FC<Props> = (props) => {
     const id = useLocation().pathname.split('/')[2] || props.id;
-    console.log(id);
 
     const dispatch = Dispatch();
 
@@ -55,8 +37,6 @@ export const PaymentModal: FC<Props> = (props) => {
 
     useEffect(() => {
         const getAlbum = async () => {
-            // const { data } = fetchHook<Data>(method, slug, undefined, header);
-
             const response = await fetch(`${baseUrl}user/album/${id}`, {
                 method: 'GET',
                 headers: {

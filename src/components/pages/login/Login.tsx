@@ -20,7 +20,7 @@ import {
 } from './loginStyles';
 import { Spinner } from '~/components/common/spinner/Spinner';
 
-export const Login: FC = (): JSX.Element => {
+export const Login: FC = () => {
     const [code, setCode] = useState<string>('');
     const [phone, setPhone] = useState<string>('');
     const [error, setError] = useState<string>('');

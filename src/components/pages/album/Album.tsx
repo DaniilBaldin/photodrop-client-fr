@@ -23,47 +23,7 @@ import { Loader } from '../main/components/loader/loader';
 
 import 'react-lazy-load-image-component/src/effects/opacity.css';
 
-type Data = {
-    album: {
-        id: number;
-        name: string;
-        location: string;
-        date: string;
-        photographerId: number;
-        owned: boolean;
-        coverImageUrl: string;
-    };
-    success: boolean;
-};
-type DataPhotos = {
-    albumId: number;
-    photos: {
-        id: string;
-        name: string;
-        ext: string;
-        phoneNumbers: string[];
-        albumId: number;
-        owned: boolean;
-        photoUrl: string;
-        thumbnailUrl: string;
-        phWatermarkUrl: string;
-        thumbWatermarkUrl: string;
-    }[];
-    success: boolean;
-};
-
-type Photo = {
-    id: string;
-    name: string;
-    ext: string;
-    phoneNumbers: string[];
-    albumId: number;
-    owned: boolean;
-    photoUrl: string;
-    thumbnailUrl: string;
-    phWatermarkUrl: string;
-    thumbWatermarkUrl: string;
-};
+import { Data, DataPhotos, Photo } from '~/types/albumTypes';
 
 export const Album = () => {
     const { id } = useParams();
