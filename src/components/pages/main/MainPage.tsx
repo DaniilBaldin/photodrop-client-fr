@@ -10,35 +10,7 @@ import { photoSelector } from '~/store/selectors/photoSelector';
 import { Loader } from './components/loader/loader';
 import { newUserSelector } from '~/store/selectors/newUseSelector';
 import { useNavigate } from 'react-router-dom';
-
-type Albums = {
-    albums: {
-        id: number;
-        name: string;
-        location: string;
-        date: string;
-        photographerId: number;
-        owned: boolean;
-        coverImageUrl: string;
-    }[];
-    success: boolean;
-} | null;
-
-type PhotosData = {
-    photos: {
-        id: string;
-        name: string;
-        ext: string;
-        phoneNumbers: string[];
-        albumId: number;
-        owned: boolean;
-        photoUrl: string;
-        thumbnailUrl: string;
-        phWatermarkUrl: string;
-        thumbWatermarkUrl: string;
-    }[];
-    success: boolean;
-} | null;
+import { Albums, PhotosData } from '~/types/mainPageTypes';
 
 export const MainPage: FC = () => {
     const dispatch = Dispatch();

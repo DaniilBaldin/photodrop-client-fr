@@ -39,6 +39,7 @@ export const SuccessPage = () => {
 
     const jwtToken = Selector(tokenSelector);
     const [album, setAlbum] = useState<Data | null>(null);
+    const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
         if (!id) navigate('/');
@@ -47,6 +48,7 @@ export const SuccessPage = () => {
     const baseUrl = import.meta.env.VITE_BASE_URL;
 
     useEffect(() => {
+        setLoading(true);
         const getAlbum = async () => {
             const response = await fetch(`${baseUrl}user/album/${id}`, {
                 method: 'GET',
@@ -60,14 +62,11 @@ export const SuccessPage = () => {
             const data = await response.json();
             if (data.success) {
                 setAlbum(data);
+                setLoading(false);
             }
         };
         void getAlbum();
     }, [id]);
-
-    if (!album) {
-        return <Loader />;
-    }
 
     useEffect(() => {
         const addAlbum = async () => {
@@ -95,6 +94,10 @@ export const SuccessPage = () => {
     const buttonHandler = () => {
         navigate(`/album/${id}`);
     };
+
+    if (loading && !album) {
+        return <Loader />;
+    }
 
     return (
         <Main>
