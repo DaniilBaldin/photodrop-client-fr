@@ -49,7 +49,7 @@ export const ModalContent = styled.div`
 export const FileWindow = styled.span`
     position: absolute;
     top: 210px;
-    left: 50px;
+    left: 60px;
     right: 0;
     bottom: 0px;
     max-width: 260px;

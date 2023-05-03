@@ -120,7 +120,7 @@ export const WithData: FC = () => {
                 <ButtonContainer
                     show={
                         !(albumsArray as AlbumsArray)[0].owned &&
-                        (albumsArray as AlbumsArray).length <= 1
+                        (albumsArray as AlbumsArray).length == 1
                     }
                 >
                     <UnlockButton

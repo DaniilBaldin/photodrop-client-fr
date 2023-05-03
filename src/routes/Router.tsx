@@ -14,6 +14,15 @@ type RouterType = {
     element: FunctionComponent;
 };
 
+type User = {
+    id: number;
+    phoneNumber: string;
+    verified: boolean;
+    name: string;
+    ownedAlbums: string[];
+    selfie: string;
+};
+
 export const Router = () => {
     const dispatch = Dispatch();
 
@@ -35,7 +44,8 @@ export const Router = () => {
             const data = await response.json();
 
             if (data) {
-                const user = data?.user;
+                const user: User = data?.user;
+                user.selfie = user.selfie + '?' + new Date().getTime();
                 dispatch(addUser(user));
                 getBlob(user?.selfie as string).then((result: Blob | undefined) => {
                     dispatch(changeSelfie(URL.createObjectURL(result as Blob)));
