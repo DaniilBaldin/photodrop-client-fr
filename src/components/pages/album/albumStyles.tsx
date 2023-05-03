@@ -39,6 +39,10 @@ export const ImageButton = styled(LazyLoadImage)`
     object-fit: cover;
     display: block;
 
+    :hover {
+        cursor: pointer;
+    }
+
     @media (max-width: 1024px) {
         width: 100%;
         height: 33.34vw;
