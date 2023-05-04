@@ -70,10 +70,13 @@ export const Settings: FC = () => {
         return <Loader />;
     }
 
+    let name: string = (user?.name as string).replace(/\s/g, '');
+    name = name.charAt(0).toUpperCase() + name?.slice(1);
+
     return (
         <Container>
             <Main>
-                <Title>{`Welcome, ${(user?.name as string) || 'User'}.`}</Title>
+                <Title>{`Welcome, ${name || 'User'}.`}</Title>
                 <SubTitle>Your selfie</SubTitle>
                 <Avatar>
                     <Img alt={'selfie'} src={user?.selfie} placeholderSrc="/avatar.png" />
