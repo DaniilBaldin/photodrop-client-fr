@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import {
     Modal,
@@ -16,17 +16,14 @@ import {
 
 import CloseIcon from '@mui/icons-material/Close';
 import { useLocation } from 'react-router-dom';
-import { Dispatch, Selector } from '~/store/hooks/hooks';
+import { Selector } from '~/store/hooks/hooks';
 import { tokenSelector } from '~/store/selectors/tokenSelector';
 import { oneAlbumSelector } from '~/store/selectors/oneAlbumSelector';
-import { addOneAlbum } from '~/store/reducers/oneAlbumReducer';
 
-import { Props, Data } from '~/types/paymentModalTypes';
+import { Props } from '~/types/paymentModalTypes';
 
 export const PaymentModal: FC<Props> = (props) => {
     const id = useLocation().pathname.split('/')[2] || props.id;
-
-    const dispatch = Dispatch();
 
     const [loading, setLoading] = useState<boolean>(false);
 
@@ -34,28 +31,6 @@ export const PaymentModal: FC<Props> = (props) => {
     const album = Selector(oneAlbumSelector);
 
     const baseUrl = import.meta.env.VITE_BASE_URL;
-
-    useEffect(() => {
-        const getAlbum = async () => {
-            const response = await fetch(`${baseUrl}user/album/${id}`, {
-                method: 'GET',
-                headers: {
-                    Authorization: `Bearer ${jwtToken}`,
-                    'ngrok-skip-browser-warning': '69420',
-                },
-                body: undefined,
-            });
-            const data: Data = await response.json();
-
-            if (data) {
-                const albumData = data?.album;
-                dispatch(addOneAlbum(albumData));
-            }
-        };
-        if (!album) {
-            void getAlbum();
-        }
-    }, [album]);
 
     const checkoutHandler = async () => {
         setLoading(true);
